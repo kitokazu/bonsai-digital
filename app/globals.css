@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Bonsai Digital Design System */
+    /* Warm cream background - like washi paper */
+    --background: 40 30% 97%;
+    --foreground: 200 15% 15%;
+
+    /* Card surfaces */
+    --card: 40 25% 95%;
+    --card-foreground: 200 15% 15%;
+
+    /* Popover */
+    --popover: 40 30% 97%;
+    --popover-foreground: 200 15% 15%;
+
+    /* Primary - Sage/Moss green like bonsai leaves */
+    --primary: 150 25% 35%;
+    --primary-foreground: 40 30% 97%;
+
+    /* Secondary - Soft warm tone */
+    --secondary: 35 20% 90%;
+    --secondary-foreground: 200 15% 20%;
+
+    /* Muted */
+    --muted: 40 15% 90%;
+    --muted-foreground: 200 10% 45%;
+
+    /* Accent - Terracotta warmth */
+    --accent: 15 45% 55%;
+    --accent-foreground: 40 30% 97%;
+
+    /* Destructive */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 40 30% 97%;
+
+    /* Borders and inputs */
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 150 25% 35%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 40 25% 95%;
+    --sidebar-foreground: 200 15% 20%;
+    --sidebar-primary: 150 25% 35%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 35 20% 88%;
+    --sidebar-accent-foreground: 200 15% 20%;
+    --sidebar-border: 40 15% 85%;
+    --sidebar-ring: 150 25% 35%;
+
+    /* Custom tokens for Bonsai Digital */
+    --hero-gradient: linear-gradient(135deg, hsl(150 25% 35% / 0.1) 0%, hsl(35 30% 85% / 0.5) 50%, hsl(15 45% 55% / 0.1) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(150 25% 30%) 0%, hsl(150 20% 45%) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(200 15% 15% / 0.08);
+    --card-shadow-hover: 0 12px 40px -8px hsl(200 15% 15% / 0.15);
+  }
+
+  .dark {
+    --background: 200 15% 10%;
+    --foreground: 40 20% 92%;
+
+    --card: 200 15% 13%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 200 15% 10%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 150 30% 50%;
+    --primary-foreground: 200 15% 10%;
+
+    --secondary: 200 12% 18%;
+    --secondary-foreground: 40 20% 92%;
+
+    --muted: 200 12% 18%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 15 50% 60%;
+    --accent-foreground: 200 15% 10%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 20% 92%;
+
+    --border: 200 12% 20%;
+    --input: 200 12% 20%;
+    --ring: 150 30% 50%;
+
+    --sidebar-background: 200 15% 12%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 150 30% 50%;
+    --sidebar-primary-foreground: 200 15% 10%;
+    --sidebar-accent: 200 12% 18%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 200 12% 20%;
+    --sidebar-ring: 150 30% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .card-elevated {
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Link underline animation */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary origin-bottom-right scale-x-0 transition-transform duration-300 ease-out;
+  }
+
+  .link-underline:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+
+  /* Zen divider */
+  .zen-divider {
+    @apply relative flex items-center justify-center;
+  }
+
+  .zen-divider::before,
+  .zen-divider::after {
+    content: '';
+    @apply flex-1 h-px bg-border;
+  }
+
+  .zen-divider::before {
+    @apply mr-4;
+  }
+
+  .zen-divider::after {
+    @apply ml-4;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  .container-narrow {
+    @apply max-w-5xl mx-auto px-6;
+  }
+}
