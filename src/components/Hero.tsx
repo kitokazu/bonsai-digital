@@ -5,6 +5,65 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+const projects = [
+  {
+    title: "CG Academy",
+    category: "Course Platform",
+    image: "/cg-landing.png",
+  },
+  {
+    title: "Define Academy",
+    category: "Sports Coaching",
+    image: "/define-academy-landing.png",
+  },
+  {
+    title: "CG Online Courses",
+    category: "Learning Platform",
+    image: "/cg-online-courses.png",
+  },
+  {
+    title: "Define X",
+    category: "Corporate Website",
+    image: "/definex-landing.png",
+  },
+  {
+    title: "CG Video Platform",
+    category: "Video Streaming",
+    image: "/cg-online-video.png",
+  },
+  {
+    title: "chnl301",
+    category: "Artist Website",
+    image: "/chnl301-landing.png",
+  },
+  {
+    title: "FinanceBroAI",
+    category: "AI Chatbot Dashboard",
+    image: "/chatbot-page.png",
+  },
+];
+
+function ShowcaseCard({ title, category, image }: typeof projects[number]) {
+  return (
+    <div className="group/card relative w-[340px] md:w-[420px] lg:w-[480px] aspect-[3/2] flex-shrink-0 rounded-xl overflow-hidden border border-border/50 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:border-primary/30">
+      <Image
+        src={image}
+        alt={title}
+        fill
+        className="object-cover object-top transition-transform duration-500 group-hover/card:scale-105"
+        sizes="(min-width: 1024px) 480px, (min-width: 768px) 420px, 340px"
+      />
+      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover/card:bg-black/55" />
+      <div className="absolute top-0 left-0 right-0 p-4 -translate-y-2 opacity-0 transition-all duration-300 group-hover/card:translate-y-0 group-hover/card:opacity-100">
+        <span className="inline-block px-2.5 py-0.5 rounded-full bg-primary/90 text-primary-foreground text-xs font-medium mb-1.5">
+          {category}
+        </span>
+        <p className="text-white font-medium text-sm drop-shadow-md">{title}</p>
+      </div>
+    </div>
+  );
+}
+
 const Hero = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -19,7 +78,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 pt-32 pb-12 flex-1 flex flex-col">
+      <div className="relative z-10 container mx-auto px-6 pt-32 pb-12">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <motion.div
@@ -78,41 +137,32 @@ const Hero = () => {
             </Button>
           </motion.div>
         </div>
-
-        {/* Product Mockup - Animated from bottom */}
-        <motion.div
-          initial={{ opacity: 0, y: 100, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ 
-            duration: 1, 
-            delay: 0.5,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-          className="relative mt-16 md:mt-20 mx-auto w-full max-w-6xl"
-        >
-          {/* Glow effect behind the mockup */}
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-primary/5 to-transparent blur-3xl -z-10 scale-110" />
-          
-          {/* Shadow and perspective container */}
-          <div className="relative">
-            {/* Decorative shadow */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-foreground/10 blur-2xl rounded-full" />
-            
-            {/* Main mockup image */}
-            <Image
-              src="/product-mockup.png"
-              alt="Website dashboard mockup showcasing modern web design"
-              width={1200}
-              height={800}
-              className="w-full h-auto rounded-t-xl md:rounded-t-2xl shadow-2xl border border-border/50"
-              priority
-            />
-            
-            {/* Fade out gradient at the bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent" />
-          </div>
-        </motion.div>
       </div>
+
+      {/* Project Showcase Marquee — full viewport width */}
+      <motion.div
+        initial={{ opacity: 0, y: 100, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.5,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        className="relative mt-8 md:mt-12 w-full"
+      >
+
+        {/* Marquee track */}
+        <div
+          className="flex gap-5 animate-marquee motion-reduce:[animation-play-state:paused]"
+          style={{ width: "max-content" }}
+        >
+          {/* Render twice for seamless loop */}
+          {[...projects, ...projects].map((project, i) => (
+            <ShowcaseCard key={`${project.title}-${i}`} {...project} />
+          ))}
+        </div>
+
+      </motion.div>
     </section>
   );
 };
