@@ -3,44 +3,44 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Globe, Code2, Palette, Rocket, LineChart, Shield } from "lucide-react";
+import { Globe, Layers, Sparkles } from "lucide-react";
 
 const services = [
   {
     icon: Globe,
-    title: "Website Design",
+    title: "Website Development",
     description:
-      "Beautiful, responsive websites that capture your brand essence and convert visitors into customers.",
+      "Custom websites built with React and Next.js. Fast, accessible, and optimized to convert visitors into customers.",
+    features: [
+      "React & Next.js",
+      "Responsive Design",
+      "SEO Optimized",
+      "Performance Focused",
+    ],
   },
   {
-    icon: Code2,
+    icon: Layers,
     title: "Web Applications",
     description:
-      "Custom web applications built with modern technologies to streamline your business operations.",
+      "Full-stack applications that streamline your operations. Dashboards, portals, and tools tailored to your workflow.",
+    features: [
+      "Custom Dashboards",
+      "API Development",
+      "Database Design",
+      "Cloud Hosting",
+    ],
   },
   {
-    icon: Palette,
-    title: "Brand Identity",
+    icon: Sparkles,
+    title: "AI Integration",
     description:
-      "Cohesive visual identities that tell your story and resonate with your target audience.",
-  },
-  {
-    icon: Rocket,
-    title: "Digital Strategy",
-    description:
-      "Strategic planning to establish and grow your digital presence effectively.",
-  },
-  {
-    icon: LineChart,
-    title: "SEO & Analytics",
-    description:
-      "Data-driven optimization to improve visibility and measure what matters.",
-  },
-  {
-    icon: Shield,
-    title: "Maintenance & Support",
-    description:
-      "Ongoing care to keep your digital assets secure, updated, and performing.",
+      "Intelligent solutions powered by AI. We help you leverage modern AI technology to enhance user experiences and automate workflows.",
+    features: [
+      "AI-Powered Features",
+      "Custom AI Solutions",
+      "Workflow Automation",
+      "Smart Integrations",
+    ],
   },
 ];
 
@@ -68,9 +68,17 @@ const ServiceCard = ({
       <h3 className="text-xl font-serif font-semibold text-foreground mb-3">
         {service.title}
       </h3>
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="text-muted-foreground leading-relaxed mb-6">
         {service.description}
       </p>
+      <ul className="space-y-2">
+        {service.features.map((feature) => (
+          <li key={feature} className="flex items-center text-sm text-muted-foreground">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mr-3" />
+            {feature}
+          </li>
+        ))}
+      </ul>
     </motion.div>
   );
 };

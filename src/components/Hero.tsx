@@ -22,28 +22,18 @@ const projects = [
     image: "/cg-online-courses.png",
   },
   {
-    title: "Define X",
-    category: "Corporate Website",
-    image: "/definex-landing.png",
-  },
-  {
-    title: "CG Video Platform",
-    category: "Video Streaming",
-    image: "/cg-online-video.png",
-  },
-  {
     title: "chnl301",
     category: "Artist Website",
     image: "/chnl301-landing.png",
   },
   {
     title: "FinanceBroAI",
-    category: "AI Chatbot Dashboard",
+    category: "AI RAG Chatbot Dashboard",
     image: "/chatbot-page.png",
   },
 ];
 
-function ShowcaseCard({ title, category, image }: typeof projects[number]) {
+function ShowcaseCard({ title, category, image }: (typeof projects)[number]) {
   return (
     <div className="group/card relative w-[340px] md:w-[420px] lg:w-[480px] aspect-[3/2] flex-shrink-0 rounded-xl overflow-hidden border border-border/50 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:border-primary/30">
       <Image
@@ -111,7 +101,8 @@ const Hero = () => {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             We bridge businesses to the digital world with precision and care.
-            Crafting websites and applications that nurture your online presence.
+            Crafting websites and applications that nurture your online
+            presence.
           </motion.p>
 
           {/* CTAs */}
@@ -150,7 +141,6 @@ const Hero = () => {
         }}
         className="relative mt-8 md:mt-12 w-full"
       >
-
         {/* Marquee track */}
         <div
           className="flex gap-5 animate-marquee motion-reduce:[animation-play-state:paused]"
@@ -161,7 +151,6 @@ const Hero = () => {
             <ShowcaseCard key={`${project.title}-${i}`} {...project} />
           ))}
         </div>
-
       </motion.div>
     </section>
   );
