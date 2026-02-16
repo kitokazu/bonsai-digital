@@ -63,7 +63,7 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/50"
+          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/70"
         >
           <p>&copy; {new Date().getFullYear()} Bonsai Digital. All rights reserved.</p>
           <p>Crafted with care in Tokyo, Japan</p>

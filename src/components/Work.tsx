@@ -4,35 +4,46 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 const projects = [
   {
-    title: "Sakura Wellness",
-    category: "Health & Wellness",
-    description: "A modern booking platform for a wellness spa chain",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
-    color: "from-rose-400/20 to-amber-300/20",
+    title: "DefineX",
+    category: "Sports & Education",
+    description:
+      "Platform that empowers Japanese athletes with English learning resources",
+    image: "/define-x-about.png",
+    color: "from-blue-400/20 to-white-300/20",
+    href: "/work/definex",
+    tags: ["Web design", "Web development", "Payment integration", "Email systems"],
   },
   {
-    title: "Nori Restaurant",
-    category: "Food & Beverage",
-    description: "E-commerce and reservation system for a restaurant group",
-    image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&q=80",
-    color: "from-emerald-400/20 to-teal-300/20",
+    title: "CashFlowAI",
+    category: "Finance & AI",
+    description:
+      "Internal technical dashboard with AI chatbots, automated reporting, and data visualization",
+    image: "/cashflowAI/cashflowAI.png",
+    color: "from-indigo-400/20 to-blue-300/20",
+    href: "/work/cashflowai",
+    tags: ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development"],
   },
   {
     title: "Kaizen Tech",
     category: "Technology",
     description: "Corporate website for a leading software consultancy",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
     color: "from-blue-400/20 to-indigo-300/20",
+    tags: ["Web design", "Web development", "Content strategy"],
   },
   {
     title: "Mono Studio",
     category: "Creative Agency",
     description: "Portfolio and project management platform",
-    image: "https://images.unsplash.com/photo-1493421419110-74f4e85ba126?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1493421419110-74f4e85ba126?w=800&q=80",
     color: "from-violet-400/20 to-purple-300/20",
+    tags: ["Web design", "Web development", "Project management"],
   },
 ];
 
@@ -68,42 +79,28 @@ const ProjectCard = ({
         />
       </div>
 
-      {/* Overlay */}
-      <motion.div
-        className={`absolute inset-0 bg-gradient-to-t ${project.color} to-transparent`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0.3 }}
-        transition={{ duration: 0.3 }}
-      />
+      {/* Dark gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
       {/* Content */}
       <div className="absolute inset-0 p-6 flex flex-col justify-end">
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span className="text-foreground/70 text-sm font-medium">
-            {project.category}
-          </span>
-        </motion.div>
+        <span className="text-white/80 text-sm font-medium">
+          {project.category}
+        </span>
         <div className="flex items-end justify-between">
           <div>
-            <h3 className="text-2xl font-serif font-semibold text-foreground mt-1">
+            <h3 className="text-2xl font-serif font-semibold text-white mt-1">
               {project.title}
             </h3>
-            <motion.p
-              className="text-foreground/70 text-sm mt-2 max-w-xs"
-              initial={{ y: 20, opacity: 0 }}
-              animate={isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-            >
+            <p className="text-white/80 text-sm mt-2 max-w-xs">
               {project.description}
-            </motion.p>
+            </p>
           </div>
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
-            animate={isHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+            animate={
+              isHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+            }
             transition={{ duration: 0.3 }}
             className="w-10 h-10 rounded-full bg-primary flex items-center justify-center"
           >
@@ -126,7 +123,9 @@ const Work = () => {
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={
+            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+          }
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
@@ -145,7 +144,27 @@ const Work = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <div key={project.title}>
+              {project.href ? (
+                <Link href={project.href}>
+                  <ProjectCard project={project} index={index} />
+                </Link>
+              ) : (
+                <ProjectCard project={project} index={index} />
+              )}
+              {project.tags && (
+                <div className="flex flex-wrap gap-2 mt-4 px-1">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-medium text-primary border border-primary/30 rounded-full px-3 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
