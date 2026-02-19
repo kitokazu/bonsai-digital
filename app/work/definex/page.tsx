@@ -231,7 +231,7 @@ export default function DefineXPage() {
             className="flex flex-col sm:flex-row items-start gap-4"
           >
             <a
-              href="https://definex.jp"
+              href="https://www.definex.jp/"
               target="_blank"
               rel="noopener noreferrer"
             >

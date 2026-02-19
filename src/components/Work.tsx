@@ -28,22 +28,24 @@ const projects = [
     tags: ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development"],
   },
   {
-    title: "Kaizen Tech",
-    category: "Technology",
-    description: "Corporate website for a leading software consultancy",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    color: "from-blue-400/20 to-indigo-300/20",
-    tags: ["Web design", "Web development", "Content strategy"],
+    title: "CG Online Academy",
+    category: "3D Art & Education",
+    description:
+      "Full redesign of a 3D artist's website with live Three.js model rendering and an integrated course platform with progress tracking",
+    image: "/cg-about.jpeg",
+    color: "from-amber-400/20 to-orange-300/20",
+    href: "/work/cg-online-academy",
+    tags: ["Web redesign", "Three.js", "Course platform", "Progress tracking"],
   },
   {
-    title: "Mono Studio",
-    category: "Creative Agency",
-    description: "Portfolio and project management platform",
-    image:
-      "https://images.unsplash.com/photo-1493421419110-74f4e85ba126?w=800&q=80",
+    title: "Chnl301",
+    category: "Music & Band",
+    description:
+      "Custom band website built around a distinctive visual theme that captures the identity and energy of the group",
+    image: "/chnl301/chnl301-landing.png",
     color: "from-violet-400/20 to-purple-300/20",
-    tags: ["Web design", "Web development", "Project management"],
+    href: "/work/chnl301",
+    tags: ["Web design", "Web development", "Brand identity", "Custom theme"],
   },
 ];
 

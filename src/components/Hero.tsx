@@ -29,7 +29,7 @@ const projects = [
   {
     title: "FinanceBroAI",
     category: "AI RAG Chatbot Dashboard",
-    image: "/chatbot-page.png",
+    image: "/cashflowAI/cashflowAI.png",
   },
 ];
 
