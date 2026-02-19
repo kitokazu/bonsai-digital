@@ -14,21 +14,18 @@ const showcaseItems = [
     description:
       "Designed a landing page that immediately communicates the band's character — from the typography and colour palette to the layout and imagery. Every decision was driven by the band's aesthetic direction rather than a generic template.",
     image: "/chnl301/chnl301-landing.png",
-    format: "desktop" as const,
   },
   {
     title: "Music & Video Section",
     description:
       "Built a dedicated space for the band's music and video content, giving fans an easy way to discover and explore their releases without leaving the site.",
     image: "/chnl301/chnl301-videos.png",
-    format: "desktop" as const,
   },
   {
     title: "Artist Profiles",
     description:
       "Each member of the band gets their own spotlight — introducing the people behind the music and deepening the connection between the band and their audience.",
     image: "/chnl301/chlm301-artists.png",
-    format: "desktop" as const,
   },
 ];
 
@@ -154,7 +151,6 @@ export default function Chnl301Page() {
           <div className="space-y-32">
             {showcaseItems.map((item, index) => {
               const isEven = index % 2 === 0;
-              const isTablet = item.format === "tablet";
 
               return (
                 <motion.div
@@ -168,19 +164,13 @@ export default function Chnl301Page() {
                   } items-center gap-10 md:gap-16`}
                 >
                   {/* Screenshot */}
-                  <div
-                    className={`${
-                      isTablet
-                        ? "w-full max-w-xs md:max-w-sm"
-                        : "w-full md:w-3/5"
-                    } flex-shrink-0`}
-                  >
+                  <div className="w-full md:w-3/5 flex-shrink-0">
                     <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
                       <Image
                         src={item.image}
                         alt={item.title}
-                        width={isTablet ? 500 : 800}
-                        height={isTablet ? 700 : 450}
+                        width={800}
+                        height={450}
                         className="w-full h-auto object-cover"
                       />
                     </div>
