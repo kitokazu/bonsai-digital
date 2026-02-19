@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "Bonsai Digital",
   description:
     "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
+  icons: {
+    icon: "/logo.png",
+  },
   openGraph: {
     title: "Bonsai Digital",
     description:

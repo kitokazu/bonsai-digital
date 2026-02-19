@@ -14,28 +14,24 @@ const showcaseItems = [
     description:
       "Transformed the existing CG Online website from scratch — modernising the visual language, improving information hierarchy, and building a fluid, responsive layout that reflects the quality of the artist's work.",
     image: "/cg-online-academy/cg-landing.png",
-    format: "desktop" as const,
   },
   {
     title: "Live 3D Model Viewer with Three.js",
     description:
       "Integrated Three.js to render the artist's actual 3D character models directly in the browser. Visitors can interact with real-time rendered models, showcasing the depth of the artist's craft in a way static images never could.",
     image: "/cg-about.jpeg",
-    format: "desktop" as const,
   },
   {
     title: "Course Platform with Progress Tracking",
     description:
       "Built a full course system where students who purchase a course can access video lessons and written guides directly on the site. Progress is saved per user so they can pick up exactly where they left off.",
     image: "/cg-online-academy/cg-course.png",
-    format: "desktop" as const,
   },
   {
     title: "Student Work Gallery",
     description:
       "Dedicated gallery showcasing work produced by students following the courses — acting as social proof and demonstrating the real-world results of the curriculum.",
     image: "/cg-online-academy/cg-student-work.png",
-    format: "desktop" as const,
   },
 ];
 
@@ -226,7 +222,6 @@ export default function CGOnlineAcademyPage() {
           <div className="space-y-32">
             {showcaseItems.map((item, index) => {
               const isEven = index % 2 === 0;
-              const isTablet = item.format === "tablet";
 
               return (
                 <motion.div
@@ -240,19 +235,13 @@ export default function CGOnlineAcademyPage() {
                   } items-center gap-10 md:gap-16`}
                 >
                   {/* Screenshot */}
-                  <div
-                    className={`${
-                      isTablet
-                        ? "w-full max-w-xs md:max-w-sm"
-                        : "w-full md:w-3/5"
-                    } flex-shrink-0`}
-                  >
+                  <div className="w-full md:w-3/5 flex-shrink-0">
                     <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
                       <Image
                         src={item.image}
                         alt={item.title}
-                        width={isTablet ? 500 : 800}
-                        height={isTablet ? 700 : 450}
+                        width={800}
+                        height={450}
                         className="w-full h-auto object-cover"
                       />
                     </div>
