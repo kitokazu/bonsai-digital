@@ -1,0 +1,241 @@
+{
+  "navbar": {
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Start a Project"
+  },
+  "hero": {
+    "badge": "Digital Agency Based in Japan",
+    "headline1": "Cultivating Your",
+    "headline2": "Digital Growth",
+    "subheadline": "We bridge businesses to the digital world with precision and care. Crafting websites and applications that nurture your online presence.",
+    "cta1": "Get a Free Quote",
+    "cta2": "View Our Work",
+    "projects": {
+      "cgAcademy": { "title": "CG Academy", "category": "Course Platform" },
+      "defineAcademy": { "title": "Define Academy", "category": "Sports Coaching" },
+      "cgOnlineCourses": { "title": "CG Online Courses", "category": "Learning Platform" },
+      "chnl301": { "title": "chnl301", "category": "Artist Website" },
+      "financeBroAI": { "title": "FinanceBroAI", "category": "AI RAG Chatbot Dashboard" }
+    }
+  },
+  "services": {
+    "label": "Our Services",
+    "heading": "Everything You Need to Grow Online",
+    "description": "From concept to launch and beyond, we provide comprehensive digital solutions tailored to your business needs.",
+    "items": [
+      {
+        "title": "Website Development",
+        "description": "Custom websites built with React and Next.js. Fast, accessible, and optimized to convert visitors into customers.",
+        "features": ["React & Next.js", "Responsive Design", "SEO Optimized", "Performance Focused"]
+      },
+      {
+        "title": "Web Applications",
+        "description": "Full-stack applications that streamline your operations. Dashboards, portals, and tools tailored to your workflow.",
+        "features": ["Custom Dashboards", "API Development", "Database Design", "Cloud Hosting"]
+      },
+      {
+        "title": "AI Integration",
+        "description": "Intelligent solutions powered by AI. We help you leverage modern AI technology to enhance user experiences and automate workflows.",
+        "features": ["AI-Powered Features", "Custom AI Solutions", "Workflow Automation", "Smart Integrations"]
+      }
+    ]
+  },
+  "work": {
+    "label": "Our Work",
+    "heading": "Projects We're Proud Of",
+    "description": "Each project is carefully crafted to meet unique business needs and exceed expectations.",
+    "projects": [
+      {
+        "title": "DefineX",
+        "category": "Sports & Education",
+        "description": "Platform that empowers Japanese athletes with English learning resources",
+        "tags": ["Web design", "Web development", "Payment integration", "Email systems"]
+      },
+      {
+        "title": "CashFlowAI",
+        "category": "Finance & AI",
+        "description": "Internal technical dashboard with AI chatbots, automated reporting, and data visualization",
+        "tags": ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development"]
+      },
+      {
+        "title": "CG Online Academy",
+        "category": "3D Art & Education",
+        "description": "Full redesign of a 3D artist's website with live Three.js model rendering and an integrated course platform with progress tracking",
+        "tags": ["Web redesign", "Three.js", "Course platform", "Progress tracking"]
+      },
+      {
+        "title": "Chnl301",
+        "category": "Music & Band",
+        "description": "Custom band website built around a distinctive visual theme that captures the identity and energy of the group",
+        "tags": ["Web design", "Web development", "Brand identity", "Custom theme"]
+      }
+    ]
+  },
+  "about": {
+    "label": "About Us",
+    "heading": "Bridging Businesses to the Digital World",
+    "paragraph1": "Based in Japan with American roots, Bonsai Digital was founded on the belief that every business deserves a beautiful, functional digital presence. We understand the challenges of going online and make the journey as seamless as possible.",
+    "paragraph2": "Our name reflects our philosophy: just as a bonsai requires patience, skill, and dedication to flourish, so does building a meaningful digital presence. We take the time to understand your vision and nurture it into reality.",
+    "values": [
+      {
+        "title": "Patience & Precision",
+        "description": "Like cultivating a bonsai, we take time to understand your needs and craft solutions with meticulous attention to detail."
+      },
+      {
+        "title": "Results-Driven",
+        "description": "Every design decision and line of code serves a purpose\u2014helping your business achieve its goals."
+      },
+      {
+        "title": "Long-term Partnership",
+        "description": "We don't just build and leave. We nurture lasting relationships to support your continued growth."
+      }
+    ]
+  },
+  "contact": {
+    "label": "Get in Touch",
+    "heading": "Let's Grow Your Business Together",
+    "description": "Ready to take the first step? Share your project idea with us and we'll provide a free consultation to discuss how we can help bring your vision to life.",
+    "emailLabel": "Email us at",
+    "locationLabel": "Based in",
+    "location": "Tokyo, Japan",
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "company": "Company (Optional)",
+      "companyPlaceholder": "Your Company",
+      "message": "Tell Us About Your Project",
+      "messagePlaceholder": "What are you looking to build? What challenges are you facing?",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "toast": {
+      "title": "Message sent!",
+      "description": "We'll get back to you within 24 hours."
+    }
+  },
+  "footer": {
+    "copyright": "\u00a9 {year} Bonsai Digital. All rights reserved.",
+    "tagline": "Crafted with care in Tokyo, Japan"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "link": "Return to Home"
+  },
+  "workDetail": {
+    "backToWork": "Back to Work",
+    "overview": "Overview",
+    "whatWeDid": "What We Did",
+    "visitWebsite": "Visit Website",
+    "definex": {
+      "category": "Sports & Education",
+      "title": "DefineX",
+      "description": "A platform that teaches athletes in Japan English, providing all the resources necessary for them to play abroad.",
+      "tags": ["Web design", "Web development", "Payment integration", "Email systems", "Mobile responsiveness", "Social media integration"],
+      "overview": "DefineX is a platform dedicated to empowering Japanese athletes with English language skills. By providing comprehensive learning resources, structured courses, and ongoing support, DefineX gives athletes everything they need to pursue opportunities abroad. We partnered with DefineX to build a digital presence that matches their ambitious mission.",
+      "showcase": [
+        {
+          "title": "Landing Page Redesign",
+          "description": "Crafted a modern, conversion-focused landing page that communicates DefineX's mission clearly to athletes and parents."
+        },
+        {
+          "title": "Academy Page Development",
+          "description": "Built a comprehensive academy section showcasing courses, instructors, and learning paths for athletes at every level."
+        },
+        {
+          "title": "Payment Integration",
+          "description": "Implemented secure payment processing with tiered pricing plans for course enrollments and subscriptions."
+        },
+        {
+          "title": "Email Contact System",
+          "description": "Set up a reliable contact system for inquiries, free trial requests, and automated communications."
+        }
+      ],
+      "additionalWork": ["Mobile Responsiveness", "Clean Overall Design", "Social Media Integration", "Constant Ongoing Support"]
+    },
+    "cashflowai": {
+      "category": "Finance & AI",
+      "title": "CashFlowAI",
+      "description": "An internal technical dashboard for a financial company \u2014 featuring AI chatbots, automated reporting, and integrated data visualization.",
+      "tags": ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development", "Email automations", "Role-based access control"],
+      "overview": "CashFlowAI is an internal platform built for a financial services company to streamline their operations through AI. The system combines a RAG-powered chatbot management dashboard, embedded PowerBI analytics, and automated email reporting driven by SQL queries and AI-generated summaries. We designed and developed the full-stack application to serve as a central hub for the company's data-driven workflows.",
+      "showcase": [
+        {
+          "title": "RAG Pipeline & Chatbot Management",
+          "description": "Built an admin dashboard for managing AI chatbots powered by a Retrieval-Augmented Generation pipeline \u2014 enabling financial advisors to deploy, configure, and monitor domain-specific assistants."
+        },
+        {
+          "title": "PowerBI Dashboard Viewer",
+          "description": "Developed an integrated dashboard tool that allows team members to view and interact with their PowerBI dashboards directly within the platform, with account and asset class filtering."
+        },
+        {
+          "title": "Email Automations",
+          "description": "Implemented scheduled email automations that execute SQL queries against portfolio data and generate AI-powered summaries, delivering actionable reports to stakeholders on a recurring basis."
+        },
+        {
+          "title": "System Architecture",
+          "description": "Designed the end-to-end RAG architecture \u2014 from document indexing into a vector database to retrieval and LLM-powered response generation \u2014 ensuring accurate, context-aware financial insights."
+        }
+      ],
+      "additionalWork": ["RAG Pipeline Development", "SQL Query Automation", "AI-Powered Summaries", "Role-Based Access Control"]
+    },
+    "cgOnlineAcademy": {
+      "category": "3D Art & Education",
+      "title": "CG Online Academy",
+      "description": "A full redesign of a professional 3D artist's online presence \u2014 complete with live Three.js model rendering and an integrated course platform with video lessons and progress tracking.",
+      "tags": ["Web redesign", "Three.js", "Course platform", "Video streaming", "Progress tracking", "UI/UX"],
+      "overview": "CG Online Academy is the revamped digital home for a professional 3D artist and educator. The old site lacked the visual impact needed to reflect the quality of the work being taught. We rebuilt it from the ground up with a modern UI, interactive Three.js model rendering that brings the artist's actual characters to life in the browser, and a full course platform where students can purchase and follow along with video lessons and step-by-step guides \u2014 all with progress tracking so no one loses their place.",
+      "transformation": {
+        "heading": "The Transformation",
+        "description": "The client came to us with an existing website that no longer represented their skill level. The old site was outdated, hard to navigate, and failed to convert visitors into students. We started by auditing what wasn't working, then rebuilt every page from scratch \u2014 keeping the brand identity while elevating the entire experience.",
+        "before": "Before"
+      },
+      "showcase": [
+        {
+          "title": "Complete UI/UX Redesign",
+          "description": "Transformed the existing CG Online website from scratch \u2014 modernising the visual language, improving information hierarchy, and building a fluid, responsive layout that reflects the quality of the artist's work."
+        },
+        {
+          "title": "Live 3D Model Viewer with Three.js",
+          "description": "Integrated Three.js to render the artist's actual 3D character models directly in the browser. Visitors can interact with real-time rendered models, showcasing the depth of the artist's craft in a way static images never could."
+        },
+        {
+          "title": "Course Platform with Progress Tracking",
+          "description": "Built a full course system where students who purchase a course can access video lessons and written guides directly on the site. Progress is saved per user so they can pick up exactly where they left off."
+        },
+        {
+          "title": "Student Work Gallery",
+          "description": "Dedicated gallery showcasing work produced by students following the courses \u2014 acting as social proof and demonstrating the real-world results of the curriculum."
+        }
+      ],
+      "additionalWork": ["Three.js Integration", "Course Platform", "Video Streaming", "Progress Tracking"]
+    },
+    "chnl301": {
+      "category": "Music & Band",
+      "title": "Chnl301",
+      "description": "A band website built to give Chnl301 a proper home on the internet \u2014 one that captures their sound, their aesthetic, and their story in a way that feels entirely theirs.",
+      "tags": ["Web design", "Web development", "Brand identity", "Custom theme", "Video integration"],
+      "overview": "Chnl301 is a band that came to us with a clear vision: they wanted a website that didn't just list their music, but actually felt like them. The brief was to build something with a specific theme and atmosphere that defines the band \u2014 something fans would recognise as unmistakably Chnl301. We took that direction seriously, designing and developing every element of the site around their identity, from the visual language and layout to the way their content is presented.",
+      "showcase": [
+        {
+          "title": "Landing Page & Visual Identity",
+          "description": "Designed a landing page that immediately communicates the band's character \u2014 from the typography and colour palette to the layout and imagery. Every decision was driven by the band's aesthetic direction rather than a generic template."
+        },
+        {
+          "title": "Music & Video Section",
+          "description": "Built a dedicated space for the band's music and video content, giving fans an easy way to discover and explore their releases without leaving the site."
+        },
+        {
+          "title": "Artist Profiles",
+          "description": "Each member of the band gets their own spotlight \u2014 introducing the people behind the music and deepening the connection between the band and their audience."
+        }
+      ],
+      "additionalWork": ["Custom Theme", "Brand Identity", "Video Integration", "Responsive Design"]
+    }
+  }
+}

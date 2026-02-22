@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const footerLinks = [
-  { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-];
+import { useTranslation } from "@/lib/i18n";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const footerLinks = [
+    { name: t.navbar.services, href: "#services" },
+    { name: t.navbar.work, href: "#work" },
+    { name: t.navbar.about, href: "#about" },
+    { name: t.navbar.contact, href: "#contact" },
+  ];
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -65,8 +68,8 @@ const Footer = () => {
           transition={{ delay: 0.2 }}
           className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/70"
         >
-          <p>&copy; {new Date().getFullYear()} Bonsai Digital. All rights reserved.</p>
-          <p>Crafted with care in Tokyo, Japan</p>
+          <p>{t.footer.copyright.replace("{year}", new Date().getFullYear().toString())}</p>
+          <p>{t.footer.tagline}</p>
         </motion.div>
       </div>
     </footer>

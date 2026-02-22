@@ -5,47 +5,28 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useTranslation } from "@/lib/i18n";
 
-const projects = [
+const projectData = [
   {
-    title: "DefineX",
-    category: "Sports & Education",
-    description:
-      "Platform that empowers Japanese athletes with English learning resources",
     image: "/define-x-about.png",
     color: "from-blue-400/20 to-white-300/20",
-    href: "/work/definex",
-    tags: ["Web design", "Web development", "Payment integration", "Email systems"],
+    slug: "definex",
   },
   {
-    title: "CashFlowAI",
-    category: "Finance & AI",
-    description:
-      "Internal technical dashboard with AI chatbots, automated reporting, and data visualization",
     image: "/cashflowAI/cashflowAI.png",
     color: "from-indigo-400/20 to-blue-300/20",
-    href: "/work/cashflowai",
-    tags: ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development"],
+    slug: "cashflowai",
   },
   {
-    title: "CG Online Academy",
-    category: "3D Art & Education",
-    description:
-      "Full redesign of a 3D artist's website with live Three.js model rendering and an integrated course platform with progress tracking",
     image: "/cg-about.jpeg",
     color: "from-amber-400/20 to-orange-300/20",
-    href: "/work/cg-online-academy",
-    tags: ["Web redesign", "Three.js", "Course platform", "Progress tracking"],
+    slug: "cg-online-academy",
   },
   {
-    title: "Chnl301",
-    category: "Music & Band",
-    description:
-      "Custom band website built around a distinctive visual theme that captures the identity and energy of the group",
     image: "/chnl301/chnl301-landing.png",
     color: "from-violet-400/20 to-purple-300/20",
-    href: "/work/chnl301",
-    tags: ["Web design", "Web development", "Brand identity", "Custom theme"],
+    slug: "chnl301",
   },
 ];
 
@@ -53,7 +34,12 @@ const ProjectCard = ({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: {
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+  };
   index: number;
 }) => {
   const ref = useRef(null);
@@ -117,6 +103,16 @@ const ProjectCard = ({
 const Work = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const { t, locale } = useTranslation();
+
+  const projects = t.work.projects.map((proj, i) => ({
+    ...proj,
+    ...projectData[i],
+  }));
+
+  const getWorkHref = (slug: string) => {
+    return locale === "en" ? `/work/${slug}` : `/ja/work/${slug}`;
+  };
 
   return (
     <section id="work" className="section-padding">
@@ -132,14 +128,13 @@ const Work = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
-            Our Work
+            {t.work.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            Projects We're Proud Of
+            {t.work.heading}
           </h2>
           <p className="text-muted-foreground text-lg">
-            Each project is carefully crafted to meet unique business needs and
-            exceed expectations.
+            {t.work.description}
           </p>
         </motion.div>
 
@@ -147,12 +142,28 @@ const Work = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div key={project.title}>
-              {project.href ? (
-                <Link href={project.href}>
-                  <ProjectCard project={project} index={index} />
+              {project.slug ? (
+                <Link href={getWorkHref(project.slug)}>
+                  <ProjectCard
+                    project={{
+                      title: project.title,
+                      category: project.category,
+                      description: project.description,
+                      image: project.image,
+                    }}
+                    index={index}
+                  />
                 </Link>
               ) : (
-                <ProjectCard project={project} index={index} />
+                <ProjectCard
+                  project={{
+                    title: project.title,
+                    category: project.category,
+                    description: project.description,
+                    image: project.image,
+                  }}
+                  index={index}
+                />
               )}
               {project.tags && (
                 <div className="flex flex-wrap gap-2 mt-4 px-1">

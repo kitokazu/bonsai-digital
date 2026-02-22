@@ -8,12 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/lib/i18n";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,8 +25,8 @@ const Contact = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: t.contact.toast.title,
+      description: t.contact.toast.description,
     });
 
     setIsSubmitting(false);
@@ -43,15 +45,13 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
-              Get in Touch
+              {t.contact.label}
             </span>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight">
-              Let's Grow Your Business Together
+              {t.contact.heading}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-              Ready to take the first step? Share your project idea with us and
-              we'll provide a free consultation to discuss how we can help bring
-              your vision to life.
+              {t.contact.description}
             </p>
 
             <div className="space-y-6">
@@ -60,7 +60,7 @@ const Contact = () => {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email us at</p>
+                  <p className="text-sm text-muted-foreground">{t.contact.emailLabel}</p>
                   <a
                     href="mailto:hello@bonsaidigital.co"
                     className="text-foreground font-medium hover:text-primary transition-colors"
@@ -74,8 +74,8 @@ const Contact = () => {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Based in</p>
-                  <p className="text-foreground font-medium">Tokyo, Japan</p>
+                  <p className="text-sm text-muted-foreground">{t.contact.locationLabel}</p>
+                  <p className="text-foreground font-medium">{t.contact.location}</p>
                 </div>
               </div>
             </div>
@@ -98,12 +98,12 @@ const Contact = () => {
                       htmlFor="name"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Your Name
+                      {t.contact.form.name}
                     </label>
                     <Input
                       id="name"
                       name="name"
-                      placeholder="John Doe"
+                      placeholder={t.contact.form.namePlaceholder}
                       required
                       className="bg-background"
                     />
@@ -113,13 +113,13 @@ const Contact = () => {
                       htmlFor="email"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Email Address
+                      {t.contact.form.email}
                     </label>
                     <Input
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder={t.contact.form.emailPlaceholder}
                       required
                       className="bg-background"
                     />
@@ -130,12 +130,12 @@ const Contact = () => {
                     htmlFor="company"
                     className="block text-sm font-medium text-foreground mb-2"
                   >
-                    Company (Optional)
+                    {t.contact.form.company}
                   </label>
                   <Input
                     id="company"
                     name="company"
-                    placeholder="Your Company"
+                    placeholder={t.contact.form.companyPlaceholder}
                     className="bg-background"
                   />
                 </div>
@@ -144,12 +144,12 @@ const Contact = () => {
                     htmlFor="message"
                     className="block text-sm font-medium text-foreground mb-2"
                   >
-                    Tell Us About Your Project
+                    {t.contact.form.message}
                   </label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="What are you looking to build? What challenges are you facing?"
+                    placeholder={t.contact.form.messagePlaceholder}
                     rows={5}
                     required
                     className="bg-background resize-none"
@@ -162,10 +162,10 @@ const Contact = () => {
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    "Sending..."
+                    t.contact.form.submitting
                   ) : (
                     <>
-                      Send Message
+                      {t.contact.form.submit}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}

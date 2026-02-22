@@ -4,36 +4,25 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useTranslation } from "@/lib/i18n";
 
-const projects = [
-  {
-    title: "CG Academy",
-    category: "Course Platform",
-    image: "/cg-landing.png",
-  },
-  {
-    title: "Define Academy",
-    category: "Sports Coaching",
-    image: "/define-academy-landing.png",
-  },
-  {
-    title: "CG Online Courses",
-    category: "Learning Platform",
-    image: "/cg-online-courses.png",
-  },
-  {
-    title: "chnl301",
-    category: "Artist Website",
-    image: "/chnl301-landing.png",
-  },
-  {
-    title: "FinanceBroAI",
-    category: "AI RAG Chatbot Dashboard",
-    image: "/cashflowAI/cashflowAI.png",
-  },
+const projectImages = [
+  { key: "cgAcademy", image: "/cg-landing.png" },
+  { key: "defineAcademy", image: "/define-academy-landing.png" },
+  { key: "cgOnlineCourses", image: "/cg-online-courses.png" },
+  { key: "chnl301", image: "/chnl301-landing.png" },
+  { key: "financeBroAI", image: "/cashflowAI/cashflowAI.png" },
 ];
 
-function ShowcaseCard({ title, category, image }: (typeof projects)[number]) {
+function ShowcaseCard({
+  title,
+  category,
+  image,
+}: {
+  title: string;
+  category: string;
+  image: string;
+}) {
   return (
     <div className="group/card relative w-[340px] md:w-[420px] lg:w-[480px] aspect-[3/2] flex-shrink-0 rounded-xl overflow-hidden border border-border/50 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:border-primary/30">
       <Image
@@ -55,6 +44,13 @@ function ShowcaseCard({ title, category, image }: (typeof projects)[number]) {
 }
 
 const Hero = () => {
+  const { t } = useTranslation();
+
+  const projects = projectImages.map((p) => {
+    const proj = t.hero.projects[p.key as keyof typeof t.hero.projects];
+    return { title: proj.title, category: proj.category, image: p.image };
+  });
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -78,7 +74,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Digital Agency Based in Japan
+            {t.hero.badge}
           </motion.div>
 
           {/* Headline */}
@@ -88,9 +84,9 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] mb-6"
           >
-            Cultivating Your
+            {t.hero.headline1}
             <br />
-            <span className="text-gradient">Digital Growth</span>
+            <span className="text-gradient">{t.hero.headline2}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -100,9 +96,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            We bridge businesses to the digital world with precision and care.
-            Crafting websites and applications that nurture your online
-            presence.
+            {t.hero.subheadline}
           </motion.p>
 
           {/* CTAs */}
@@ -117,14 +111,14 @@ const Hero = () => {
               onClick={() => scrollToSection("#contact")}
               className="group"
             >
-              Get a Free Quote
+              {t.hero.cta1}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button
               variant="heroOutline"
               onClick={() => scrollToSection("#work")}
             >
-              View Our Work
+              {t.hero.cta2}
             </Button>
           </motion.div>
         </div>

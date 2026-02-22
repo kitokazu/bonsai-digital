@@ -4,52 +4,18 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Globe, Layers, Sparkles } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
-const services = [
-  {
-    icon: Globe,
-    title: "Website Development",
-    description:
-      "Custom websites built with React and Next.js. Fast, accessible, and optimized to convert visitors into customers.",
-    features: [
-      "React & Next.js",
-      "Responsive Design",
-      "SEO Optimized",
-      "Performance Focused",
-    ],
-  },
-  {
-    icon: Layers,
-    title: "Web Applications",
-    description:
-      "Full-stack applications that streamline your operations. Dashboards, portals, and tools tailored to your workflow.",
-    features: [
-      "Custom Dashboards",
-      "API Development",
-      "Database Design",
-      "Cloud Hosting",
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: "AI Integration",
-    description:
-      "Intelligent solutions powered by AI. We help you leverage modern AI technology to enhance user experiences and automate workflows.",
-    features: [
-      "AI-Powered Features",
-      "Custom AI Solutions",
-      "Workflow Automation",
-      "Smart Integrations",
-    ],
-  },
-];
+const icons = [Globe, Layers, Sparkles];
 
 const ServiceCard = ({
   service,
   index,
+  icon: Icon,
 }: {
-  service: (typeof services)[0];
+  service: { title: string; description: string; features: string[] };
   index: number;
+  icon: typeof Globe;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -63,7 +29,7 @@ const ServiceCard = ({
       className="group p-8 rounded-2xl bg-card card-elevated border border-border/50"
     >
       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-        <service.icon className="w-6 h-6 text-primary" />
+        <Icon className="w-6 h-6 text-primary" />
       </div>
       <h3 className="text-xl font-serif font-semibold text-foreground mb-3">
         {service.title}
@@ -86,6 +52,7 @@ const ServiceCard = ({
 const Services = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
 
   return (
     <section id="services" className="section-padding bg-secondary/30">
@@ -99,21 +66,25 @@ const Services = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
-            Our Services
+            {t.services.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            Everything You Need to Grow Online
+            {t.services.heading}
           </h2>
           <p className="text-muted-foreground text-lg">
-            From concept to launch and beyond, we provide comprehensive digital
-            solutions tailored to your business needs.
+            {t.services.description}
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
+          {t.services.items.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+              icon={icons[index]}
+            />
           ))}
         </div>
       </div>

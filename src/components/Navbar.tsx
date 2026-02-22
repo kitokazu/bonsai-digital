@@ -4,17 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-];
+import { useTranslation } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { name: t.navbar.services, href: "#services" },
+    { name: t.navbar.work, href: "#work" },
+    { name: t.navbar.about, href: "#about" },
+    { name: t.navbar.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,13 +81,14 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
+            {/* CTA + Language Switcher */}
+            <div className="hidden md:flex items-center gap-3">
+              <LanguageSwitcher />
               <Button
                 variant="default"
                 onClick={() => scrollToSection("#contact")}
               >
-                Start a Project
+                {t.navbar.cta}
               </Button>
             </div>
 
@@ -126,12 +130,14 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
+                className="flex flex-col items-center gap-4"
               >
+                <LanguageSwitcher />
                 <Button
                   variant="hero"
                   onClick={() => scrollToSection("#contact")}
                 >
-                  Start a Project
+                  {t.navbar.cta}
                 </Button>
               </motion.div>
             </div>

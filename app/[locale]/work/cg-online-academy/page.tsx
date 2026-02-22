@@ -7,36 +7,20 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/lib/i18n";
 
-const showcaseItems = [
-  {
-    title: "Landing Page & Visual Identity",
-    description:
-      "Designed a landing page that immediately communicates the band's character — from the typography and colour palette to the layout and imagery. Every decision was driven by the band's aesthetic direction rather than a generic template.",
-    image: "/chnl301/chnl301-landing.png",
-  },
-  {
-    title: "Music & Video Section",
-    description:
-      "Built a dedicated space for the band's music and video content, giving fans an easy way to discover and explore their releases without leaving the site.",
-    image: "/chnl301/chnl301-videos.png",
-  },
-  {
-    title: "Artist Profiles",
-    description:
-      "Each member of the band gets their own spotlight — introducing the people behind the music and deepening the connection between the band and their audience.",
-    image: "/chnl301/chlm301-artists.png",
-  },
+const showcaseImages = [
+  "/cg-online-academy/cg-landing.png",
+  "/cg-about.jpeg",
+  "/cg-online-academy/cg-course.png",
+  "/cg-online-academy/cg-student-work.png",
 ];
 
-const additionalWork = [
-  "Custom Theme",
-  "Brand Identity",
-  "Video Integration",
-  "Responsive Design",
-];
+export default function CGOnlineAcademyPage() {
+  const { t, locale } = useTranslation();
+  const d = t.workDetail.cgOnlineAcademy;
+  const workHref = locale === "en" ? "/#work" : "/ja#work";
 
-export default function Chnl301Page() {
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -50,32 +34,24 @@ export default function Chnl301Page() {
             transition={{ duration: 0.6 }}
           >
             <Link
-              href="/#work"
+              href={workHref}
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Back to Work</span>
+              <span className="text-sm font-medium">{t.workDetail.backToWork}</span>
             </Link>
 
             <span className="text-primary text-sm font-medium tracking-wider uppercase block mb-4">
-              Music & Band
+              {d.category}
             </span>
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              Chnl301
+              {d.title}
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">
-              A band website built to give Chnl301 a proper home on the
-              internet — one that captures their sound, their aesthetic, and
-              their story in a way that feels entirely theirs.
+              {d.description}
             </p>
             <div className="flex flex-wrap gap-2">
-              {[
-                "Web design",
-                "Web development",
-                "Brand identity",
-                "Custom theme",
-                "Video integration",
-              ].map((tag) => (
+              {d.tags.map((tag) => (
                 <span
                   key={tag}
                   className="text-sm font-medium text-primary border border-primary/30 rounded-full px-4 py-1.5"
@@ -98,8 +74,8 @@ export default function Chnl301Page() {
             className="rounded-2xl overflow-hidden"
           >
             <Image
-              src="/chnl301/chnl301-landing.png"
-              alt="Chnl301 website"
+              src="/cg-about.jpeg"
+              alt="CG Online Academy"
               width={1200}
               height={675}
               className="w-full h-auto object-cover"
@@ -119,18 +95,68 @@ export default function Chnl301Page() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
-              Overview
+              {t.workDetail.overview}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
-              Chnl301 is a band that came to us with a clear vision: they
-              wanted a website that didn&apos;t just list their music, but
-              actually felt like them. The brief was to build something with a
-              specific theme and atmosphere that defines the band — something
-              fans would recognise as unmistakably Chnl301. We took that
-              direction seriously, designing and developing every element of
-              the site around their identity, from the visual language and
-              layout to the way their content is presented.
+              {d.overview}
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* The Transformation */}
+      <section className="px-6 pb-20">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              {d.transformation.heading}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+              {d.transformation.description}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid md:grid-cols-2 gap-6"
+          >
+            <div className="space-y-3">
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                {d.transformation.before}
+              </span>
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-border/50">
+                <Image
+                  src="/cg-online-academy/cg-before.png"
+                  alt={d.transformation.before}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                {d.transformation.before}
+              </span>
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-border/50">
+                <Image
+                  src="/cg-online-academy/cg-before-2.png"
+                  alt={`${d.transformation.before} (2)`}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -145,11 +171,11 @@ export default function Chnl301Page() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-16"
           >
-            What We Did
+            {t.workDetail.whatWeDid}
           </motion.h2>
 
           <div className="space-y-32">
-            {showcaseItems.map((item, index) => {
+            {d.showcase.map((item, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -163,11 +189,10 @@ export default function Chnl301Page() {
                     isEven ? "md:flex-row" : "md:flex-row-reverse"
                   } items-center gap-10 md:gap-16`}
                 >
-                  {/* Screenshot */}
                   <div className="w-full md:w-3/5 flex-shrink-0">
                     <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
                       <Image
-                        src={item.image}
+                        src={showcaseImages[index]}
                         alt={item.title}
                         width={800}
                         height={450}
@@ -175,8 +200,6 @@ export default function Chnl301Page() {
                       />
                     </div>
                   </div>
-
-                  {/* Text */}
                   <div className="flex-1 text-center md:text-left">
                     <h3 className="text-2xl md:text-3xl font-serif font-semibold text-foreground mb-4">
                       {item.title}
@@ -190,7 +213,6 @@ export default function Chnl301Page() {
             })}
           </div>
 
-          {/* Additional work items */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +220,7 @@ export default function Chnl301Page() {
             transition={{ duration: 0.6 }}
             className="mt-24 grid sm:grid-cols-2 md:grid-cols-4 gap-6"
           >
-            {additionalWork.map((item) => (
+            {d.additionalWork.map((item) => (
               <div
                 key={item}
                 className="p-6 rounded-2xl bg-muted/50 border border-border text-center"
@@ -223,17 +245,17 @@ export default function Chnl301Page() {
             className="flex flex-col sm:flex-row items-start gap-4"
           >
             <a
-              href="https://chnl301.com/"
+              href="https://cg-online-academy.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Button variant="default" className="gap-2">
-                Visit Website
+                {t.workDetail.visitWebsite}
                 <ExternalLink className="w-4 h-4" />
               </Button>
             </a>
-            <Link href="/#work">
-              <Button variant="outline">Back to Work</Button>
+            <Link href={workHref}>
+              <Button variant="outline">{t.workDetail.backToWork}</Button>
             </Link>
           </motion.div>
         </div>
