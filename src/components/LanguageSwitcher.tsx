@@ -19,7 +19,7 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
       </span>
       <span className="text-foreground/30">|</span>
       <span className={locale === "ja" ? "text-foreground" : "text-foreground/40"}>
-        JA
+        日本語
       </span>
     </Link>
   );

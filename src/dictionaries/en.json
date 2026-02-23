@@ -38,8 +38,8 @@
       },
       {
         "title": "AI Integration",
-        "description": "Intelligent solutions powered by AI. We help you leverage modern AI technology to enhance user experiences and automate workflows.",
-        "features": ["AI-Powered Features", "Custom AI Solutions", "Workflow Automation", "Smart Integrations"]
+        "description": "Intelligent solutions powered by AI. We also clean up and refactor vibe-coded projects — turning rough AI-generated prototypes into production-ready code.",
+        "features": ["AI-Powered Features", "Custom AI Solutions", "Vibe Code Cleanup", "Smart Integrations"]
       }
     ]
   },
@@ -78,11 +78,11 @@
     "label": "About Us",
     "heading": "Bridging Businesses to the Digital World",
     "paragraph1": "Based in Japan with American roots, Bonsai Digital was founded on the belief that every business deserves a beautiful, functional digital presence. We understand the challenges of going online and make the journey as seamless as possible.",
-    "paragraph2": "Our name reflects our philosophy: just as a bonsai requires patience, skill, and dedication to flourish, so does building a meaningful digital presence. We take the time to understand your vision and nurture it into reality.",
+    "paragraph2": "We're a small team that values doing things right over doing things fast. We take the time to understand your business, your audience, and your goals — then build something that actually works for you. No cookie-cutter templates, no bloated solutions. Just thoughtful, well-crafted digital products.",
     "values": [
       {
-        "title": "Patience & Precision",
-        "description": "Like cultivating a bonsai, we take time to understand your needs and craft solutions with meticulous attention to detail."
+        "title": "Attention to Detail",
+        "description": "We sweat the small stuff so you don't have to. Every interaction, every layout decision, every line of code is considered."
       },
       {
         "title": "Results-Driven",
@@ -90,7 +90,7 @@
       },
       {
         "title": "Long-term Partnership",
-        "description": "We don't just build and leave. We nurture lasting relationships to support your continued growth."
+        "description": "We don't just build and disappear. We stick around, provide ongoing support, and grow with you over time."
       }
     ]
   },

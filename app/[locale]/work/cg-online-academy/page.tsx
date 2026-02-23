@@ -50,7 +50,7 @@ export default function CGOnlineAcademyPage() {
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">
               {d.description}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {d.tags.map((tag) => (
                 <span
                   key={tag}
@@ -60,6 +60,16 @@ export default function CGOnlineAcademyPage() {
                 </span>
               ))}
             </div>
+            <a
+              href="https://cg-online-academy.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="default" className="gap-2">
+                {t.workDetail.visitWebsite}
+                <ExternalLink className="w-4 h-4" />
+              </Button>
+            </a>
           </motion.div>
         </div>
       </section>
