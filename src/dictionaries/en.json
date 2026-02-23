@@ -23,23 +23,23 @@
   },
   "services": {
     "label": "Our Services",
-    "heading": "Everything You Need to Grow Online",
-    "description": "From concept to launch and beyond, we provide comprehensive digital solutions tailored to your business needs.",
+    "heading": "Build, Automate & Optimize",
+    "description": "We design and build digital products, automate workflows with AI, and help you figure out the right technical strategy — from first idea to production.",
     "items": [
       {
-        "title": "Website Development",
-        "description": "Custom websites built with React and Next.js. Fast, accessible, and optimized to convert visitors into customers.",
-        "features": ["React & Next.js", "Responsive Design", "SEO Optimized", "Performance Focused"]
+        "title": "Website & App Development",
+        "description": "From marketing sites to full-stack platforms — we build custom websites, ecommerce stores, interactive 3D and scroll experiences, course platforms, and dashboards.",
+        "features": ["Custom Websites & Web Apps", "Ecommerce Stores", "Interactive 3D & Scroll Experiences", "Course Platforms & Dashboards"]
       },
       {
-        "title": "Web Applications",
-        "description": "Full-stack applications that streamline your operations. Dashboards, portals, and tools tailored to your workflow.",
-        "features": ["Custom Dashboards", "API Development", "Database Design", "Cloud Hosting"]
+        "title": "AI & Automation",
+        "description": "We integrate AI into your products, build agentic workflows that handle complex tasks, automate repetitive processes, and clean up vibe-coded prototypes into production-ready systems.",
+        "features": ["AI-Powered Integrations", "Agentic Workflows", "Workflow Automation", "Vibe Code Cleanup"]
       },
       {
-        "title": "AI Integration",
-        "description": "Intelligent solutions powered by AI. We also clean up and refactor vibe-coded projects — turning rough AI-generated prototypes into production-ready code.",
-        "features": ["AI-Powered Features", "Custom AI Solutions", "Vibe Code Cleanup", "Smart Integrations"]
+        "title": "Technical Consulting",
+        "description": "Not sure what to build or where to start? We help you evaluate your tech stack, plan automation strategies, and audit existing systems — so you make the right moves before writing a single line of code.",
+        "features": ["Tech Stack & Architecture Advice", "Automation Strategy & Planning", "System Audits & Optimization"]
       }
     ]
   },
