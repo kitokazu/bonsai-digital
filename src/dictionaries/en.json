@@ -3,14 +3,15 @@
     "services": "Services",
     "work": "Work",
     "about": "About",
+    "pricing": "Pricing",
     "contact": "Contact",
     "cta": "Start a Project"
   },
   "hero": {
     "badge": "Digital Agency Based in Japan",
-    "headline1": "Cultivating Your",
-    "headline2": "Digital Growth",
-    "subheadline": "We bridge businesses to the digital world with precision and care. Crafting websites and applications that nurture your online presence.",
+    "headline1": "Your Website,",
+    "headline2": "Built Right",
+    "subheadline": "We build hand-coded websites, custom web apps, and AI-powered tools for businesses that want something better than a template. Every project is written from scratch, loads fast, and works on every device. Website plans start at $150/mo with hosting and support included.",
     "cta1": "Get a Free Quote",
     "cta2": "View Our Work",
     "projects": {
@@ -23,41 +24,41 @@
   },
   "services": {
     "label": "Our Services",
-    "heading": "Build, Automate & Optimize",
-    "description": "We design and build digital products, automate workflows with AI, and help you figure out the right technical strategy — from first idea to production.",
+    "heading": "Everything Your Business Needs Online",
+    "description": "We handle the technical side so you can focus on running your business. From your website to automation and strategy, we've got you covered.",
     "items": [
       {
-        "title": "Website & App Development",
-        "description": "From marketing sites to full-stack platforms — we build custom websites, ecommerce stores, interactive 3D and scroll experiences, course platforms, and dashboards.",
-        "features": ["Custom Websites & Web Apps", "Ecommerce Stores", "Interactive 3D & Scroll Experiences", "Course Platforms & Dashboards"]
+        "title": "Websites",
+        "description": "Every site we build is hand-coded from scratch. No WordPress, no Wix, no page builders. Just clean code that loads fast, looks great on every device, and actually ranks on Google. This is our simple monthly offering for businesses that want a real website without the hassle.",
+        "features": ["Custom Business Websites", "Mobile-First & SEO Optimized", "Fast Load Times, Clean Code", "Starting at $150/mo (hosting, edits & support included)"]
+      },
+      {
+        "title": "Custom Web Apps",
+        "description": "For when you need more than a website. We design and build full-stack platforms, internal dashboards, ecommerce stores, course systems, and interactive experiences. Everything is built to your spec, from the ground up.",
+        "features": ["Full-Stack Platforms & Dashboards", "Ecommerce Stores", "Course Platforms & Learning Systems", "Interactive 3D & Scroll Experiences"]
       },
       {
         "title": "AI & Automation",
-        "description": "We integrate AI into your products, build agentic workflows that handle complex tasks, automate repetitive processes, and clean up vibe-coded prototypes into production-ready systems.",
-        "features": ["AI-Powered Integrations", "Agentic Workflows", "Workflow Automation", "Vibe Code Cleanup"]
-      },
-      {
-        "title": "Technical Consulting",
-        "description": "Not sure what to build or where to start? We help you evaluate your tech stack, plan automation strategies, and audit existing systems — so you make the right moves before writing a single line of code.",
-        "features": ["Tech Stack & Architecture Advice", "Automation Strategy & Planning", "System Audits & Optimization"]
+        "description": "We build smart tools that save you time. Whether it's an AI assistant for your customers, automated reports, or turning a rough prototype into a polished product, we make technology work harder for your business.",
+        "features": ["AI-Powered Integrations", "Custom AI Assistants", "Workflow Automation", "Prototype-to-Production Cleanup"]
       }
     ]
   },
   "work": {
     "label": "Our Work",
-    "heading": "Projects We're Proud Of",
-    "description": "Each project is carefully crafted to meet unique business needs and exceed expectations.",
+    "heading": "Real Results for Real Businesses",
+    "description": "Every project here started with a real problem. Here's how we solved them.",
     "projects": [
       {
         "title": "DefineX",
         "category": "Sports & Education",
-        "description": "Platform that empowers Japanese athletes with English learning resources",
+        "description": "Platform that helps Japanese athletes learn English and pursue opportunities abroad",
         "tags": ["Web design", "Web development", "Payment integration", "Email systems"]
       },
       {
         "title": "CashFlowAI",
         "category": "Finance & AI",
-        "description": "Internal technical dashboard with AI chatbots, automated reporting, and data visualization",
+        "description": "Internal dashboard with AI chatbots, automated reporting, and data visualization for a financial company",
         "tags": ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development"]
       },
       {
@@ -69,35 +70,97 @@
       {
         "title": "Chnl301",
         "category": "Music & Band",
-        "description": "Custom band website built around a distinctive visual theme that captures the identity and energy of the group",
+        "description": "Custom band website built around the group's identity, capturing their sound and aesthetic in every detail",
         "tags": ["Web design", "Web development", "Brand identity", "Custom theme"]
       }
     ]
   },
   "about": {
     "label": "About Us",
-    "heading": "Bridging Businesses to the Digital World",
-    "paragraph1": "Based in Japan with American roots, Bonsai Digital was founded on the belief that every business deserves a beautiful, functional digital presence. We understand the challenges of going online and make the journey as seamless as possible.",
-    "paragraph2": "We're a small team that values doing things right over doing things fast. We take the time to understand your business, your audience, and your goals — then build something that actually works for you. No cookie-cutter templates, no bloated solutions. Just thoughtful, well-crafted digital products.",
+    "heading": "Small Team. Big Results.",
+    "paragraph1": "Based in Japan with American roots, Bonsai Digital is a small studio that builds websites, web apps, and AI-powered tools. We write everything from scratch because it produces faster, more secure, and more flexible results than any page builder or template ever could.",
+    "paragraph2": "Whether you need a simple business site on a monthly plan or a custom platform built to spec, we work directly with you from start to finish. No middlemen, no ticket systems. Just straightforward communication with the people actually building your product.",
     "values": [
       {
         "title": "Attention to Detail",
-        "description": "We sweat the small stuff so you don't have to. Every interaction, every layout decision, every line of code is considered."
+        "description": "We sweat the details so you don't have to. Every interaction, every layout decision, every line of code is intentional and tested."
       },
       {
         "title": "Results-Driven",
-        "description": "Every design decision and line of code serves a purpose\u2014helping your business achieve its goals."
+        "description": "We build for performance. Our sites consistently hit perfect PageSpeed scores and load in under a second. That means better SEO, happier visitors, and more conversions."
       },
       {
         "title": "Long-term Partnership",
-        "description": "We don't just build and disappear. We stick around, provide ongoing support, and grow with you over time."
+        "description": "We don't just build and disappear. From monthly website plans to ongoing app development, we stick around and grow with you over time."
+      }
+    ]
+  },
+  "pricing": {
+    "label": "Pricing",
+    "heading": "Simple, Transparent Pricing",
+    "description": "Whether you want a one-time build or an ongoing partnership, we have a plan that fits. Every option includes real, hand-coded work from our team.",
+    "plans": [
+      {
+        "name": "Lump Sum",
+        "subtitle": "One-time website build",
+        "price": "$1,100",
+        "priceSubtext": "+ $20/mo hosting",
+        "features": [
+          { "text": "Custom designed & hand-coded website", "included": true },
+          { "text": "Mobile responsive & SEO optimized", "included": true },
+          { "text": "Contact form & basic integrations", "included": true },
+          { "text": "2 rounds of revisions", "included": true },
+          { "text": "30-day post-launch support", "included": true },
+          { "text": "Ongoing content updates", "included": false },
+          { "text": "Priority support", "included": false }
+        ],
+        "cta": "Get Started",
+        "ctaHref": "#contact",
+        "highlighted": false
+      },
+      {
+        "name": "Monthly",
+        "subtitle": "Website as a service",
+        "price": "$120",
+        "priceSubtext": "/mo",
+        "badge": "Most Popular",
+        "features": [
+          { "text": "Everything in Lump Sum", "included": true },
+          { "text": "Hosting & SSL included", "included": true },
+          { "text": "Unlimited content updates", "included": true },
+          { "text": "Performance monitoring", "included": true },
+          { "text": "Priority email support", "included": true },
+          { "text": "Monthly analytics reports", "included": true },
+          { "text": "SEO improvements over time", "included": true },
+          { "text": "No long-term contract", "included": true }
+        ],
+        "cta": "Get Started",
+        "ctaHref": "#contact",
+        "highlighted": true
+      },
+      {
+        "name": "Advanced Solutions",
+        "subtitle": "Custom apps, AI & automation",
+        "price": "Custom Quote",
+        "features": [
+          { "text": "Full-stack web applications", "included": true },
+          { "text": "AI integrations & chatbots", "included": true },
+          { "text": "Workflow automation", "included": true },
+          { "text": "Ecommerce & payment systems", "included": true },
+          { "text": "Database & API development", "included": true },
+          { "text": "Dedicated project manager", "included": true },
+          { "text": "Ongoing maintenance & scaling", "included": true }
+        ],
+        "cta": "Get a Quote",
+        "ctaHref": "#contact",
+        "highlighted": false
       }
     ]
   },
   "contact": {
     "label": "Get in Touch",
-    "heading": "Let's Grow Your Business Together",
-    "description": "Ready to take the first step? Share your project idea with us and we'll provide a free consultation to discuss how we can help bring your vision to life.",
+    "heading": "Let's Talk About Your Website",
+    "description": "Whether you need a website, a custom app, or help with AI and automation, we'd love to hear about it. Every conversation starts with a free consultation. Website plans start at $150/mo with everything included.",
     "emailLabel": "Email us at",
     "locationLabel": "Based in",
     "location": "Tokyo, Japan",
@@ -120,7 +183,7 @@
   },
   "footer": {
     "copyright": "\u00a9 {year} Bonsai Digital. All rights reserved.",
-    "tagline": "Crafted with care in Tokyo, Japan"
+    "tagline": "Crafted from scratch in Tokyo"
   },
   "notFound": {
     "title": "404",
@@ -135,9 +198,9 @@
     "definex": {
       "category": "Sports & Education",
       "title": "DefineX",
-      "description": "A platform that teaches athletes in Japan English, providing all the resources necessary for them to play abroad.",
+      "description": "A platform that teaches athletes in Japan English, providing all the resources they need to play abroad.",
       "tags": ["Web design", "Web development", "Payment integration", "Email systems", "Mobile responsiveness", "Social media integration"],
-      "overview": "DefineX is a platform dedicated to empowering Japanese athletes with English language skills. By providing comprehensive learning resources, structured courses, and ongoing support, DefineX gives athletes everything they need to pursue opportunities abroad. We partnered with DefineX to build a digital presence that matches their ambitious mission.",
+      "overview": "DefineX is a platform dedicated to helping Japanese athletes build English skills. It offers structured courses, learning resources, and ongoing support so athletes have everything they need to pursue opportunities overseas. We partnered with DefineX to build a digital presence that matches their ambitious mission.",
       "showcase": [
         {
           "title": "Landing Page Redesign",
@@ -161,25 +224,25 @@
     "cashflowai": {
       "category": "Finance & AI",
       "title": "CashFlowAI",
-      "description": "An internal technical dashboard for a financial company \u2014 featuring AI chatbots, automated reporting, and integrated data visualization.",
+      "description": "An internal technical dashboard for a financial company, featuring AI chatbots, automated reporting, and integrated data visualization.",
       "tags": ["RAG pipeline", "AI chatbots", "SQL automation", "Dashboard development", "Email automations", "Role-based access control"],
-      "overview": "CashFlowAI is an internal platform built for a financial services company to streamline their operations through AI. The system combines a RAG-powered chatbot management dashboard, embedded PowerBI analytics, and automated email reporting driven by SQL queries and AI-generated summaries. We designed and developed the full-stack application to serve as a central hub for the company's data-driven workflows.",
+      "overview": "CashFlowAI is an internal platform built for a financial services company to streamline operations through AI. The system combines a RAG-powered chatbot management dashboard, embedded PowerBI analytics, and automated email reporting driven by SQL queries and AI-generated summaries. We designed and developed the full-stack application to serve as a central hub for the company's data-driven workflows.",
       "showcase": [
         {
           "title": "RAG Pipeline & Chatbot Management",
-          "description": "Built an admin dashboard for managing AI chatbots powered by a Retrieval-Augmented Generation pipeline \u2014 enabling financial advisors to deploy, configure, and monitor domain-specific assistants."
+          "description": "Built an admin dashboard for managing AI chatbots powered by a Retrieval-Augmented Generation pipeline. Financial advisors can deploy, configure, and monitor domain-specific assistants from one place."
         },
         {
           "title": "PowerBI Dashboard Viewer",
-          "description": "Developed an integrated dashboard tool that allows team members to view and interact with their PowerBI dashboards directly within the platform, with account and asset class filtering."
+          "description": "Developed an integrated tool that lets team members view and interact with their PowerBI dashboards directly in the platform, with filtering by account and asset class."
         },
         {
           "title": "Email Automations",
-          "description": "Implemented scheduled email automations that execute SQL queries against portfolio data and generate AI-powered summaries, delivering actionable reports to stakeholders on a recurring basis."
+          "description": "Implemented scheduled email automations that run SQL queries against portfolio data and generate AI-powered summaries, delivering actionable reports to stakeholders on a recurring basis."
         },
         {
           "title": "System Architecture",
-          "description": "Designed the end-to-end RAG architecture \u2014 from document indexing into a vector database to retrieval and LLM-powered response generation \u2014 ensuring accurate, context-aware financial insights."
+          "description": "Designed the end-to-end RAG architecture, from document indexing into a vector database to retrieval and LLM-powered response generation, ensuring accurate and context-aware financial insights."
         }
       ],
       "additionalWork": ["RAG Pipeline Development", "SQL Query Automation", "AI-Powered Summaries", "Role-Based Access Control"]
@@ -187,18 +250,18 @@
     "cgOnlineAcademy": {
       "category": "3D Art & Education",
       "title": "CG Online Academy",
-      "description": "A full redesign of a professional 3D artist's online presence \u2014 complete with live Three.js model rendering and an integrated course platform with video lessons and progress tracking.",
+      "description": "A full redesign of a professional 3D artist's online presence, complete with live Three.js model rendering and an integrated course platform with video lessons and progress tracking.",
       "tags": ["Web redesign", "Three.js", "Course platform", "Video streaming", "Progress tracking", "UI/UX"],
-      "overview": "CG Online Academy is the revamped digital home for a professional 3D artist and educator. The old site lacked the visual impact needed to reflect the quality of the work being taught. We rebuilt it from the ground up with a modern UI, interactive Three.js model rendering that brings the artist's actual characters to life in the browser, and a full course platform where students can purchase and follow along with video lessons and step-by-step guides \u2014 all with progress tracking so no one loses their place.",
+      "overview": "CG Online Academy is the revamped digital home for a professional 3D artist and educator. The old site lacked the visual impact needed to reflect the quality of the work being taught. We rebuilt it from the ground up with a modern UI, interactive Three.js model rendering that brings the artist's characters to life in the browser, and a full course platform where students can purchase and follow video lessons with step-by-step guides. Progress tracking keeps everyone on track.",
       "transformation": {
         "heading": "The Transformation",
-        "description": "The client came to us with an existing website that no longer represented their skill level. The old site was outdated, hard to navigate, and failed to convert visitors into students. We started by auditing what wasn't working, then rebuilt every page from scratch \u2014 keeping the brand identity while elevating the entire experience.",
+        "description": "The client came to us with a website that no longer represented their skill level. The old site was outdated, hard to navigate, and wasn't converting visitors into students. We started by auditing what wasn't working, then rebuilt every page from scratch while keeping the brand identity intact.",
         "before": "Before"
       },
       "showcase": [
         {
           "title": "Complete UI/UX Redesign",
-          "description": "Transformed the existing CG Online website from scratch \u2014 modernising the visual language, improving information hierarchy, and building a fluid, responsive layout that reflects the quality of the artist's work."
+          "description": "Transformed the CG Online website from scratch. Modernized the visual language, improved information hierarchy, and built a fluid, responsive layout that reflects the quality of the artist's work."
         },
         {
           "title": "Live 3D Model Viewer with Three.js",
@@ -210,7 +273,7 @@
         },
         {
           "title": "Student Work Gallery",
-          "description": "Dedicated gallery showcasing work produced by students following the courses \u2014 acting as social proof and demonstrating the real-world results of the curriculum."
+          "description": "Dedicated gallery showcasing work produced by students following the courses. It acts as social proof and demonstrates the real-world results of the curriculum."
         }
       ],
       "additionalWork": ["Three.js Integration", "Course Platform", "Video Streaming", "Progress Tracking"]
@@ -218,13 +281,13 @@
     "chnl301": {
       "category": "Music & Band",
       "title": "Chnl301",
-      "description": "A band website built to give Chnl301 a proper home on the internet \u2014 one that captures their sound, their aesthetic, and their story in a way that feels entirely theirs.",
+      "description": "A band website built to give Chnl301 a proper home on the internet, one that captures their sound, their aesthetic, and their story.",
       "tags": ["Web design", "Web development", "Brand identity", "Custom theme", "Video integration"],
-      "overview": "Chnl301 is a band that came to us with a clear vision: they wanted a website that didn't just list their music, but actually felt like them. The brief was to build something with a specific theme and atmosphere that defines the band \u2014 something fans would recognise as unmistakably Chnl301. We took that direction seriously, designing and developing every element of the site around their identity, from the visual language and layout to the way their content is presented.",
+      "overview": "Chnl301 came to us with a clear vision: they wanted a website that didn't just list their music, but actually felt like them. The brief was to build something with a specific theme and atmosphere that fans would recognize as unmistakably Chnl301. We took that direction seriously, designing and developing every element of the site around their identity, from the visual language and layout to the way their content is presented.",
       "showcase": [
         {
           "title": "Landing Page & Visual Identity",
-          "description": "Designed a landing page that immediately communicates the band's character \u2014 from the typography and colour palette to the layout and imagery. Every decision was driven by the band's aesthetic direction rather than a generic template."
+          "description": "Designed a landing page that immediately communicates the band's character. From the typography and colour palette to the layout and imagery, every decision was driven by the band's aesthetic direction."
         },
         {
           "title": "Music & Video Section",
@@ -232,7 +295,7 @@
         },
         {
           "title": "Artist Profiles",
-          "description": "Each member of the band gets their own spotlight \u2014 introducing the people behind the music and deepening the connection between the band and their audience."
+          "description": "Each member of the band gets their own spotlight, introducing the people behind the music and deepening the connection between the band and their audience."
         }
       ],
       "additionalWork": ["Custom Theme", "Brand Identity", "Video Integration", "Responsive Design"]

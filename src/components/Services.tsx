@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Globe, Sparkles, MessageCircle } from "lucide-react";
+import { Globe, LayoutDashboard, Sparkles } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
-const icons = [Globe, Sparkles, MessageCircle];
+const icons = [Globe, LayoutDashboard, Sparkles];
 
 const ServiceCard = ({
   service,

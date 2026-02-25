@@ -10,6 +10,7 @@ const Footer = () => {
     { name: t.navbar.services, href: "#services" },
     { name: t.navbar.work, href: "#work" },
     { name: t.navbar.about, href: "#about" },
+    { name: t.navbar.pricing, href: "#pricing" },
     { name: t.navbar.contact, href: "#contact" },
   ];
 

@@ -42,3 +42,11 @@ TypeScript is configured with loose checking — `noImplicitAny`, `noUnusedParam
 ## Adding shadcn/ui Components
 
 Components are configured with the `default` style, TSX, and CSS variables. Aliases: `@/components/ui` for UI components, `@/lib` for utilities, `@/hooks` for hooks.
+
+## Hard Rules
+
+- Follow the existing file structure and naming conventions.
+- Use the provided design tokens and fonts.
+- For the copy, make it sound natural. Do not use the dash, as that it is a easy give away that it is AI generated. Instead, use a more conversational tone.
+- When adding new components, ensure they are responsive and accessible.
+- Use skills for design, do not make it look AI generated
