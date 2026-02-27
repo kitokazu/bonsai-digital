@@ -50,3 +50,4 @@ Components are configured with the `default` style, TSX, and CSS variables. Alia
 - For the copy, make it sound natural. Do not use the dash, as that it is a easy give away that it is AI generated. Instead, use a more conversational tone.
 - When adding new components, ensure they are responsive and accessible.
 - Use skills for design, do not make it look AI generated
+- Any change that affects the copy, I would like to reflect it both on the English version and the Japanese version. I want to make sure that both versions are consistent in terms of messaging and tone.

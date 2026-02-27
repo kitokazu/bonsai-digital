@@ -49,7 +49,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
+          <div className="relative flex items-center justify-between h-20">
             {/* Logo */}
             <a
               href="#"
@@ -69,8 +69,8 @@ const Navbar = () => {
               </span>
             </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* Desktop Navigation — absolutely centered */}
+            <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
