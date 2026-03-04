@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,11 +60,13 @@ const Navbar = () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-serif text-lg">
-                  B
-                </span>
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Bonsai Digital"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
               <span className="font-serif text-xl font-semibold">
                 Bonsai Digital
               </span>

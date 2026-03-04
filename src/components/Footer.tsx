@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import Image from "next/image";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -32,9 +33,13 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex items-center gap-3"
           >
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-serif text-xl">B</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Bonsai Digital"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
             <span className="font-serif text-2xl font-semibold">Bonsai Digital</span>
           </motion.div>
 
