@@ -15,7 +15,7 @@
     "cta1": "Get a Free Quote",
     "cta2": "View Our Work",
     "projects": {
-      "cgAcademy": { "title": "CG Academy", "category": "Course Platform" },
+      "homeHair": { "title": "Home Hair and Coffee", "category": "Hair Salon" },
       "defineAcademy": { "title": "Define Academy", "category": "Sports Coaching" },
       "cgOnlineCourses": { "title": "CG Online Courses", "category": "Learning Platform" },
       "chnl301": { "title": "chnl301", "category": "Artist Website" },
@@ -160,7 +160,7 @@
   "contact": {
     "label": "Get in Touch",
     "heading": "Let's Grow Your Business Together",
-    "description": "Whether you need a website, a custom app, or help with AI and automation, we'd love to hear about it. Every conversation starts with a free consultation. Website plans start at $120/mo with everything included.",
+    "description": "Whether you need a website, a custom app, or help with AI and automation, we'd love to hear about it. Every conversation starts with a free consultation.",
     "emailLabel": "Email us at",
     "locationLabel": "Based in",
     "location": "Tokyo, Japan",

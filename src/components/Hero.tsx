@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useTranslation } from "@/lib/i18n";
 
 const projectImages = [
-  { key: "cgAcademy", image: "/cg-landing.png" },
+  { key: "homeHair", image: "/home-hair.png" },
   { key: "defineAcademy", image: "/define-academy-landing.png" },
   { key: "cgOnlineCourses", image: "/cg-online-courses.png" },
   { key: "chnl301", image: "/chnl301-landing.png" },

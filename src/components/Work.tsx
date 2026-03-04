@@ -19,7 +19,7 @@ const projectData = [
     slug: "cashflowai",
   },
   {
-    image: "/cg-about.jpeg",
+    image: "/cg-landing.png",
     color: "from-amber-400/20 to-orange-300/20",
     slug: "cg-online-academy",
   },
@@ -133,9 +133,7 @@ const Work = () => {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             {t.work.heading}
           </h2>
-          <p className="text-muted-foreground text-lg">
-            {t.work.description}
-          </p>
+          <p className="text-muted-foreground text-lg">{t.work.description}</p>
         </motion.div>
 
         {/* Projects Grid */}
