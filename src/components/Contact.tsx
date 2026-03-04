@@ -62,10 +62,10 @@ const Contact = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.emailLabel}</p>
                   <a
-                    href="mailto:hello@bonsaidigitialstudio.com"
+                    href="mailto:hello@bonsaidigitalstudio.com"
                     className="text-foreground font-medium hover:text-primary transition-colors"
                   >
-                    hello@bonsaidigitialstudio.com
+                    hello@bonsaidigitalstudio.com
                   </a>
                 </div>
               </div>
