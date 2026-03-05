@@ -24,8 +24,14 @@ export const metadata: Metadata = {
   description:
     "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon/favicon.ico", sizes: "any" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/favicon/apple-touch-icon.png",
   },
+  manifest: "/favicon/site.webmanifest",
   openGraph: {
     title: "Bonsai Digital",
     description:
