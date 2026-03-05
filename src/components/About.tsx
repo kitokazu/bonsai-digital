@@ -5,13 +5,14 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Leaf, Target, Heart } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const valueIcons = [Leaf, Target, Heart];
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <section id="about" className="section-padding bg-primary/5">
@@ -24,10 +25,10 @@ const About = () => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+            <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-base")}>
               {t.about.label}
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight">
+            <h2 className={cn("text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight", locale === "ja" && "md:text-[2.75rem]")}>
               {t.about.heading}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">

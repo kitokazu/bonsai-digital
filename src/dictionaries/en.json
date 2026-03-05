@@ -30,7 +30,7 @@
       {
         "title": "Websites",
         "description": "Every site we build is hand-coded from scratch. No WordPress, no Wix, no page builders. Just clean code that loads fast, looks great on every device, and actually ranks on Google. This is our simple monthly offering for businesses that want a real website without the hassle.",
-        "features": ["Custom Business Websites", "Mobile-First & SEO Optimized", "Fast Load Times, Clean Code", "Starting at $120/mo (hosting, edits & support included)"]
+        "features": ["Custom Business Websites", "Mobile-First & SEO Optimized", "Fast Load Times, Clean Code"]
       },
       {
         "title": "Custom Web Apps",
@@ -48,6 +48,9 @@
     "label": "Our Work",
     "heading": "Real Results for Real Businesses",
     "description": "Every project here started with a real problem. Here's how we solved them.",
+    "viewAll": "View All Projects",
+    "allWorksHeading": "All Projects",
+    "allWorksDescription": "A complete look at the projects we've built for our clients. Each one started with a real challenge and a clear goal.",
     "projects": [
       {
         "title": "DefineX",
@@ -72,6 +75,12 @@
         "category": "Music & Band",
         "description": "Custom band website built around the group's identity, capturing their sound and aesthetic in every detail",
         "tags": ["Web design", "Web development", "Brand identity", "Custom theme"]
+      },
+      {
+        "title": "Home Hair & Coffee Roaster",
+        "category": "Local Business",
+        "description": "A clean, minimal website for a hair salon and coffee roaster in Kagawa, Japan.",
+        "tags": ["Web design", "Web development", "Bilingual"]
       }
     ]
   },
@@ -299,6 +308,28 @@
         }
       ],
       "additionalWork": ["Custom Theme", "Brand Identity", "Video Integration", "Responsive Design"]
+    },
+    "homeHairCoffee": {
+      "category": "Local Business",
+      "title": "Home Hair & Coffee Roaster",
+      "description": "A website for Home Hair & Coffee Roaster, a hair salon and coffee roasting shop in Sanuki, Kagawa.",
+      "tags": ["Web design", "Web development", "Bilingual"],
+      "overview": "Home Hair & Coffee Roaster is a unique dual-concept shop in Shido, Sanuki, Kagawa. One side is a relaxed hair salon, the other is a small-batch coffee roasting operation called ARMS Coffee. They needed a site that could present both sides of the business clearly without one overshadowing the other. We designed and built a bilingual website that gives each side its own space while keeping the whole thing feeling cohesive and welcoming.",
+      "showcase": [
+        {
+          "title": "Hair Salon Section",
+          "description": "A clean layout presenting the salon's menu, pricing, and a photography grid that captures the atmosphere of the space. The design keeps things simple and approachable, letting the work speak for itself."
+        },
+        {
+          "title": "ARMS Coffee Section",
+          "description": "A dedicated section for the coffee roasting side of the business, telling the story behind ARMS Coffee with a photo gallery showcasing the beans, the process, and the shop itself."
+        },
+        {
+          "title": "Shop Info & Contact",
+          "description": "All the essential details in one place: location, hours, access, and contact info. Features an illustrated portrait of the owner that adds a personal, handcrafted touch to the page."
+        }
+      ],
+      "additionalWork": ["Responsive Design", "Performance Optimization", "Brand-aligned Typography", "Japanese-first UX"]
     }
   }
 }

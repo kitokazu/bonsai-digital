@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { Check, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const PricingCard = ({
   plan,
@@ -101,7 +102,7 @@ const PricingCard = ({
 const Pricing = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <section id="pricing" className="section-padding bg-secondary/30">
@@ -111,9 +112,9 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className={cn("max-w-2xl mx-auto mb-16", locale === "ja" ? "text-left" : "text-center")}
         >
-          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+          <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-center text-base")}>
             {t.pricing.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">

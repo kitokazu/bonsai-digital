@@ -9,13 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,10 +45,10 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+            <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-base")}>
               {t.contact.label}
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight">
+            <h2 className={cn("text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight", locale === "ja" && "md:text-[2.75rem]")}>
               {t.contact.heading}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">

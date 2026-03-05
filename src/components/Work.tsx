@@ -3,11 +3,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-const projectData = [
+export const projectData = [
   {
     image: "/define-x-about.png",
     color: "from-blue-400/20 to-white-300/20",
@@ -28,9 +30,14 @@ const projectData = [
     color: "from-violet-400/20 to-purple-300/20",
     slug: "chnl301",
   },
+  {
+    image: "/home-hair-coffee/home-hair-landing.png",
+    color: "from-stone-400/20 to-amber-300/20",
+    slug: "home-hair-coffee",
+  },
 ];
 
-const ProjectCard = ({
+export const ProjectCard = ({
   project,
   index,
 }: {
@@ -68,10 +75,10 @@ const ProjectCard = ({
       </div>
 
       {/* Dark gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+      <div className="absolute inset-0 p-6 flex flex-col justify-end pointer-events-none">
         <span className="text-white/80 text-sm font-medium">
           {project.category}
         </span>
@@ -105,7 +112,7 @@ const Work = () => {
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const { t, locale } = useTranslation();
 
-  const projects = t.work.projects.map((proj, i) => ({
+  const projects = t.work.projects.slice(0, 4).map((proj, i) => ({
     ...proj,
     ...projectData[i],
   }));
@@ -113,6 +120,8 @@ const Work = () => {
   const getWorkHref = (slug: string) => {
     return locale === "en" ? `/work/${slug}` : `/ja/work/${slug}`;
   };
+
+  const allWorksHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
     <section id="work" className="section-padding">
@@ -125,15 +134,22 @@ const Work = () => {
             isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
           }
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className={cn("max-w-2xl mx-auto mb-16", locale === "ja" ? "text-left" : "text-center")}
         >
-          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+          <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-center text-base")}>
             {t.work.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             {t.work.heading}
           </h2>
           <p className="text-muted-foreground text-lg">{t.work.description}</p>
+          <Link
+            href={allWorksHref}
+            className="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:underline mt-4"
+          >
+            {t.work.viewAll}
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </motion.div>
 
         {/* Projects Grid */}
@@ -141,7 +157,7 @@ const Work = () => {
           {projects.map((project, index) => (
             <div key={project.title}>
               {project.slug ? (
-                <Link href={getWorkHref(project.slug)}>
+                <Link href={getWorkHref(project.slug)} className="block">
                   <ProjectCard
                     project={{
                       title: project.title,
@@ -184,6 +200,22 @@ const Work = () => {
             </div>
           ))}
         </div>
+
+        {/* View All Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-12"
+        >
+          <Link href={allWorksHref}>
+            <Button variant="outline" size="lg" className="gap-2">
+              {t.work.viewAll}
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
