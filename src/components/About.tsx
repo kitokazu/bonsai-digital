@@ -28,7 +28,7 @@ const About = () => {
             <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-base")}>
               {t.about.label}
             </span>
-            <h2 className={cn("text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight", locale === "ja" && "md:text-[2.75rem]")}>
+            <h2 className={cn("text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 leading-tight", locale === "ja" && "md:text-[2.6rem]")}>
               {t.about.heading}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
