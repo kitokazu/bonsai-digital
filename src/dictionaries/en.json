@@ -11,7 +11,7 @@
     "badge": "Digital Agency Based in Japan",
     "headline1": "Cultivating Your",
     "headline2": "Digital Growth",
-    "subheadline": "We build hand-coded websites, custom web apps, and AI-powered tools for businesses that want something better than a template. Every project is written from scratch, loads fast, and works on every device.",
+    "subheadline": "From hand-coded websites and full-stack web apps to AI solutions and workflow automation, we build digital products that actually work for your business. Every project is written from scratch, loads fast, and scales with you.",
     "cta1": "Get a Free Quote",
     "cta2": "View Our Work",
     "projects": {
@@ -39,8 +39,8 @@
       },
       {
         "title": "AI & Automation",
-        "description": "We build smart tools that save you time. Whether it's an AI assistant for your customers, automated reports, or turning a rough prototype into a polished product, we make technology work harder for your business.",
-        "features": ["AI-Powered Integrations", "Custom AI Assistants", "Workflow Automation", "Vibe Code Cleanup"]
+        "description": "We build smart tools that save you time. Whether it's an AI assistant for your customers, autonomous agents that handle tasks on their own, automated reports, or turning a rough prototype into a polished product, we make technology work harder for your business.",
+        "features": ["AI-Powered Integrations", "Custom AI Assistants & Agents", "Workflow Automation", "Vibe Code Cleanup"]
       }
     ]
   },
@@ -112,7 +112,7 @@
       {
         "name": "Lump Sum",
         "subtitle": "One-time website build",
-        "price": "$1,600",
+        "price": "$1,300",
         "priceSubtext": "+ $20/mo hosting",
         "features": [
           { "text": "Custom designed & hand-coded website", "included": true },
