@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const { name, email, company, message } = result.data;
 
     await resend.emails.send({
-      from: "Bonsai Digital <onboarding@resend.dev>",
+      from: "Bonsai Digital <contact@bonsaidigitalstudio.com>",
       to: process.env.CONTACT_EMAIL!,
       replyTo: email,
       subject: `New contact from ${name}${company ? ` (${company})` : ""}`,
