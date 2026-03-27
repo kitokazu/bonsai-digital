@@ -112,7 +112,7 @@
       {
         "name": "Lump Sum",
         "subtitle": "One-time website build",
-        "price": "$1,300",
+        "price": "$1,100",
         "priceSubtext": "+ $20/mo hosting",
         "features": [
           { "text": "Custom designed & hand-coded website", "included": true },
@@ -185,9 +185,15 @@
       "submit": "Send Message",
       "submitting": "Sending..."
     },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address"
+    },
     "toast": {
       "title": "Message sent!",
-      "description": "We'll get back to you within 24 hours."
+      "description": "We'll get back to you within 24 hours.",
+      "errorTitle": "Something went wrong",
+      "errorDescription": "Please try again later or email us directly."
     }
   },
   "footer": {

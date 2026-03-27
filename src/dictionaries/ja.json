@@ -112,7 +112,7 @@
       {
         "name": "一括プラン",
         "subtitle": "ウェブサイトの一括制作",
-        "price": "¥195,000",
+        "price": "¥165,000",
         "priceSubtext": "+ ¥3,000/月 ホスティング",
         "features": [
           { "text": "カスタムデザイン＆フルスクラッチ開発", "included": true },
@@ -185,9 +185,15 @@
       "submit": "メッセージを送信",
       "submitting": "送信中..."
     },
+    "validation": {
+      "required": "この項目は必須です",
+      "invalidEmail": "有効なメールアドレスを入力してください"
+    },
     "toast": {
       "title": "メッセージを送信しました！",
-      "description": "24時間以内にご返信いたします。"
+      "description": "24時間以内にご返信いたします。",
+      "errorTitle": "送信に失敗しました",
+      "errorDescription": "時間をおいて再度お試しいただくか、直接メールにてご連絡ください。"
     }
   },
   "footer": {

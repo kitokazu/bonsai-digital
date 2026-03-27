@@ -7,11 +7,15 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/" || pathname === "/en" || pathname === "/ja";
 
   const navLinks = [
     { name: t.navbar.services, href: "#services" },
@@ -30,9 +34,14 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (isHome) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      const base = locale === "en" ? "/" : "/ja";
+      router.push(`${base}${href}`);
     }
     setIsMobileMenuOpen(false);
   };
@@ -57,7 +66,12 @@ const Navbar = () => {
               className="flex items-center gap-3 text-foreground hover:opacity-80 transition-opacity"
               onClick={(e) => {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (isHome) {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  const base = locale === "en" ? "/" : "/ja";
+                  router.push(base);
+                }
               }}
             >
               <Image
