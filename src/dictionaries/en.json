@@ -13,7 +13,7 @@
     "headline2": "Digital Growth",
     "subheadline": "From hand-coded websites and full-stack web apps to AI solutions and workflow automation, we build digital products that actually work for your business. Every project is written from scratch, loads fast, and scales with you.",
     "cta1": "Get a Free Quote",
-    "cta2": "View Our Work",
+    "cta2": "Get a Free Sample Site",
     "projects": {
       "homeHair": { "title": "Home Hair and Coffee", "category": "Hair Salon" },
       "defineAcademy": { "title": "Define Academy", "category": "Sports Coaching" },
@@ -43,6 +43,12 @@
         "features": ["AI-Powered Integrations", "Custom AI Assistants & Agents", "Workflow Automation", "Vibe Code Cleanup"]
       }
     ]
+  },
+  "freeSample": {
+    "eyebrow": "No Commitment",
+    "heading": "See your site before you commit.",
+    "description": "We build a real, working sample of your website at no cost. Look it over, share it with your team, and decide from there. No pressure, no strings attached.",
+    "cta": "Get Your Free Sample Site"
   },
   "work": {
     "label": "Our Work",

@@ -117,7 +117,7 @@ const Hero = () => {
             </Button>
             <Button
               variant="heroOutline"
-              onClick={() => scrollToSection("#work")}
+              onClick={() => scrollToSection("#contact")}
             >
               {t.hero.cta2}
             </Button>
