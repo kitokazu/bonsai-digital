@@ -3,7 +3,7 @@
     "services": "サービス",
     "work": "実績",
     "about": "私たちの理念",
-    "pricing": "料金",
+    "pricing": "プラン",
     "contact": "お問い合わせ",
     "cta": "相談してみる"
   },
@@ -111,15 +111,14 @@
     ]
   },
   "pricing": {
-    "label": "料金プラン",
-    "heading": "明確でわかりやすい料金設定",
-    "description": "ビジネスの規模や目的に応じて、一括制作プラン・月額プランのいずれかを選択可能。\nすべてゼロから設計するフルスクラッチ開発です。",
+    "label": "プラン",
+    "heading": "ビジネスに合わせたプラン",
+    "description": "一括制作、月額、カスタム開発の3つのプランをご用意しています。\nプロジェクトの内容に応じて、お見積もりをお出しします。",
     "plans": [
       {
         "name": "一括プラン",
         "subtitle": "ウェブサイトの一括制作",
-        "price": "¥165,000",
-        "priceSubtext": "+ ¥3,000/月 ホスティング",
+        "price": "お見積もり",
         "features": [
           { "text": "カスタムデザイン＆フルスクラッチ開発", "included": true },
           { "text": "モバイル対応 & SEO最適化", "included": true },
@@ -129,7 +128,7 @@
           { "text": "継続的なコンテンツ更新", "included": false },
           { "text": "優先サポート", "included": false }
         ],
-        "cta": "お問い合わせ",
+        "cta": "お見積もりはこちら",
         "ctaHref": "#contact",
         "highlighted": false
       },
@@ -137,7 +136,7 @@
         "name": "月額プラン",
         "subtitle": "サブスクリプション型ウェブサイト",
         "price": "¥18,000",
-        "priceSubtext": "/月",
+        "priceSubtext": "/月（目安）",
         "badge": "一番人気",
         "features": [
           { "text": "一括プランの全機能", "included": true },
@@ -149,7 +148,7 @@
           { "text": "継続的なSEO改善", "included": true },
           { "text": "長期契約なし", "included": true }
         ],
-        "cta": "お問い合わせ",
+        "cta": "お見積もりはこちら",
         "ctaHref": "#contact",
         "highlighted": true
       },
@@ -166,7 +165,7 @@
           { "text": "専任プロジェクトマネージャー", "included": true },
           { "text": "継続的なメンテナンス＆スケーリング", "included": true }
         ],
-        "cta": "見積もりを取得",
+        "cta": "お見積もりはこちら",
         "ctaHref": "#contact",
         "highlighted": false
       }

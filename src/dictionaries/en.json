@@ -3,7 +3,7 @@
     "services": "Services",
     "work": "Work",
     "about": "About",
-    "pricing": "Pricing",
+    "pricing": "Plans",
     "contact": "Contact",
     "cta": "Start a Project"
   },
@@ -111,15 +111,14 @@
     ]
   },
   "pricing": {
-    "label": "Pricing",
-    "heading": "Simple, Transparent Pricing",
-    "description": "Whether you want a one-time build or an ongoing partnership, we have a plan that fits. Every option includes real, hand-coded work from our team.",
+    "label": "Plans",
+    "heading": "Plans Built Around Your Business",
+    "description": "Whether you want a one-time build or an ongoing partnership, we have a plan that fits. Every project gets a custom estimate based on your goals and scope.",
     "plans": [
       {
         "name": "Lump Sum",
         "subtitle": "One-time website build",
-        "price": "$1,100",
-        "priceSubtext": "+ $20/mo hosting",
+        "price": "Custom Estimate",
         "features": [
           { "text": "Custom designed & hand-coded website", "included": true },
           { "text": "Mobile responsive & SEO optimized", "included": true },
@@ -129,7 +128,7 @@
           { "text": "Ongoing content updates", "included": false },
           { "text": "Priority support", "included": false }
         ],
-        "cta": "Get Started",
+        "cta": "Get an Estimate",
         "ctaHref": "#contact",
         "highlighted": false
       },
@@ -137,7 +136,7 @@
         "name": "Monthly",
         "subtitle": "Website as a service",
         "price": "$120",
-        "priceSubtext": "/mo",
+        "priceSubtext": "/mo (estimated)",
         "badge": "Most Popular",
         "features": [
           { "text": "Everything in Lump Sum", "included": true },
@@ -149,14 +148,14 @@
           { "text": "SEO improvements over time", "included": true },
           { "text": "No long-term contract", "included": true }
         ],
-        "cta": "Get Started",
+        "cta": "Get an Estimate",
         "ctaHref": "#contact",
         "highlighted": true
       },
       {
         "name": "Advanced Solutions",
         "subtitle": "Custom apps, AI & automation",
-        "price": "Custom Quote",
+        "price": "Custom Estimate",
         "features": [
           { "text": "Full-stack web applications", "included": true },
           { "text": "AI integrations & chatbots", "included": true },
@@ -166,7 +165,7 @@
           { "text": "Dedicated project manager", "included": true },
           { "text": "Ongoing maintenance & scaling", "included": true }
         ],
-        "cta": "Get a Quote",
+        "cta": "Get an Estimate",
         "ctaHref": "#contact",
         "highlighted": false
       }
