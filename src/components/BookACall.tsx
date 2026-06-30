@@ -18,11 +18,7 @@ const BookACall = () => {
   const router = useRouter();
 
   const handleBookCall = () => {
-    if (CALENDAR_URL) {
-      window.open(CALENDAR_URL, "_blank", "noopener,noreferrer");
-    } else {
-      router.push(locale === "en" ? "/contact" : "/ja/contact");
-    }
+    router.push(locale === "en" ? "/contact" : "/ja/contact");
   };
 
   const handleSendMessage = () => {

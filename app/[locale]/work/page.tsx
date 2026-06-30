@@ -52,14 +52,6 @@ export default function AllWorksPage() {
           transition={{ duration: 0.6 }}
           className={cn(locale === "ja" ? "text-left" : "text-center")}
         >
-          <span
-            className={cn(
-              "text-primary text-sm font-medium tracking-wider uppercase block mb-4",
-              locale === "ja" && "text-base"
-            )}
-          >
-            {t.work.label}
-          </span>
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-4">
             {t.work.allWorksHeading}
           </h1>

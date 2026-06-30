@@ -10,10 +10,10 @@ const Footer = () => {
   const router = useRouter();
 
   const footerLinks = [
-    { name: t.navbar.whatWeDo, href: "#what-we-do" },
+    { name: t.navbar.whatWeDo, href: "#services" },
     { name: t.navbar.work, href: "/work" },
-    { name: t.navbar.about, href: "/about" },
-    { name: t.navbar.contact, href: "/contact" },
+    { name: t.navbar.about, href: "#about" },
+    { name: (t.navbar as any).book, href: "/contact" },
   ];
 
   const handleFooterLink = (href: string) => {

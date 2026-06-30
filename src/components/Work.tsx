@@ -1,15 +1,15 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "next-view-transitions";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Lock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
-
-type FilterValue = "all" | WorkBucket;
 
 interface MergedProject {
   id: WorkProjectId;
@@ -202,23 +202,17 @@ const Work = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const { t, locale } = useTranslation();
-  const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
+  const router = useRouter();
 
-  const projects: MergedProject[] = workProjects
-    .filter((p) => activeFilter === "all" || p.bucket === activeFilter)
-    .map((p) => ({
-      ...p,
-      ...(t.work.projects as Record<
-        string,
-        { title: string; tag: string; outcome: string }
-      >)[p.id],
-    }));
+  const featured: MergedProject[] = workProjects.slice(0, 3).map((p) => ({
+    ...p,
+    ...(t.work.projects as Record<
+      string,
+      { title: string; tag: string; outcome: string }
+    >)[p.id],
+  }));
 
-  const filters: { value: FilterValue; label: string }[] = [
-    { value: "all", label: t.work.filters.all },
-    { value: "websites", label: t.work.filters.websites },
-    { value: "software", label: t.work.filters.software },
-  ];
+  const workHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
     <section id="work" className="section-padding">
@@ -232,7 +226,7 @@ const Work = () => {
           }
           transition={{ duration: 0.6 }}
           className={cn(
-            "max-w-2xl mx-auto mb-10",
+            "max-w-2xl mx-auto mb-12",
             locale === "ja" ? "text-left" : "text-center"
           )}
         >
@@ -250,42 +244,34 @@ const Work = () => {
           <p className="text-muted-foreground text-lg">{t.work.description}</p>
         </motion.div>
 
-        {/* Filter chips */}
+        {/* 3-up project grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          {featured.map((project, index) => (
+            <WorkCard
+              key={project.id}
+              project={project}
+              index={index}
+              variant="fullbleed"
+            />
+          ))}
+        </div>
+
+        {/* View all */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className={cn(
-            "flex gap-2 mb-12 flex-wrap",
-            locale === "ja" ? "" : "justify-center"
-          )}
-          role="group"
-          aria-label="Filter projects"
+          className={cn(locale === "ja" ? "text-left" : "text-center")}
         >
-          {filters.map((filter) => (
-            <button
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
-              aria-pressed={activeFilter === filter.value}
-              className={cn(
-                "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                activeFilter === filter.value
-                  ? "bg-foreground text-background"
-                  : "border border-border text-foreground/70 hover:border-foreground/50 hover:text-foreground bg-transparent"
-              )}
-            >
-              {filter.label}
-            </button>
-          ))}
+          <button
+            onClick={() => router.push(workHref)}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors group"
+          >
+            {(t.work as any).viewAll}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
         </motion.div>
-
-        {/* Projects grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <WorkCard key={project.id} project={project} index={index} />
-          ))}
-        </div>
       </div>
     </section>
   );

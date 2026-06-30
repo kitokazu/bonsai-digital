@@ -1,4 +1,4 @@
-export type WorkBucket = "websites" | "software";
+export type WorkBucket = "websites" | "ecommerce" | "software";
 
 export type WorkProjectId =
   | "homeHairCoffee"

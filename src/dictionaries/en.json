@@ -1,16 +1,16 @@
 {
   "navbar": {
-    "whatWeDo": "What we do",
+    "whatWeDo": "Services",
     "work": "Work",
     "about": "About",
-    "contact": "Contact",
-    "cta": "Start a project"
+    "cta": "Start a project",
+    "book": "Contact"
   },
   "hero": {
     "badge": "Digital studio based in Japan",
     "headline1": "Cultivating Your",
     "headline2": "Digital Growth",
-    "subheadline": "From hand-coded websites to internal dashboards, automation, and AI tools, we design and build digital products that actually work for your business.",
+    "subheadline": "From websites to internal dashboards, automation, and AI tools, we design and build digital products that actually work for your business.",
     "cta1": "Get a free quote",
     "cta2": "View our work",
     "projects": {
@@ -34,7 +34,7 @@
   },
   "whatWeDo": {
     "label": "What we do",
-    "heading": "Two kinds of work, one standard.",
+    "heading": "Two kinds of work, one standard",
     "description": "Whatever your business needs, it gets built to actually work. We keep it to two simple ideas.",
     "buckets": [
       {
@@ -43,7 +43,8 @@
         "tags": [
           "Landing",
           "Brand site",
-          "3D / Motion"
+          "3D / Motion",
+          "E-commerce"
         ]
       },
       {
@@ -60,14 +61,15 @@
   },
   "work": {
     "label": "Our work",
-    "heading": "Real results for real businesses.",
-    "description": "Every project here started with a real problem. Here is how we solved it.",
-    "allWorksHeading": "All Projects",
+    "heading": "Explore Our Projects",
+    "description": "A look at what we have built. Every project started with a real problem and a clear goal.",
+    "allWorksHeading": "Explore Our Projects",
     "allWorksDescription": "A complete look at the projects we have built for our clients. Each one started with a real challenge and a clear goal.",
     "filters": {
       "all": "All",
       "websites": "Websites",
-      "software": "Software & Tools"
+      "software": "Software & Tools",
+      "ecommerce": "E-commerce"
     },
     "confidentialBadge": "Client confidential",
     "projects": {
@@ -106,11 +108,12 @@
         "tag": "App / MVP",
         "outcome": "Shipped a working AR art gallery MVP so the client could put the idea in front of real users fast."
       }
-    }
+    },
+    "viewAll": "View all projects"
   },
   "process": {
     "label": "How we work",
-    "heading": "We show you, then we build it.",
+    "heading": "We show you, then we build it",
     "steps": [
       {
         "title": "Understand the need",
@@ -132,7 +135,7 @@
   },
   "about": {
     "label": "About us",
-    "heading": "Small studio. No shortcuts.",
+    "heading": "Small studio. No shortcuts",
     "paragraph1": "Bonsai Digital is run by an engineer with a Toyota background and American roots, based in Tokyo. We build websites, web applications, internal tools, and AI systems. Everything from scratch, because that is the only way to do it right.",
     "paragraph2": "Whatever you are building, you work directly with the person building it. No account managers, no ticket systems. Just clear communication in Japanese or English, and work that holds up.",
     "values": [
@@ -164,7 +167,7 @@
   },
   "contact": {
     "label": "Get in touch",
-    "heading": "Let's grow your business together.",
+    "heading": "Let's grow your business together",
     "description": "Whether you need a website, a custom app, or help with AI and automation, we would love to hear about it. Every conversation starts with a free consultation.",
     "emailLabel": "Email at",
     "locationLabel": "Based in",
@@ -354,14 +357,14 @@
   },
   "bookACall": {
     "eyebrow": "Let's talk",
-    "heading": "Start your project.",
+    "heading": "Start your project",
     "description": "Book a free 30-minute call. We will figure out exactly what you need and the best way to get there.",
     "cta": "Book a call",
     "ctaAlt": "Send a message"
   },
   "faq": {
     "label": "FAQ",
-    "heading": "Common questions.",
+    "heading": "Common questions",
     "items": [
       {
         "question": "How much does a project cost?",

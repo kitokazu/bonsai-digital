@@ -14,7 +14,7 @@ const WhatWeDo = () => {
   const { t, locale } = useTranslation();
 
   return (
-    <section id="what-we-do" className="section-padding bg-secondary/20">
+    <section id="services" className="section-padding bg-secondary/20">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
