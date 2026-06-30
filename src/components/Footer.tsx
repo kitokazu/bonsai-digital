@@ -1,24 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
 import Image from "next/image";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const footerLinks = [
-    { name: t.navbar.services, href: "#services" },
-    { name: t.navbar.work, href: "#work" },
-    { name: t.navbar.about, href: "#about" },
-    { name: t.navbar.pricing, href: "#pricing" },
-    { name: t.navbar.contact, href: "#contact" },
+    { name: t.navbar.whatWeDo, href: "#what-we-do" },
+    { name: t.navbar.work, href: "/work" },
+    { name: t.navbar.about, href: "/about" },
+    { name: t.navbar.contact, href: "/contact" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleFooterLink = (href: string) => {
+    if (href.startsWith("/")) {
+      router.push(href);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -54,7 +59,7 @@ const Footer = () => {
             {footerLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleFooterLink(link.href)}
                 className="text-background/70 hover:text-background transition-colors text-sm"
               >
                 {link.name}

@@ -1,132 +1,229 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
+import Image from "next/image";
+import { Lock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
 
-export const projectData = [
-  {
-    image: "/define-x-about.png",
-    color: "from-blue-400/20 to-white-300/20",
-    slug: "definex",
-  },
-  {
-    image: "/cashflowAI/cashflowAI.png",
-    color: "from-indigo-400/20 to-blue-300/20",
-    slug: "cashflowai",
-  },
-  {
-    image: "/cg-landing.png",
-    color: "from-amber-400/20 to-orange-300/20",
-    slug: "cg-online-academy",
-  },
-  {
-    image: "/chnl301/chnl301-landing.png",
-    color: "from-violet-400/20 to-purple-300/20",
-    slug: "chnl301",
-  },
-  {
-    image: "/home-hair-coffee/home-hair-landing.png",
-    color: "from-stone-400/20 to-amber-300/20",
-    slug: "home-hair-coffee",
-  },
-];
+type FilterValue = "all" | WorkBucket;
 
-export const ProjectCard = ({
+interface MergedProject {
+  id: WorkProjectId;
+  bucket: WorkBucket;
+  image?: string;
+  confidential?: boolean;
+  slug?: string;
+  placeholderColor?: string;
+  title: string;
+  tag: string;
+  outcome: string;
+}
+
+export const WorkCard = ({
   project,
   index,
+  variant = "default",
 }: {
-  project: {
-    title: string;
-    category: string;
-    description: string;
-    image: string;
-  };
+  project: MergedProject;
   index: number;
+  variant?: "default" | "fullbleed";
 }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [isHovered, setIsHovered] = useState(false);
+  const { t, locale } = useTranslation();
+  const href = project.slug
+    ? locale === "en"
+      ? `/work/${project.slug}`
+      : `/ja/work/${project.slug}`
+    : undefined;
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="group relative overflow-hidden rounded-2xl cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Image */}
-      <div className="aspect-[4/3] overflow-hidden">
-        <motion.img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-          animate={{ scale: isHovered ? 1.05 : 1 }}
-          transition={{ duration: 0.4 }}
-        />
-      </div>
+  if (variant === "fullbleed") {
+    const iconColors =
+      project.bucket === "websites"
+        ? "bg-primary/12 text-primary"
+        : "bg-accent/12 text-accent";
 
-      {/* Dark gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+    const inner = (
+      <motion.article
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45, delay: index * 0.05 }}
+        className="group flex flex-col cursor-pointer"
+      >
+        {/* Screenshot */}
+        <div
+          className="relative rounded-2xl overflow-hidden mb-4 bg-secondary/60 shadow-sm"
+          style={{
+            aspectRatio: "4/3",
+            ...(project.slug
+              ? { viewTransitionName: `wt-${project.id}` }
+              : {}),
+          }}
+        >
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            />
+          ) : (
+            <div
+              className={cn(
+                "w-full h-full bg-gradient-to-br",
+                project.placeholderColor ?? "from-primary/10 to-muted/10"
+              )}
+            />
+          )}
+        </div>
 
-      {/* Content */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-end pointer-events-none">
-        <span className="text-white/80 text-sm font-medium">
-          {project.category}
-        </span>
-        <div className="flex items-end justify-between">
-          <div>
-            <h3 className="text-2xl font-serif font-semibold text-white mt-1">
-              {project.title}
-            </h3>
-            <p className="text-white/80 text-sm mt-2 max-w-xs">
-              {project.description}
+        {/* Project info */}
+        <div className="flex items-start gap-3 px-1">
+          {/* Icon */}
+          <div
+            className={cn(
+              "w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-sm font-semibold",
+              iconColors
+            )}
+          >
+            {project.title.charAt(0).toUpperCase()}
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="font-semibold text-foreground text-sm leading-tight">
+                {project.title}
+              </p>
+              {project.confidential && (
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground/70">
+                  <Lock className="w-2.5 h-2.5" aria-hidden="true" />
+                  {t.work.confidentialBadge}
+                </span>
+              )}
+            </div>
+            <p className="text-muted-foreground text-sm leading-snug mt-0.5 line-clamp-2">
+              {project.outcome}
             </p>
           </div>
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={
-              isHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
-            }
-            transition={{ duration: 0.3 }}
-            className="w-10 h-10 rounded-full bg-primary flex items-center justify-center"
-          >
-            <ExternalLink className="w-4 h-4 text-primary-foreground" />
-          </motion.div>
         </div>
+      </motion.article>
+    );
+
+    if (href) {
+      return (
+        <Link href={href} className="block">
+          {inner}
+        </Link>
+      );
+    }
+    return inner;
+  }
+
+  // Default variant (homepage cards)
+  const inner = (
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay: index * 0.08 }}
+      className="group flex flex-col rounded-2xl overflow-hidden border border-border/50 bg-card hover:border-primary/20 transition-all duration-500 hover:shadow-lg h-full"
+    >
+      {/* Image or gradient placeholder */}
+      <div
+        className="aspect-[16/9] overflow-hidden flex-shrink-0"
+        style={
+          project.slug
+            ? { viewTransitionName: `wt-${project.id}` }
+            : undefined
+        }
+      >
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={800}
+            height={450}
+            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div
+            className={cn(
+              "w-full h-full bg-gradient-to-br",
+              project.placeholderColor ?? "from-primary/10 to-muted/10"
+            )}
+          />
+        )}
       </div>
-    </motion.div>
+
+      {/* Card body */}
+      <div className="flex flex-col flex-1 p-6 md:p-8">
+        {/* Tag row */}
+        <div className="flex items-center gap-2 flex-wrap mb-4">
+          <span className="text-xs font-medium text-primary border border-primary/30 rounded-full px-3 py-1">
+            {project.tag}
+          </span>
+          {project.confidential && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-3 py-1">
+              <Lock className="w-3 h-3" aria-hidden="true" />
+              {t.work.confidentialBadge}
+            </span>
+          )}
+        </div>
+
+        {/* Outcome headline */}
+        <p className="text-lg md:text-xl font-serif font-medium text-foreground leading-snug mb-4 flex-1">
+          {project.outcome}
+        </p>
+
+        {/* Project name */}
+        <p className="text-sm font-medium text-muted-foreground">
+          {project.title}
+        </p>
+      </div>
+    </motion.article>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="block h-full">
+        {inner}
+      </Link>
+    );
+  }
+
+  return inner;
 };
 
 const Work = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const { t, locale } = useTranslation();
+  const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
 
-  const projects = t.work.projects.slice(0, 4).map((proj, i) => ({
-    ...proj,
-    ...projectData[i],
-  }));
+  const projects: MergedProject[] = workProjects
+    .filter((p) => activeFilter === "all" || p.bucket === activeFilter)
+    .map((p) => ({
+      ...p,
+      ...(t.work.projects as Record<
+        string,
+        { title: string; tag: string; outcome: string }
+      >)[p.id],
+    }));
 
-  const getWorkHref = (slug: string) => {
-    return locale === "en" ? `/work/${slug}` : `/ja/work/${slug}`;
-  };
-
-  const allWorksHref = locale === "en" ? "/work" : "/ja/work";
+  const filters: { value: FilterValue; label: string }[] = [
+    { value: "all", label: t.work.filters.all },
+    { value: "websites", label: t.work.filters.websites },
+    { value: "software", label: t.work.filters.software },
+  ];
 
   return (
     <section id="work" className="section-padding">
       <div className="container mx-auto px-6">
-        {/* Section Header */}
+        {/* Section header */}
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
@@ -134,88 +231,61 @@ const Work = () => {
             isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
           }
           transition={{ duration: 0.6 }}
-          className={cn("max-w-2xl mx-auto mb-16", locale === "ja" ? "text-left" : "text-center")}
+          className={cn(
+            "max-w-2xl mx-auto mb-10",
+            locale === "ja" ? "text-left" : "text-center"
+          )}
         >
-          <span className={cn("text-primary text-sm font-medium tracking-wider uppercase mb-4 block", locale === "ja" && "text-center text-base")}>
+          <span
+            className={cn(
+              "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
+              locale === "ja" && "text-base"
+            )}
+          >
             {t.work.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             {t.work.heading}
           </h2>
           <p className="text-muted-foreground text-lg">{t.work.description}</p>
-          <Link
-            href={allWorksHref}
-            className="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:underline mt-4"
-          >
-            {t.work.viewAll}
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Filter chips */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className={cn(
+            "flex gap-2 mb-12 flex-wrap",
+            locale === "ja" ? "" : "justify-center"
+          )}
+          role="group"
+          aria-label="Filter projects"
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              aria-pressed={activeFilter === filter.value}
+              className={cn(
+                "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                activeFilter === filter.value
+                  ? "bg-foreground text-background"
+                  : "border border-border text-foreground/70 hover:border-foreground/50 hover:text-foreground bg-transparent"
+              )}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Projects grid */}
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <div key={project.title}>
-              {project.slug ? (
-                <Link href={getWorkHref(project.slug)} className="block">
-                  <ProjectCard
-                    project={{
-                      title: project.title,
-                      category: project.category,
-                      description: project.description,
-                      image: project.image,
-                    }}
-                    index={index}
-                  />
-                </Link>
-              ) : (
-                <ProjectCard
-                  project={{
-                    title: project.title,
-                    category: project.category,
-                    description: project.description,
-                    image: project.image,
-                  }}
-                  index={index}
-                />
-              )}
-              {project.tags && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
-                  className="flex flex-wrap gap-2 mt-4 px-1"
-                >
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs font-medium text-primary border border-primary/30 rounded-full px-3 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
-              )}
-            </div>
+            <WorkCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
-        >
-          <Link href={allWorksHref}>
-            <Button variant="outline" size="lg" className="gap-2">
-              {t.work.viewAll}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

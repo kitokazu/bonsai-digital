@@ -176,3 +176,43 @@
     @apply max-w-5xl mx-auto px-6;
   }
 }
+
+/* View Transitions */
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Root: instant swap so page nav has no visible transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Shared element: work card thumbnail → detail hero */
+::view-transition-old(wt-homeHairCoffee),
+::view-transition-old(wt-chnl301),
+::view-transition-old(wt-cgOnlineAcademy),
+::view-transition-old(wt-definex) {
+  animation: 380ms cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-out;
+}
+
+::view-transition-new(wt-homeHairCoffee),
+::view-transition-new(wt-chnl301),
+::view-transition-new(wt-cgOnlineAcademy),
+::view-transition-new(wt-definex) {
+  animation: 380ms cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ const showcaseImages = [
 export default function HomeHairCoffeePage() {
   const { t, locale } = useTranslation();
   const d = t.workDetail.homeHairCoffee;
-  const workHref = locale === "en" ? "/#work" : "/ja#work";
+  const workHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
     <div className="min-h-screen">
@@ -81,6 +81,7 @@ export default function HomeHairCoffeePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-2xl overflow-hidden"
+            style={{ viewTransitionName: "wt-homeHairCoffee" }}
           >
             <Image
               src="/home-hair-coffee/home-hair-landing.png"

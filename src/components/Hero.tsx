@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +13,6 @@ const projectImages = [
   { key: "defineAcademy", image: "/define-academy-landing.png" },
   { key: "cgOnlineCourses", image: "/cg-online-courses.png" },
   { key: "chnl301", image: "/chnl301-landing.png" },
-  { key: "financeBroAI", image: "/cashflowAI/cashflowAI.png" },
 ];
 
 function ShowcaseCard({
@@ -46,6 +46,7 @@ function ShowcaseCard({
 
 const Hero = () => {
   const { t, locale } = useTranslation();
+  const router = useRouter();
 
   const projects = projectImages.map((p) => {
     const proj = t.hero.projects[p.key as keyof typeof t.hero.projects];
@@ -53,6 +54,10 @@ const Hero = () => {
   });
 
   const scrollToSection = (href: string) => {
+    if (!href.startsWith("#")) {
+      router.push(href);
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -109,7 +114,7 @@ const Hero = () => {
           >
             <Button
               variant="hero"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("/contact")}
               className="group"
             >
               {t.hero.cta1}
@@ -117,7 +122,7 @@ const Hero = () => {
             </Button>
             <Button
               variant="heroOutline"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("/work")}
             >
               {t.hero.cta2}
             </Button>

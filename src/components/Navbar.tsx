@@ -18,11 +18,10 @@ const Navbar = () => {
   const isHome = pathname === "/" || pathname === "/en" || pathname === "/ja";
 
   const navLinks = [
-    { name: t.navbar.services, href: "#services" },
-    { name: t.navbar.work, href: "#work" },
-    { name: t.navbar.about, href: "#about" },
-    { name: t.navbar.pricing, href: "#pricing" },
-    { name: t.navbar.contact, href: "#contact" },
+    { name: t.navbar.whatWeDo, href: "#what-we-do" },
+    { name: t.navbar.work, href: "/work" },
+    { name: t.navbar.about, href: "/about" },
+    { name: t.navbar.contact, href: "/contact" },
   ];
 
   useEffect(() => {
@@ -34,7 +33,10 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    if (isHome) {
+    if (!href.startsWith("#")) {
+      const path = locale === "en" ? href : `/ja${href}`;
+      router.push(path);
+    } else if (isHome) {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -81,7 +83,7 @@ const Navbar = () => {
                 height={32}
                 className="w-8 h-8"
               />
-              <span className="font-serif text-xl font-semibold">
+              <span className="font-serif text-xl font-bold">
                 Bonsai Digital
               </span>
             </a>
@@ -92,22 +94,22 @@ const Navbar = () => {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-foreground/70 hover:text-foreground transition-colors link-underline text-sm font-medium"
+                  className="text-foreground/70 hover:text-foreground transition-colors link-underline text-sm font-semibold"
                 >
                   {link.name}
                 </button>
               ))}
-            </div>
-
-            {/* CTA + Language Switcher */}
-            <div className="hidden md:flex items-center gap-3">
-              <LanguageSwitcher />
               <Button
                 variant="default"
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => scrollToSection("/contact")}
               >
                 {t.navbar.cta}
               </Button>
+            </div>
+
+            {/* Language Switcher */}
+            <div className="hidden md:flex items-center">
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile Menu Button */}
@@ -153,7 +155,7 @@ const Navbar = () => {
                 <LanguageSwitcher />
                 <Button
                   variant="hero"
-                  onClick={() => scrollToSection("#contact")}
+                  onClick={() => scrollToSection("/contact")}
                 >
                   {t.navbar.cta}
                 </Button>
