@@ -14,6 +14,7 @@ export interface WorkProject {
   bucket: WorkBucket;
   image?: string;
   confidential?: boolean;
+  inProgress?: boolean;
   slug?: string;
   placeholderColor?: string;
 }
@@ -46,6 +47,7 @@ export const workProjects: WorkProject[] = [
   {
     id: "influencerAgency",
     bucket: "software",
+    inProgress: true,
     placeholderColor: "from-primary/20 to-primary/5",
   },
   {
@@ -57,6 +59,7 @@ export const workProjects: WorkProject[] = [
   {
     id: "arGalleryMVP",
     bucket: "software",
+    inProgress: true,
     placeholderColor: "from-accent/20 to-accent/5",
   },
 ];

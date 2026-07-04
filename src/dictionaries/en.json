@@ -1,16 +1,24 @@
 {
   "navbar": {
-    "whatWeDo": "Services",
+    "whatWeDo": "Pricing",
     "work": "Work",
     "about": "About",
+    "blog": "Blog",
     "cta": "Start a project",
     "book": "Contact"
+  },
+  "blog": {
+    "label": "Blog",
+    "heading": "Notes from the studio",
+    "description": "Practical writing on engineering, working in Japan, and building digital products.",
+    "readPost": "Read the post",
+    "back": "Back to all posts"
   },
   "hero": {
     "badge": "Digital studio based in Japan",
     "headline1": "Cultivating Your",
     "headline2": "Digital Growth",
-    "subheadline": "From websites to internal dashboards, automation, and AI tools, we design and build digital products that actually work for your business.",
+    "subheadline": "From websites to MVPs, internal dashboards, automation, and AI tools, we design and build digital products that actually work for your business.",
     "cta1": "Get a free quote",
     "cta2": "View our work",
     "projects": {
@@ -33,31 +41,58 @@
     }
   },
   "whatWeDo": {
-    "label": "What we do",
-    "heading": "Two kinds of work, one standard",
-    "description": "Whatever your business needs, it gets built to actually work. We keep it to two simple ideas.",
+    "label": "Services & pricing",
+    "heading": "Three kinds of work, one standard",
+    "description": "Some of what we build is public facing, and some of it runs behind the scenes. All of it gets the same level of design and engineering.",
     "buckets": [
       {
         "title": "Websites",
-        "description": "Your public face. Marketing sites, landing pages, and rich, motion-driven experiences. Every site is hand-coded, loads fast, and looks right on every device.",
-        "tags": [
-          "Landing",
-          "Brand site",
-          "3D / Motion",
-          "E-commerce"
+        "tagline": "Launch-ready ASAP",
+        "description": "Marketing sites, landing pages, and rich, motion-driven experiences. Hand-coded, fast, and right on every device.",
+        "priceLabel": "Starting from",
+        "price": "$1,000",
+        "features": [
+          "Custom design, no templates",
+          "Hand-coded, fast on every device",
+          "Japanese and English versions",
+          "SEO and analytics setup",
+          "Contact forms and booking",
+          "Maintenance after launch"
         ]
       },
       {
-        "title": "Software & Tools",
-        "description": "Things that run and do work. Internal systems, automation, dashboards, AI features, and full apps. Built to your spec, from the ground up, to solve a real workflow problem.",
-        "tags": [
-          "Automation",
-          "Dashboard",
-          "AI",
-          "App / MVP"
+        "title": "Automations & AI agents",
+        "tagline": "Up and running in weeks",
+        "description": "For the repetitive work that eats your week. Agent workflows and automations that take it over reliably.",
+        "priceLabel": "Starting from",
+        "price": "$3,000",
+        "features": [
+          "AI agents and workflow automation",
+          "Works with the tools you already use",
+          "Set up, tested, and monitored",
+          "Clear documentation and handoff",
+          "Support after launch"
+        ]
+      },
+      {
+        "title": "MVPs & internal tools",
+        "tagline": "From idea to working product",
+        "description": "Full builds, from idea to real users. MVPs, internal dashboards, and systems, with automation and AI included where they help.",
+        "priceLabel": "Starting from",
+        "price": "$8,000",
+        "features": [
+          "Design and development, end to end",
+          "Database, login, and integrations",
+          "AI agents and automation included",
+          "Deployed and ready for real users",
+          "Weekly progress updates",
+          "Support after launch"
         ]
       }
-    ]
+    ],
+    "includedLabel": "What's included:",
+    "cta": "Book a free call",
+    "footnote": "Final pricing depends on scope. Every project starts with a free 30-minute call and a firm quote before any work begins. Ongoing maintenance plans are available for everything we build."
   },
   "work": {
     "label": "Our work",
@@ -68,10 +103,11 @@
     "filters": {
       "all": "All",
       "websites": "Websites",
-      "software": "Software & Tools",
+      "software": "Software & MVPs",
       "ecommerce": "E-commerce"
     },
     "confidentialBadge": "Client confidential",
+    "inProgressBadge": "In progress",
     "projects": {
       "homeHairCoffee": {
         "title": "Home Hair & Coffee Roaster",
@@ -105,29 +141,34 @@
       },
       "arGalleryMVP": {
         "title": "AR Art Gallery MVP",
-        "tag": "App / MVP",
+        "tag": "MVP",
         "outcome": "Shipped a working AR art gallery MVP so the client could put the idea in front of real users fast."
       }
     },
     "viewAll": "View all projects"
   },
   "process": {
-    "label": "How we work",
-    "heading": "We show you, then we build it",
+    "label": "Our process",
+    "heading": "How we work",
+    "description": "We simplify complex builds into fast, focused sprints that ship real results every week.",
     "steps": [
       {
+        "label": "Listen",
         "title": "Understand the need",
         "description": "We start with a real conversation about your business, not a form to fill out."
       },
       {
+        "label": "Build",
         "title": "Build a working demo",
         "description": "We put together a real, working version you can actually click through."
       },
       {
+        "label": "Refine",
         "title": "You see it, then we refine",
         "description": "You look it over, share it with your team, and we shape it together from there."
       },
       {
+        "label": "Ship",
         "title": "Ship and keep improving",
         "description": "We launch, then stick around to maintain it and grow it with you."
       }
@@ -136,42 +177,51 @@
   "about": {
     "label": "About us",
     "heading": "Small studio. No shortcuts",
-    "paragraph1": "Bonsai Digital is run by an engineer with a Toyota background and American roots, based in Tokyo. We build websites, web applications, internal tools, and AI systems. Everything from scratch, because that is the only way to do it right.",
-    "paragraph2": "Whatever you are building, you work directly with the person building it. No account managers, no ticket systems. Just clear communication in Japanese or English, and work that holds up.",
+    "paragraph1": "Bonsai Digital is a Tokyo-based studio run by an engineer raised in the US, with experience at Meta, Bosch, and Toyota. We build websites, web applications, internal tools, and AI systems. We are engineers first: proper system design, clean architecture, and security are the baseline here, not an afterthought.",
+    "paragraph2": "Building something that stays secure and holds up under real use is engineering, and that is the standard we work to. And whatever you are building, you work directly with the person building it. No account managers, no ticket systems, just clear communication in Japanese or English.",
     "values": [
       {
         "title": "Speed",
-        "description": "We move quickly without cutting corners. You will have something real to review in days."
+        "description": "We move quickly without cutting corners. You will have something real to review in days, not months."
       },
       {
         "title": "Quality",
-        "description": "Every pixel and every line of code is intentional. We write from scratch because that is the only way to do it right."
+        "description": "Every pixel and every line of code is intentional. Nothing is too small to get right, because the details are usually what people feel even when they cannot name them."
       },
       {
         "title": "User experience",
-        "description": "We design for the people who will actually use it. How something feels to use matters more than how it looks."
-      },
-      {
-        "title": "Collaboration",
-        "description": "You work directly with the person building it. No account managers, no handoffs, no context lost."
-      },
-      {
-        "title": "Attention to detail",
-        "description": "Nothing is too small to get right. The details you cannot quite articulate are usually the ones that matter most."
+        "description": "We design for the people who will actually use it. How something feels to use matters more than how it looks on a spec sheet."
       },
       {
         "title": "Long-term partnership",
-        "description": "We do not build and disappear. From launch through growth, we stay close and scale with you."
+        "description": "You work directly with the person building it. No account managers, no handoffs. And when we launch, we stick around and grow with you."
       }
+    ],
+    "companiesLabel": "Work experience",
+    "companies": [
+      "Meta",
+      "Bosch",
+      "Woven",
+      "Toyota"
     ]
   },
   "contact": {
     "label": "Get in touch",
     "heading": "Let's grow your business together",
-    "description": "Whether you need a website, a custom app, or help with AI and automation, we would love to hear about it. Every conversation starts with a free consultation.",
+    "description": "Whether you need a website, an MVP for a new idea, or help with AI and automation, we would love to hear about it. Every conversation starts with a free consultation.",
     "emailLabel": "Email at",
     "locationLabel": "Based in",
     "location": "Tokyo, Japan",
+    "tabs": {
+      "message": "Send a message",
+      "booking": "Book a call"
+    },
+    "booking": {
+      "description": "Grab a free 30-minute call. No sales pitch, no obligation. We'll figure out together whether we're a good fit and what the right next step looks like.",
+      "placeholder": "Online booking opens here once the calendar is connected.",
+      "cta": "Open scheduling link",
+      "title": "Book a call with Bonsai Digital"
+    },
     "form": {
       "name": "Your Name",
       "namePlaceholder": "John Doe",
@@ -368,11 +418,11 @@
     "items": [
       {
         "question": "How much does a project cost?",
-        "answer": "Every project is different, so we do not publish fixed prices. The best way to get an accurate number is a short call. Most websites start around ¥200,000 to ¥600,000 depending on scope. Software projects and AI systems vary more widely based on complexity."
+        "answer": "Every project is different, so we do not publish fixed prices. The best way to get an accurate number is a short call. Most websites start around $1,000 to $4,000 depending on scope. Automations and agent workflows start around $3,000, and full MVP or dashboard builds from $8,000. We have built several of these already, so we can scope them quickly and give you a reliable number on the first call. Larger software and AI systems vary based on complexity."
       },
       {
         "question": "How long does it take?",
-        "answer": "A straightforward website typically takes two to four weeks. More complex platforms or apps take longer, but we move fast and you will see real progress quickly. We usually have something working for you to review within the first week."
+        "answer": "A straightforward website typically takes two to four weeks. For MVPs, the whole point is speed, so we aim to get a working first version in front of you and your users within a few weeks. Either way, we usually have something working for you to review within the first week."
       },
       {
         "question": "Do I need to be in Japan to work with you?",
@@ -384,7 +434,7 @@
       },
       {
         "question": "What happens after launch?",
-        "answer": "We stick around. We offer ongoing maintenance, updates, and support. Most clients work with us as a long-term technical partner rather than a one-time vendor."
+        "answer": "We stick around. Everything we build can move onto a monthly maintenance plan covering updates, monitoring, and support. Most clients work with us as a long-term technical partner rather than a one-time vendor."
       },
       {
         "question": "Is there a free consultation?",

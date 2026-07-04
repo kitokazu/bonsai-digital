@@ -1,17 +1,55 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Zap, Gem, Users, Handshake, ScanEye, TrendingUp } from "lucide-react";
+import { useRef, useState } from "react";
+import { Zap, Gem, ScanEye, Handshake } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-const valueIcons = [Zap, Gem, Users, Handshake, ScanEye, TrendingUp];
+const valueIcons = [Zap, Gem, ScanEye, Handshake];
+
+// Drop logo files here and they render automatically.
+// Any company without a matching file falls back to a text label.
+// Heights are per logo because the source images have different aspect
+// ratios (square marks read smaller than wide wordmarks at equal height).
+const companyLogos: Record<string, { src: string; heightClass: string }> = {
+  Meta: { src: "/logos/meta.png", heightClass: "h-12" },
+  Bosch: { src: "/logos/bosch.png", heightClass: "h-12" },
+  Woven: { src: "/logos/woven.png", heightClass: "h-12" },
+  Toyota: { src: "/logos/toyota.png", heightClass: "h-9" },
+};
+
+const CompanyLogo = ({ name }: { name: string }) => {
+  const logo = companyLogos[name];
+  const [failed, setFailed] = useState(false);
+
+  if (!logo || failed) {
+    return (
+      <span className="px-3 py-1.5 rounded-lg border border-border/60 bg-card text-sm font-medium text-foreground/70">
+        {name}
+      </span>
+    );
+  }
+
+  return (
+    <img
+      src={logo.src}
+      alt={name}
+      className={cn(
+        "w-auto object-contain grayscale opacity-60 mix-blend-multiply transition-opacity duration-300 hover:opacity-90",
+        logo.heightClass
+      )}
+      onError={() => setFailed(true)}
+    />
+  );
+};
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t, locale } = useTranslation();
+  const companies: string[] = (t.about as any).companies ?? [];
+  const companiesLabel: string = (t.about as any).companiesLabel ?? "";
 
   return (
     <section id="about" className="section-padding bg-primary/5">
@@ -43,12 +81,24 @@ const About = () => {
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               {t.about.paragraph1}
             </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               {t.about.paragraph2}
             </p>
+
+            {/* Company credibility */}
+            <div>
+              <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-widest mb-3">
+                {companiesLabel}
+              </p>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+                {companies.map((name) => (
+                  <CompanyLogo key={name} name={name} />
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right — 6-value grid */}
+          {/* Right — 4-value grid */}
           <div className="grid grid-cols-2 gap-4">
             {t.about.values.map((value, index) => {
               const Icon = valueIcons[index];
@@ -59,11 +109,8 @@ const About = () => {
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }
                   }
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.07 }}
-                  className={cn(
-                    "p-5 rounded-2xl bg-card border border-border/50",
-                    locale === "ja" ? "text-left" : ""
-                  )}
+                  transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
+                  className="p-5 rounded-2xl bg-card border border-border/50"
                 >
                   <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                     <Icon className="w-4 h-4 text-primary" />

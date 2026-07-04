@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## About
 
-Owner: Kai (Toyota engineer, US-raised, Japanese heritage, local Yokohama resident)
+Owner: Kai (Toyota engineer, US-raised, Japanese heritage, local Tokyo resident)
 Mission: Help local Japanese SMEs get their first professional web presence
-Target market: Small businesses in 都筑区 / 港北ニュータウン expanding to Tokyo
+Target market: Small businesses in Tokyo
 Primary pitch: Demo-first — build the site before walking in
 Positioning: "Toyota engineer who builds websites/digital solutions for local businesses"
 

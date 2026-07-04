@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Lock } from "lucide-react";
+import { Hammer, Lock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
@@ -16,6 +16,7 @@ interface MergedProject {
   bucket: WorkBucket;
   image?: string;
   confidential?: boolean;
+  inProgress?: boolean;
   slug?: string;
   placeholderColor?: string;
   title: string;
@@ -104,6 +105,12 @@ export const WorkCard = ({
                   {t.work.confidentialBadge}
                 </span>
               )}
+              {project.inProgress && (
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-accent">
+                  <Hammer className="w-2.5 h-2.5" aria-hidden="true" />
+                  {t.work.inProgressBadge}
+                </span>
+              )}
             </div>
             <p className="text-muted-foreground text-sm leading-snug mt-0.5 line-clamp-2">
               {project.outcome}
@@ -170,6 +177,12 @@ export const WorkCard = ({
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-3 py-1">
               <Lock className="w-3 h-3" aria-hidden="true" />
               {t.work.confidentialBadge}
+            </span>
+          )}
+          {project.inProgress && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent border border-accent/30 rounded-full px-3 py-1">
+              <Hammer className="w-3 h-3" aria-hidden="true" />
+              {t.work.inProgressBadge}
             </span>
           )}
         </div>

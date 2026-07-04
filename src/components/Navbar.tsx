@@ -18,9 +18,10 @@ const Navbar = () => {
   const isHome = pathname === "/" || pathname === "/en" || pathname === "/ja";
 
   const navLinks = [
-    { name: t.navbar.whatWeDo, href: "#services" },
-    { name: t.navbar.work, href: "/work" },
     { name: t.navbar.about, href: "#about" },
+    { name: t.navbar.work, href: "/work" },
+    { name: t.navbar.whatWeDo, href: "#services" },
+    { name: t.navbar.blog, href: "/blog" },
   ];
 
   useEffect(() => {
