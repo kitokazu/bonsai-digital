@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -10,15 +10,15 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 
 const showcaseImages = [
-  { image: "/definex/landing.png", format: "desktop" as const },
-  { image: "/definex/about.png", format: "desktop" as const },
-  { image: "/definex/pricing.png", format: "desktop" as const },
-  { image: "/definex/contact.png", format: "tablet" as const },
+  "/public-sector/chatbot-page.png",
+  "/public-sector/architecture.png",
+  "/public-sector/dashboard.png",
+  "/public-sector/automations.png",
 ];
 
-export default function DefineXPage() {
+export default function PublicSectorAIPage() {
   const { t, locale } = useTranslation();
-  const d = t.workDetail.definex;
+  const d = t.workDetail.publicSectorAI;
   const workHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
@@ -50,7 +50,7 @@ export default function DefineXPage() {
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">
               {d.description}
             </p>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2">
               {d.tags.map((tag) => (
                 <span
                   key={tag}
@@ -60,16 +60,6 @@ export default function DefineXPage() {
                 </span>
               ))}
             </div>
-            <a
-              href="https://www.definex.jp/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="default" className="gap-2">
-                {t.workDetail.visitWebsite}
-                <ExternalLink className="w-4 h-4" />
-              </Button>
-            </a>
           </motion.div>
         </div>
       </section>
@@ -82,13 +72,13 @@ export default function DefineXPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-2xl overflow-hidden"
-            style={{ viewTransitionName: "wt-definex" }}
+            style={{ viewTransitionName: "wt-publicSectorAI" }}
           >
             <Image
-              src="/define-x-about.png"
-              alt="DefineX platform"
+              src="/public-sector/main-page.png"
+              alt="Public sector AI platform dashboard"
               width={1200}
-              height={675}
+              height={522}
               className="w-full h-auto object-cover"
               priority
             />
@@ -108,7 +98,7 @@ export default function DefineXPage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
               {t.workDetail.overview}
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+            <p className="text-muted-foreground text-lg leading-relaxed">
               {d.overview}
             </p>
           </motion.div>
@@ -131,8 +121,6 @@ export default function DefineXPage() {
           <div className="space-y-32">
             {d.showcase.map((item, index) => {
               const isEven = index % 2 === 0;
-              const img = showcaseImages[index];
-              const isTablet = img?.format === "tablet";
 
               return (
                 <motion.div
@@ -143,26 +131,24 @@ export default function DefineXPage() {
                   transition={{ duration: 0.6 }}
                   className={`flex flex-col ${
                     isEven ? "md:flex-row" : "md:flex-row-reverse"
-                  } items-center gap-10 md:gap-16`}
+                  } items-center gap-10 md:gap-12`}
                 >
-                  <div
-                    className={`${
-                      isTablet
-                        ? "w-full max-w-xs md:max-w-sm"
-                        : "w-full md:w-3/5"
-                    } flex-shrink-0`}
-                  >
+                  <div className="w-full md:w-1/2 flex-shrink-0">
                     <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
                       <Image
-                        src={img?.image ?? ""}
+                        src={showcaseImages[index]}
                         alt={item.title}
-                        width={isTablet ? 500 : 800}
-                        height={isTablet ? 700 : 450}
+                        width={800}
+                        height={450}
                         className="w-full h-auto object-cover"
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-center md:text-left">
+                  <div
+                    className={`flex-1 max-w-xl ${
+                      locale === "ja" ? "text-left" : "text-center md:text-left"
+                    }`}
+                  >
                     <h3 className="text-2xl md:text-3xl font-serif font-semibold text-foreground mb-4">
                       {item.title}
                     </h3>
@@ -204,20 +190,12 @@ export default function DefineXPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
           >
-            <a
-              href="https://www.definex.jp/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="default" className="gap-2">
-                {t.workDetail.visitWebsite}
-                <ExternalLink className="w-4 h-4" />
-              </Button>
-            </a>
             <Link href={workHref}>
-              <Button variant="outline">{t.workDetail.backToWork}</Button>
+              <Button variant="outline" className="gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                {t.workDetail.backToWork}
+              </Button>
             </Link>
           </motion.div>
         </div>

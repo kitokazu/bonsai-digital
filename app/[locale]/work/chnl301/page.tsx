@@ -25,7 +25,7 @@ export default function Chnl301Page() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

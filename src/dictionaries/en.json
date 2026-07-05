@@ -403,6 +403,80 @@
         "Brand-aligned Typography",
         "Japanese-first UX"
       ]
+    },
+    "influencerAgency": {
+      "category": "Automation & AI",
+      "title": "Influencer Agency Platform",
+      "description": "Automated workflows, a live dashboard, and an AI matching system for Uncharted Influencer Agency, a seven figure agency managing hundreds of creators from a single Google Sheet.",
+      "tags": [
+        "Workflow automation",
+        "Google Sheets API",
+        "AI enrichment",
+        "RAG",
+        "Internal dashboard"
+      ],
+      "overview": "Uncharted Influencer Agency manages hundreds of creators who together generate millions in campaign revenue, and for years the entire operation ran out of one Google Sheet. The problem is that influencer data never sits still. Follower counts move, average views shift, and contact details go stale. The team wanted to keep the sheet as their source of truth, so we met them where they were. The first phase was a set of automations that update the sheet directly through APIs, with AI enrichment layered on top to capture the qualitative side of each creator. From there we built a dashboard that syncs with the sheet automatically, vectorizes the roster, and runs an AI matching system that suggests the best creators for any campaign brief.",
+      "showcase": [
+        {
+          "title": "Automations on Top of Google Sheets",
+          "description": "The team trusted their spreadsheet and wanted to keep it, so the first phase worked entirely inside it. Scheduled jobs pull fresh follower counts and average views through platform APIs and write them straight back into the sheet, keeping hundreds of rows current without anyone touching a cell."
+        },
+        {
+          "title": "AI Enrichment for Every Creator",
+          "description": "Raw numbers only tell half the story. An AI pipeline reviews each creator and adds qualitative context like content style and niche fit, and it also reads the contact details in their bio to judge which email is actually the right one to reach them at."
+        },
+        {
+          "title": "A Live Creator Directory",
+          "description": "The dashboard syncs automatically with the Google Sheet, which stays the source of truth. Hundreds of creators become a searchable directory with tiers, niches, audience breakdowns, and rates, refreshed every night with no manual data entry."
+        },
+        {
+          "title": "AI Campaign Matching",
+          "description": "The whole roster is vectorized so the platform can run retrieval over it. Drop in a campaign brief and the matching system ranks the creators that fit best, each with a transparent score breakdown across audience, average views, tier, rates, and content fit."
+        }
+      ],
+      "additionalWork": [
+        "Google Sheets API Sync",
+        "AI Data Enrichment",
+        "Vector Search & RAG",
+        "Nightly Auto Sync"
+      ]
+    },
+    "publicSectorAI": {
+      "category": "AI & Data Platform",
+      "title": "Public-sector AI platform",
+      "description": "An internal AI and data platform for a public-sector organization: a document assistant that only answers from official sources, analytics dashboards, and automated weekly reporting. Client name kept confidential.",
+      "tags": [
+        "RAG",
+        "Power BI",
+        "Data migration",
+        "SQL automation",
+        "Internal tools"
+      ],
+      "overview": "This client is a public-sector organization whose name we keep confidential. Their institutional knowledge lived in PDFs, and their reporting was scattered across systems and manual work. We built an internal RAG platform where staff upload PDFs and ask questions in plain language. Every answer is generated strictly from the uploaded documents, and when the documents do not contain the answer, the assistant says so instead of guessing. That design keeps hallucinations out of official work. Around it, we migrated their legacy data into a clean database, built Power BI dashboards and data analysis on top, and set up email automations that run SQL queries on a schedule and deliver weekly reports without anyone lifting a finger.",
+      "showcase": [
+        {
+          "title": "An Assistant That Knows Their Documents",
+          "description": "Staff upload PDFs and ask questions in everyday language, getting answers in seconds instead of digging through files. An admin panel lets the team create assistants per topic, keep them updated, and control exactly who sees what."
+        },
+        {
+          "title": "Grounded Answers, No Hallucinations",
+          "description": "Uploaded documents are indexed into a vector database, and every answer is generated only from the passages retrieved from them. If the documents do not contain the answer, the assistant says so rather than making something up, and sources stay visible so staff can verify everything."
+        },
+        {
+          "title": "Dashboards and Data Analysis",
+          "description": "We migrated scattered legacy data into a clean database, then built Power BI dashboards and analysis on top. Monthly snapshots, year over year trends, and breakdowns that used to take manual spreadsheet work are now a few clicks."
+        },
+        {
+          "title": "Weekly Reports That Send Themselves",
+          "description": "Scheduled automations run SQL queries and email the results out every week. Each report can be toggled, scheduled, and pointed at the right recipients, so recurring reporting no longer takes up anyone's time."
+        }
+      ],
+      "additionalWork": [
+        "Power BI Dashboards",
+        "Data Migration",
+        "SQL Report Automation",
+        "Email Triggers"
+      ]
     }
   },
   "bookACall": {

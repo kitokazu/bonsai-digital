@@ -47,14 +47,15 @@ export const workProjects: WorkProject[] = [
   {
     id: "influencerAgency",
     bucket: "software",
-    inProgress: true,
-    placeholderColor: "from-primary/20 to-primary/5",
+    image: "/uncharted/dashboard.png",
+    slug: "influencer-platform",
   },
   {
     id: "publicSectorAI",
     bucket: "software",
     confidential: true,
-    placeholderColor: "from-muted/80 to-muted/30",
+    image: "/public-sector/main-page.png",
+    slug: "public-sector-ai",
   },
   {
     id: "arGalleryMVP",

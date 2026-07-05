@@ -115,7 +115,7 @@ const About = () => {
                   <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                     <Icon className="w-4 h-4 text-primary" />
                   </div>
-                  <h3 className="text-base font-serif font-semibold text-foreground mb-1.5">
+                  <h3 className="text-xl md:text-2xl font-serif font-semibold text-foreground leading-snug mb-2">
                     {value.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">

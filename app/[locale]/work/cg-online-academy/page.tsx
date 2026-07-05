@@ -10,9 +10,9 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 
 const showcaseImages = [
-  "/cg-online-academy/cg-landing.png",
-  "/cg-about.jpeg",
   "/cg-online-academy/cg-course.png",
+  "/cg-landing.png",
+  "/cg-online-academy/cg-course-module.png",
   "/cg-online-academy/cg-student-work.png",
 ];
 
@@ -26,7 +26,7 @@ export default function CGOnlineAcademyPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -85,10 +85,10 @@ export default function CGOnlineAcademyPage() {
             style={{ viewTransitionName: "wt-cgOnlineAcademy" }}
           >
             <Image
-              src="/cg-about.jpeg"
-              alt="CG Online Academy"
+              src="/cg-landing.png"
+              alt="CG Online Academy landing page"
               width={1200}
-              height={675}
+              height={689}
               className="w-full h-auto object-cover"
               priority
             />
@@ -108,7 +108,7 @@ export default function CGOnlineAcademyPage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
               {t.workDetail.overview}
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+            <p className="text-muted-foreground text-lg leading-relaxed">
               {d.overview}
             </p>
           </motion.div>
@@ -128,7 +128,7 @@ export default function CGOnlineAcademyPage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
               {d.transformation.heading}
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+            <p className="text-muted-foreground text-lg leading-relaxed">
               {d.transformation.description}
             </p>
           </motion.div>
@@ -138,12 +138,11 @@ export default function CGOnlineAcademyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid md:grid-cols-2 gap-6"
           >
-            <div className="space-y-3">
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                {d.transformation.before}
-              </span>
+            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider block mb-3">
+              {d.transformation.before}
+            </span>
+            <div className="grid md:grid-cols-2 gap-6">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-border/50">
                 <Image
                   src="/cg-online-academy/cg-before.png"
@@ -153,11 +152,6 @@ export default function CGOnlineAcademyPage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-            </div>
-            <div className="space-y-3">
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                {d.transformation.before}
-              </span>
               <div className="rounded-2xl overflow-hidden shadow-lg border border-border/50">
                 <Image
                   src="/cg-online-academy/cg-before-2.png"
@@ -198,9 +192,9 @@ export default function CGOnlineAcademyPage() {
                   transition={{ duration: 0.6 }}
                   className={`flex flex-col ${
                     isEven ? "md:flex-row" : "md:flex-row-reverse"
-                  } items-center gap-10 md:gap-16`}
+                  } items-center gap-10 md:gap-12`}
                 >
-                  <div className="w-full md:w-3/5 flex-shrink-0">
+                  <div className="w-full md:w-1/2 flex-shrink-0">
                     <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
                       <Image
                         src={showcaseImages[index]}
@@ -211,7 +205,11 @@ export default function CGOnlineAcademyPage() {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-center md:text-left">
+                  <div
+                    className={`flex-1 max-w-xl ${
+                      locale === "ja" ? "text-left" : "text-center md:text-left"
+                    }`}
+                  >
                     <h3 className="text-2xl md:text-3xl font-serif font-semibold text-foreground mb-4">
                       {item.title}
                     </h3>
