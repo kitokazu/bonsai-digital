@@ -225,8 +225,7 @@ const ContactMethods = ({ className }: { className?: string }) => {
                 <div className="rounded-xl border border-border overflow-hidden">
                   <iframe
                     src={CALENDAR_URL}
-                    className="w-full"
-                    style={{ height: "600px", border: "none" }}
+                    className="w-full border-0 h-[640px] md:h-[720px]"
                     title={t.contact.booking.title}
                   />
                 </div>
