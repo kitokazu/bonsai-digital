@@ -61,10 +61,6 @@ export default function BlogPage() {
               >
                 <p className="text-sm text-muted-foreground mb-3">
                   {formatBlogDate(post.date, locale)}
-                  <span className="mx-2">·</span>
-                  {locale === "ja"
-                    ? `約${post.readingMinutes}分`
-                    : `${post.readingMinutes} min read`}
                 </p>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
                   {post.title}

@@ -139,10 +139,6 @@ export default function BlogPostPage() {
 
             <p className="text-sm text-muted-foreground mb-4">
               {formatBlogDate(post.date, locale)}
-              <span className="mx-2">·</span>
-              {locale === "ja"
-                ? `約${post.readingMinutes}分`
-                : `${post.readingMinutes} min read`}
             </p>
 
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground leading-tight mb-10">
