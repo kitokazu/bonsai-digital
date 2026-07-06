@@ -53,11 +53,20 @@ export function generateMetadata({
       url: locale === "ja" ? "/ja" : "/",
       type: "website",
       locale: locale === "ja" ? "ja_JP" : "en_US",
+      images: [
+        {
+          url: "/og.png",
+          width: 1572,
+          height: 1030,
+          alt: "Bonsai Digital, a Japan-based digital studio",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: "Bonsai Digital",
       description,
+      images: ["/og.png"],
     },
   };
 }
