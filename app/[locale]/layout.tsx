@@ -20,26 +20,47 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Bonsai Digital",
-  description:
-    "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
-  icons: {
-    icon: [
-      { url: "/favicon/favicon.ico", sizes: "any" },
-      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
-    ],
-    apple: "/favicon/apple-touch-icon.png",
-  },
-  manifest: "/favicon/site.webmanifest",
-  openGraph: {
-    title: "Bonsai Digital",
-    description:
-      "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
-    type: "website",
-  },
+const descriptions: Record<Locale, string> = {
+  en: "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
+  ja: "日本拠点のデジタルスタジオ。ウェブサイトからアプリケーションまで、ビジネスに本当に役立つデジタルプロダクトを丁寧に設計し、形にします。",
 };
+
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Metadata {
+  const locale = (params.locale === "ja" ? "ja" : "en") as Locale;
+  const description = descriptions[locale];
+
+  return {
+    metadataBase: new URL("https://bonsaidigitalstudio.com"),
+    title: "Bonsai Digital",
+    description,
+    icons: {
+      icon: [
+        { url: "/favicon/favicon.ico", sizes: "any" },
+        { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: "/favicon/apple-touch-icon.png",
+    },
+    manifest: "/favicon/site.webmanifest",
+    openGraph: {
+      title: "Bonsai Digital",
+      description,
+      siteName: "Bonsai Digital",
+      url: locale === "ja" ? "/ja" : "/",
+      type: "website",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Bonsai Digital",
+      description,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ja" }];

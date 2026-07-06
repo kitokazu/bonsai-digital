@@ -13,10 +13,12 @@ export function middleware(request: NextRequest) {
 
   if (pathnameHasLocale) return NextResponse.next();
 
-  // Skip static files and API routes
+  // Skip static files, API routes, and metadata image routes
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/opengraph-image") ||
+    pathname.startsWith("/twitter-image") ||
     pathname.includes(".")
   ) {
     return NextResponse.next();
