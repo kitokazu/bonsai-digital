@@ -479,6 +479,71 @@
       ]
     }
   },
+  "education": {
+    "label": "Education",
+    "heading": "Programming classes for kids",
+    "description": "Alongside our client work, we teach kids how to code. Every lesson is one on one over Zoom, taught in English by the engineer behind Bonsai Digital, who also speaks Japanese.",
+    "courses": [
+      {
+        "name": "Scratch",
+        "ages": "Ages 9 to 11",
+        "agesNote": "recommended",
+        "tagline": "A first step into programming",
+        "description": "Scratch is a visual programming language built by MIT for kids. Students snap colorful blocks together to make games and animations, and along the way they pick up the ideas every programmer uses, like loops, conditions, and variables. It feels like play, which is exactly why it works.",
+        "learnLabel": "What they'll build and learn:",
+        "learn": [
+          "Games and animations they can share with friends",
+          "The basics: loops, conditions, and variables",
+          "How to break a big idea into small steps",
+          "A finished project every few lessons"
+        ]
+      },
+      {
+        "name": "Python",
+        "ages": "Ages 12 to 15",
+        "agesNote": "recommended",
+        "tagline": "Real code, real projects",
+        "description": "Python is a real programming language used at companies like Google and Toyota, and it sits at the center of AI. Students write actual code from the very first lesson, building small games and tools while learning to think the way an engineer does.",
+        "learnLabel": "What they'll build and learn:",
+        "learn": [
+          "Real code, written in a real editor",
+          "Functions, data structures, and logic",
+          "Small games and tools they can actually use",
+          "A foundation for AI and more advanced study"
+        ]
+      }
+    ],
+    "agesFootnote": "Ages are a guide, not a rule. If your child is close in age and curious, the trial lesson is a good place to find the right fit.",
+    "format": {
+      "label": "How lessons work",
+      "heading": "Small steps, real progress",
+      "items": [
+        {
+          "title": "One on one, over Zoom",
+          "description": "Every lesson is private, so it moves at your child's pace. Shy kids get room to ask questions, and quick learners never sit around waiting."
+        },
+        {
+          "title": "A real curriculum",
+          "description": "Lessons follow a structured curriculum that builds project by project, so you can see the progress, not just the screen time."
+        },
+        {
+          "title": "Taught by a working engineer",
+          "description": "Kids learn from the engineer behind Bonsai Digital, with experience at Meta, Bosch, and Toyota. The habits they pick up are the real ones."
+        },
+        {
+          "title": "Taught in English",
+          "description": "Lessons are in English, so kids get real language practice along with the code. The teacher also speaks Japanese, so beginners never get stuck."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Try a lesson",
+      "heading": "The first lesson is free",
+      "description": "Book a free trial lesson. Your child gives it a try, you see how it all works, and then you decide if it's a good fit.",
+      "cta": "Book a trial lesson",
+      "ctaAlt": "Send a message"
+    }
+  },
   "bookACall": {
     "eyebrow": "Let's talk",
     "heading": "Start your project",
