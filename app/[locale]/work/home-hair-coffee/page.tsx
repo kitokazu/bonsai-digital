@@ -27,11 +27,7 @@ export default function HomeHairCoffeePage() {
       {/* Hero */}
       <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <Link
               href={workHref}
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
@@ -69,17 +65,14 @@ export default function HomeHairCoffeePage() {
                 <ExternalLink className="w-4 h-4" />
               </Button>
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Hero Image */}
       <section className="px-6 pb-20">
         <div className="container mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
             className="rounded-2xl overflow-hidden"
             style={{ viewTransitionName: "wt-homeHairCoffee" }}
           >
@@ -91,7 +84,7 @@ export default function HomeHairCoffeePage() {
               className="w-full h-auto object-cover"
               priority
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 
