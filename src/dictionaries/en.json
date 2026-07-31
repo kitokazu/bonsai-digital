@@ -155,22 +155,26 @@
       {
         "label": "Listen",
         "title": "Understand the need",
-        "description": "We start with a real conversation about your business, not a form to fill out."
+        "description": "We start with a real conversation about your business, not a form to fill out.",
+        "caption": "CG Online Academy, the site as we first saw it"
       },
       {
         "label": "Build",
         "title": "Build a working demo",
-        "description": "We put together a real, working version you can actually click through."
+        "description": "We put together a real, working version you can actually click through.",
+        "caption": "The working demo from our first meeting"
       },
       {
         "label": "Refine",
         "title": "You see it, then we refine",
-        "description": "You look it over, share it with your team, and we shape it together from there."
+        "description": "You look it over, share it with your team, and we shape it together from there.",
+        "caption": "Lesson pages shaped by client feedback"
       },
       {
         "label": "Ship",
         "title": "Ship and keep improving",
-        "description": "We launch, then stick around to maintain it and grow it with you."
+        "description": "We launch, then stick around to maintain it and grow it with you.",
+        "caption": "A client dashboard, live and growing"
       }
     ]
   },

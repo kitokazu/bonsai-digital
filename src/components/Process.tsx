@@ -17,14 +17,16 @@ import {
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import ProcessBonsai from "@/components/ProcessBonsai";
 
-// Drop screenshots into public/process/ with these names and they render
-// automatically. A missing file falls back to the icon placeholder.
+// Real client work, in step order: the site a client came to us with, the
+// working demo from the first meeting, the pages we refined together, and a
+// product that is live today.
 const stepImages = [
-  "/process/meeting.jpeg",
-  "/process/mvp.png",
-  "/process/iterate.png",
-  "/process/deployed.jpeg",
+  "/cg-online-academy/cg-before.png",
+  "/cg-online-academy/cg-landing.png",
+  "/cg-online-academy/cg-course-module.png",
+  "/uncharted/dashboard.png",
 ];
 
 const stepIcons: LucideIcon[] = [
@@ -34,21 +36,38 @@ const stepIcons: LucideIcon[] = [
   Rocket,
 ];
 
-// The section background sweeps through the brand palette as the deck
-// scrolls: page cream, warm sand, sage, terracotta, dark slate.
-const bgStops = [0, 0.3, 0.55, 0.8, 1];
+// As the deck scrolls, the base surface drifts through tones derived from the
+// brand tokens: cream, warm sand, a sage wash, and soft clay. Everything stays
+// light so the cards keep the focus.
+const bgStops = [0, 0.35, 0.7, 1];
 const bgColors = [
   "hsla(40, 30%, 97%, 1)",
-  "hsla(35, 24%, 88%, 1)",
-  "hsla(150, 18%, 80%, 1)",
-  "hsla(15, 32%, 82%, 1)",
-  "hsla(200, 15%, 20%, 1)",
+  "hsla(36, 32%, 88%, 1)",
+  "hsla(150, 22%, 85%, 1)",
+  "hsla(28, 32%, 86%, 1)",
 ];
 
-type Step = { label: string; title: string; description: string };
+// Washi-style grain, tiled at very low opacity over the whole section.
+const grainTexture = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")`;
 
-const StepImage = ({ index, title }: { index: number; title: string }) => {
+type Step = {
+  label: string;
+  title: string;
+  description: string;
+  caption?: string;
+};
+
+const StepImage = ({
+  index,
+  title,
+  caption,
+}: {
+  index: number;
+  title: string;
+  caption?: string;
+}) => {
   const [failed, setFailed] = useState(false);
+  const { locale } = useTranslation();
   const Icon = stepIcons[index % stepIcons.length];
 
   if (failed) {
@@ -60,14 +79,34 @@ const StepImage = ({ index, title }: { index: number; title: string }) => {
   }
 
   return (
-    <div className="w-full aspect-[4/3] rounded-2xl border border-border/50 bg-secondary/40 overflow-hidden shadow-lg">
-      <img
-        src={stepImages[index % stepImages.length]}
-        alt={title}
-        className="w-full h-full object-cover object-center"
-        onError={() => setFailed(true)}
-      />
-    </div>
+    <figure className="w-full">
+      <div className="rounded-2xl border border-border/60 bg-secondary/40 overflow-hidden shadow-lg">
+        {/* Slim browser bar so the screenshots read as real, live pages */}
+        <div className="flex items-center gap-1.5 px-4 py-2.5 bg-secondary/80 border-b border-border/50">
+          <span className="w-2 h-2 rounded-full bg-foreground/15" />
+          <span className="w-2 h-2 rounded-full bg-foreground/15" />
+          <span className="w-2 h-2 rounded-full bg-foreground/15" />
+        </div>
+        <div className="aspect-video overflow-hidden">
+          <img
+            src={stepImages[index % stepImages.length]}
+            alt={title}
+            className="w-full h-full object-cover object-top"
+            onError={() => setFailed(true)}
+          />
+        </div>
+      </div>
+      {caption && (
+        <figcaption
+          className={cn(
+            "mt-3 text-sm text-muted-foreground",
+            locale === "ja" ? "text-left" : "text-center"
+          )}
+        >
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 };
 
@@ -120,7 +159,7 @@ const StepCard = ({
         </div>
 
         {/* Screenshot */}
-        <StepImage index={index} title={step.title} />
+        <StepImage index={index} title={step.title} caption={step.caption} />
       </motion.div>
     </div>
   );
@@ -137,13 +176,64 @@ const Process = () => {
   });
   const backgroundColor = useTransform(scrollYProgress, bgStops, bgColors);
 
+  // Two soft ink-wash fields drift beneath the cards and trade prominence as
+  // the deck progresses: sage carries the early steps, terracotta the later
+  // ones. Both come straight from the brand tokens.
+  const sageY = useTransform(scrollYProgress, [0, 1], ["-12%", "50%"]);
+  const sageOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 0.5, 0.1]);
+  const clayY = useTransform(scrollYProgress, [0, 1], ["55%", "-8%"]);
+  const clayOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.4, 0.65]);
+
   return (
     <motion.section
       id="process"
-      className="section-padding"
+      className="section-padding relative"
       style={{ backgroundColor }}
     >
-      <div className="container mx-auto px-6">
+      {/* Atmosphere layer. Kept as a clipped sibling of the content so the
+          sticky cards are unaffected by its overflow-hidden. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <motion.div
+          style={{
+            y: sageY,
+            opacity: sageOpacity,
+            background:
+              "radial-gradient(closest-side, hsl(150 25% 35% / 0.5), transparent 70%)",
+          }}
+          className="absolute -left-[18%] top-0 w-[70vw] max-w-[900px] aspect-square rounded-full will-change-transform"
+        />
+        <motion.div
+          style={{
+            y: clayY,
+            opacity: clayOpacity,
+            background:
+              "radial-gradient(closest-side, hsl(22 42% 48% / 0.4), transparent 70%)",
+          }}
+          className="absolute -right-[20%] bottom-0 w-[75vw] max-w-[960px] aspect-square rounded-full will-change-transform"
+        />
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{ backgroundImage: grainTexture }}
+        />
+      </div>
+
+      {/* A bonsai sketches itself in across the whole background as the
+          deck progresses. Sticky, so it grows in place while the cards
+          scroll past and slip in front of it. Sibling of the clipped layer
+          above: sticky breaks under overflow-hidden ancestors. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden min-[1360px]:block"
+      >
+        <div className="sticky top-0 h-screen">
+          <ProcessBonsai progress={scrollYProgress} />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 relative">
         {/* Header */}
         <motion.div
           ref={headerRef}
