@@ -176,6 +176,12 @@ const Process = () => {
   });
   const backgroundColor = useTransform(scrollYProgress, bgStops, bgColors);
 
+  // The bonsai grows on the same scroll as the deck, so the tree fills out
+  // step by step behind Listen, Build, Refine and Ship. It eases in over the
+  // first card rather than being at full strength the moment the section
+  // starts.
+  const filmOpacity = useTransform(scrollYProgress, [0, 0.08], [0, 0.42]);
+
   // Two soft ink-wash fields drift beneath the cards and trade prominence as
   // the deck progresses: sage carries the early steps, terracotta the later
   // ones. Both come straight from the brand tokens.
@@ -220,18 +226,19 @@ const Process = () => {
         />
       </div>
 
-      {/* A bonsai sketches itself in across the whole background as the
-          deck progresses. Sticky, so it grows in place while the cards
-          scroll past and slip in front of it. Sibling of the clipped layer
+      {/* The bonsai grows behind the deck on the deck's own scroll, so the
+          tree fills out as the four steps go by. Sticky, so it holds the
+          screen while the cards move over it. Sibling of the clipped layer
           above: sticky breaks under overflow-hidden ancestors. */}
-      <div
+      <motion.div
         aria-hidden
+        style={{ opacity: filmOpacity }}
         className="pointer-events-none absolute inset-0 hidden min-[1360px]:block"
       >
         <div className="sticky top-0 h-screen">
           <ProcessBonsai progress={scrollYProgress} />
         </div>
-      </div>
+      </motion.div>
 
       <div className="container mx-auto px-6 relative">
         {/* Header */}
