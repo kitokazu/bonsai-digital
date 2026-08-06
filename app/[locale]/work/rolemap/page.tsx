@@ -136,6 +136,22 @@ export default function RoleMapPage() {
               {d.problem.body}
             </p>
 
+            {/* The workbook RoleMap replaces */}
+            <figure className="mb-12">
+              <div className="rounded-xl overflow-x-auto border border-border shadow-lg bg-muted/30">
+                <Image
+                  src="/rolemap/before-spreadsheet.png"
+                  alt={d.problem.artifactAlt}
+                  width={1400}
+                  height={649}
+                  className="h-auto w-full min-w-[760px] max-w-none"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-muted-foreground/80 leading-relaxed max-w-3xl">
+                {d.problem.artifactCaption}
+              </figcaption>
+            </figure>
+
             <div className="grid md:grid-cols-2 gap-5">
               <div className="rounded-2xl border border-border bg-muted/40 p-6 md:p-8">
                 <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-5">

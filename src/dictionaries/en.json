@@ -512,6 +512,8 @@
       "problem": {
         "heading": "The problem",
         "body": "A business like this usually runs on five or six spreadsheets that nobody planned. One sheet for SKUs and stock counts, another for suppliers and lead times, a third for orders, a deposit tracker for pre-orders, and a freight tab for whatever is still on a boat. None of them reference each other, so a simple question like “which customer deposits are riding on the container that just slipped two weeks?” means opening four files and doing the maths by hand. The answer usually arrives after the customer has already called.",
+        "artifactAlt": "A spreadsheet tracking stock, reorder points and landed cost, with a hardcoded exchange rate and a broken formula",
+        "artifactCaption": "The stock master this replaces. One hand-typed exchange rate in F2 drives every landed cost on the sheet, the reorder point is blank on some rows, and the deposits customers have paid sit on a different tab that does not link back. Reconstructed with the same SKUs as the console, on the same fictional data.",
         "beforeLabel": "On spreadsheets",
         "before": [
           "Stock counts and reorder points typed by hand, out of date within a day",
@@ -569,6 +571,8 @@
       "problem": {
         "heading": "The problem",
         "body": "Almost every team this size runs staffing out of one shared workbook, and it fails the same way every time. The same person appears on three tabs with three different percentages. Someone inserts a column and half the totals turn into errors. Skills are recorded as “good” or “needs work”. A person is rolling off in two weeks and that fact lives in a cell comment nobody reads. We started from exactly that kind of workbook, down to a change log whose last entry reads “not written down anywhere”.",
+        "artifactAlt": "A staffing spreadsheet with conflicting allocations, a hand-typed total and a broken formula",
+        "artifactCaption": "The workbook RoleMap replaces, shipped with the project. Naomi is at 120% but the total is typed as text, so nothing flags it. Emma's total broke when someone inserted a column. Nine tabs, and one of them is a copy of the file.",
         "beforeLabel": "In the workbook",
         "before": [
           "The same person duplicated across project tabs with conflicting percentages",

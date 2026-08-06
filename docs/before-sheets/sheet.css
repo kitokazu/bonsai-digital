@@ -1,0 +1,250 @@
+/* Excel-fidelity mock. The point of this artifact is that it looks like a real
+   workbook, not a designed one, so every value here is taken from Excel's own
+   chrome rather than the Bonsai Digital design tokens. */
+
+:root {
+  --grid: #d4d4d4;
+  --head-bg: #f5f5f5;
+  --head-fg: #4a4a4a;
+  --head-line: #b7b7b7;
+  --excel-green: #107c41;
+  --chrome: #f0f0f0;
+  --ink: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #b8b8b8;
+  font-family: "Calibri", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.window {
+  width: 1400px;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #a9a9a9;
+  overflow: hidden;
+}
+
+/* ---------- title bar ---------- */
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 12px;
+  background: linear-gradient(#f7f7f7, #ebebeb);
+  border-bottom: 1px solid #cfcfcf;
+}
+.dots {
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+
+.filename {
+  flex: 1;
+  text-align: center;
+  font-size: 12.5px;
+  color: #3a3a3a;
+  letter-spacing: 0.1px;
+  /* leave room so the traffic lights don't push the title off centre */
+  margin-right: 58px;
+}
+.filename .lock {
+  color: #8a8a8a;
+}
+
+/* ---------- name box + formula bar ---------- */
+.formulabar {
+  display: flex;
+  align-items: stretch;
+  height: 30px;
+  background: #fbfbfb;
+  border-bottom: 1px solid #d7d7d7;
+}
+.namebox {
+  width: 118px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 12px;
+  color: #222;
+  border-right: 1px solid #d7d7d7;
+}
+.fx {
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-size: 13px;
+  color: #666;
+  border-right: 1px solid #d7d7d7;
+}
+.formula {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12.5px;
+  color: #111;
+}
+
+/* ---------- grid ---------- */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid var(--grid);
+  height: 21px;
+  padding: 0 5px;
+  font-size: 12.5px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* column letters + row numbers */
+thead th {
+  background: var(--head-bg);
+  color: var(--head-fg);
+  font-weight: normal;
+  font-size: 11.5px;
+  text-align: center;
+  height: 20px;
+  border-color: var(--head-line);
+}
+td.rownum {
+  background: var(--head-bg);
+  color: var(--head-fg);
+  font-size: 11.5px;
+  text-align: center;
+  border-color: var(--head-line);
+  width: 34px;
+  padding: 0;
+}
+
+/* alignment follows Excel: numbers right, text left */
+.num { text-align: right; }
+.ctr { text-align: center; }
+.b { font-weight: bold; }
+.i { font-style: italic; }
+.muted { color: #7a7a7a; }
+.small { font-size: 11px; }
+
+/* the ad-hoc formatting people actually apply */
+.hdr {
+  background: #d9e1f2;
+  font-weight: bold;
+}
+.fill-y { background: #ffff00; }
+.fill-o { background: #ffe699; }
+.fill-r { background: #ffc7ce; color: #9c0006; }
+.red { color: #c00000; }
+.title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* comment marker: the little red triangle in the corner */
+.cmt {
+  position: relative;
+}
+.cmt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 6px solid #c00000;
+  border-left: 6px solid transparent;
+}
+/* "number stored as text" marker */
+.txtnum {
+  position: relative;
+}
+.txtnum::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 6px solid #1a7f37;
+  border-right: 6px solid transparent;
+}
+
+/* selected cell */
+.sel {
+  outline: 2px solid var(--excel-green);
+  outline-offset: -2px;
+}
+
+/* ---------- sheet tabs ---------- */
+.tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  height: 30px;
+  padding: 0 6px;
+  background: var(--chrome);
+  border-top: 1px solid #cfcfcf;
+}
+.arrows {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px 0 4px;
+  color: #8a8a8a;
+  font-size: 10px;
+  align-self: center;
+}
+.tab {
+  padding: 0 12px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  color: #444;
+  border-right: 1px solid #d5d5d5;
+}
+.tab.active {
+  background: #fff;
+  color: #111;
+  font-weight: bold;
+  border-top: 2px solid var(--excel-green);
+  height: 30px;
+  line-height: 28px;
+}
+.tab.plus {
+  color: #8a8a8a;
+  border-right: none;
+}
+
+/* ---------- status bar ---------- */
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+  padding: 0 12px;
+  background: var(--chrome);
+  border-top: 1px solid #dcdcdc;
+  font-size: 11.5px;
+  color: #555;
+}
