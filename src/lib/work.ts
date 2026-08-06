@@ -7,6 +7,8 @@ export type WorkProjectId =
   | "definex"
   | "influencerAgency"
   | "publicSectorAI"
+  | "apexAutowerks"
+  | "roleMap"
   | "arGalleryMVP";
 
 export interface WorkProject {
@@ -15,6 +17,8 @@ export interface WorkProject {
   image?: string;
   confidential?: boolean;
   inProgress?: boolean;
+  /* Built by us as a demo, not a client engagement */
+  demo?: boolean;
   slug?: string;
   placeholderColor?: string;
   /* Gradient classes for the colored card frame, drawn from each project's own palette */
@@ -48,6 +52,24 @@ export const workProjects: WorkProject[] = [
     slug: "public-sector-ai",
     frameClass: "from-[#31507c] to-[#7b9ac4]",
     tileClass: "bg-[#31507c] text-[#dbe6f6]",
+  },
+  {
+    id: "apexAutowerks",
+    bucket: "software",
+    demo: true,
+    image: "/apex-autowerks/dashboard.png",
+    slug: "apex-autowerks",
+    frameClass: "from-[#7c2a24] to-[#cf6f66]",
+    tileClass: "bg-[#7c2a24] text-[#f8dedb]",
+  },
+  {
+    id: "roleMap",
+    bucket: "software",
+    demo: true,
+    image: "/rolemap/matrix.png",
+    slug: "rolemap",
+    frameClass: "from-[#2b3383] to-[#7f8ae2]",
+    tileClass: "bg-[#2b3383] text-[#e0e4fc]",
   },
   {
     id: "definex",
