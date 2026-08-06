@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
+import { localizedPath } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
 const projectImages = [
@@ -55,7 +56,7 @@ const Hero = () => {
 
   const scrollToSection = (href: string) => {
     if (!href.startsWith("#")) {
-      router.push(href);
+      router.push(localizedPath(href, locale));
       return;
     }
     const element = document.querySelector(href);

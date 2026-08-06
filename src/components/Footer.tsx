@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
+import { localizedPath } from "@/lib/locale-path";
 import Image from "next/image";
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const router = useRouter();
 
   const footerLinks = [
@@ -18,7 +19,7 @@ const Footer = () => {
 
   const handleFooterLink = (href: string) => {
     if (href.startsWith("/")) {
-      router.push(href);
+      router.push(localizedPath(href, locale));
     } else {
       const element = document.querySelector(href);
       if (element) {
