@@ -178,45 +178,53 @@
 }
 
 /* View Transitions */
-@keyframes vt-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
-@keyframes vt-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-/* Root: instant swap so page nav has no visible transition */
+/* Root: cross-fade the page in step with the shared-element morph so the
+   surroundings and the image move together instead of snapping */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  animation-duration: 320ms;
 }
 
-/* Shared element: work card thumbnail → detail hero */
+/* Shared element morph runs on the group; match the root's timing */
+::view-transition-group(wt-homeHairCoffee),
+::view-transition-group(wt-chnl301),
+::view-transition-group(wt-cgOnlineAcademy),
+::view-transition-group(wt-definex),
+::view-transition-group(wt-influencerAgency),
+::view-transition-group(wt-publicSectorAI) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shared element: work card thumbnail → detail hero.
+   No cross-fade on the image itself: both snapshots stay fully opaque and
+   the new one sits on top, so the image just morphs between the two
+   positions. height + cover keep the aspect ratio stable while the group
+   box resizes. */
 ::view-transition-old(wt-homeHairCoffee),
 ::view-transition-old(wt-chnl301),
 ::view-transition-old(wt-cgOnlineAcademy),
 ::view-transition-old(wt-definex),
 ::view-transition-old(wt-influencerAgency),
-::view-transition-old(wt-publicSectorAI) {
-  animation: 380ms cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-out;
-}
-
+::view-transition-old(wt-publicSectorAI),
 ::view-transition-new(wt-homeHairCoffee),
 ::view-transition-new(wt-chnl301),
 ::view-transition-new(wt-cgOnlineAcademy),
 ::view-transition-new(wt-definex),
 ::view-transition-new(wt-influencerAgency),
 ::view-transition-new(wt-publicSectorAI) {
-  animation: 380ms cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-in;
+  animation: none;
+  mix-blend-mode: normal;
+  height: 100%;
+  overflow: clip;
+  object-fit: cover;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none;
   }
 }

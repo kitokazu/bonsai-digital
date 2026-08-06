@@ -16,6 +16,8 @@ interface MergedProject {
   bucket: WorkBucket;
   image?: string;
   confidential?: boolean;
+  inProgress?: boolean;
+  demo?: boolean;
   slug?: string;
   placeholderColor?: string;
   title: string;

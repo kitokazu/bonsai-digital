@@ -99,7 +99,7 @@
     "heading": "Explore Our Projects",
     "description": "A look at what we have built. Every project started with a real problem and a clear goal.",
     "allWorksHeading": "Explore Our Projects",
-    "allWorksDescription": "A complete look at the projects we have built for our clients. Each one started with a real challenge and a clear goal.",
+    "allWorksDescription": "A complete look at the projects we have built for our clients, plus a couple of demo tools we built ourselves. Each one started with a real problem and a clear goal.",
     "filters": {
       "all": "All",
       "websites": "Websites",
@@ -108,6 +108,7 @@
     },
     "confidentialBadge": "Client confidential",
     "inProgressBadge": "In progress",
+    "demoBadge": "Demo build",
     "projects": {
       "homeHairCoffee": {
         "title": "Home Hair & Coffee Roaster",
@@ -139,6 +140,16 @@
         "tag": "AI",
         "outcome": "Built an internal AI assistant and analytics dashboard for a public-sector organization, so staff could pull answers and reporting straight from their own data. Client name kept confidential."
       },
+      "apexAutowerks": {
+        "title": "Apex Autowerks Ops",
+        "tag": "Ops console",
+        "outcome": "A demo console for a car parts retailer, built to replace the stack of spreadsheets where stock, deposits, container ETAs and workshop bays never talked to each other."
+      },
+      "roleMap": {
+        "title": "RoleMap",
+        "tag": "Team staffing",
+        "outcome": "A demo staffing tool that turns the shared team workbook into a live projects-by-roles matrix, with allocation, skill gaps and time off in one place."
+      },
       "arGalleryMVP": {
         "title": "AR Art Gallery MVP",
         "tag": "MVP",
@@ -155,22 +166,26 @@
       {
         "label": "Listen",
         "title": "Understand the need",
-        "description": "We start with a real conversation about your business, not a form to fill out."
+        "description": "We start with a real conversation about your business, not a form to fill out.",
+        "caption": "CG Online Academy, the site as we first saw it"
       },
       {
         "label": "Build",
         "title": "Build a working demo",
-        "description": "We put together a real, working version you can actually click through."
+        "description": "We put together a real, working version you can actually click through.",
+        "caption": "The working demo from our first meeting"
       },
       {
         "label": "Refine",
         "title": "You see it, then we refine",
-        "description": "You look it over, share it with your team, and we shape it together from there."
+        "description": "You look it over, share it with your team, and we shape it together from there.",
+        "caption": "Lesson pages shaped by client feedback"
       },
       {
         "label": "Ship",
         "title": "Ship and keep improving",
-        "description": "We launch, then stick around to maintain it and grow it with you."
+        "description": "We launch, then stick around to maintain it and grow it with you.",
+        "caption": "A client dashboard, live and growing"
       }
     ]
   },
@@ -259,6 +274,8 @@
     "overview": "Overview",
     "whatWeDid": "What We Did",
     "visitWebsite": "Visit Website",
+    "theProblem": "The problem",
+    "viewDemo": "Open the live demo",
     "definex": {
       "category": "Sports & Education",
       "title": "DefineX",
@@ -476,6 +493,120 @@
         "Data Migration",
         "SQL Report Automation",
         "Email Triggers"
+      ]
+    },
+    "apexAutowerks": {
+      "category": "Retail operations",
+      "title": "Apex Autowerks Ops",
+      "description": "An operations console for an aftermarket car parts retailer. Orders, pre-order deposits, inbound freight, stock and workshop bays sit in one place instead of six separate sheets.",
+      "demoNote": "This is a demo build we made ourselves, running on fictional data. It is not a live client system, but everything in it is clickable.",
+      "tags": [
+        "Demo build",
+        "Ops dashboard",
+        "Inventory",
+        "Analytics",
+        "Bilingual EN / JA",
+        "Next.js"
+      ],
+      "overview": "Apex Autowerks is a fictional Sydney retailer that imports body kit and trim parts from overseas factories and sells to both walk-in customers and trade workshops. We built the whole thing as a demo so a real business in the same position can see what their day would look like on one screen instead of on a stack of tabs. Orders, pre-orders, suppliers, freight, stock and the workshop calendar all reference each other, and every figure on the dashboard traces back to the rows behind it.",
+      "problem": {
+        "heading": "The problem",
+        "body": "A business like this usually runs on five or six spreadsheets that nobody planned. One sheet for SKUs and stock counts, another for suppliers and lead times, a third for orders, a deposit tracker for pre-orders, and a freight tab for whatever is still on a boat. None of them reference each other, so a simple question like “which customer deposits are riding on the container that just slipped two weeks?” means opening four files and doing the maths by hand. The answer usually arrives after the customer has already called.",
+        "beforeLabel": "On spreadsheets",
+        "before": [
+          "Stock counts and reorder points typed by hand, out of date within a day",
+          "Landed cost worked out in a side column against a stale exchange rate",
+          "Customer deposits tracked separately from the container they depend on",
+          "Workshop bookings on a paper calendar, invisible to whoever answers the phone"
+        ],
+        "afterLabel": "In the console",
+        "after": [
+          "One record per SKU, with stock, reorder point and landed cost computed together",
+          "Every pre-order points at the shipment it is waiting on, so a slipped ETA flags itself",
+          "Dashboard figures are clickable, so any number leads back to the rows behind it",
+          "Bays, freight and open orders on one screen, in English or Japanese"
+        ]
+      },
+      "showcase": [
+        {
+          "title": "Deposits tied to the container",
+          "description": "A pre-order is money taken against stock that has not landed yet, so it is a liability rather than revenue. Each line points at the inbound shipment it depends on. When a container gets requoted, the customers affected surface straight away instead of a month later."
+        },
+        {
+          "title": "Stock and landed cost in the same row",
+          "description": "52 SKUs with stock against reorder point, incoming quantities, and the currency working that turns a supplier's foreign price into a real landed cost. Open a row for fitment detail and any pre-orders sitting against it."
+        },
+        {
+          "title": "Where the money actually comes from",
+          "description": "Revenue split by make, category and customer tier, measured against the same window a year earlier. The breakdowns are computed from the order book rather than maintained by hand, so they cannot drift away from the numbers everywhere else."
+        },
+        {
+          "title": "The same console in Japanese",
+          "description": "Every label, status and column has a Japanese counterpart, switched from the header without a reload. For a team in Japan this is not a nice extra, it decides whether the tool gets used at all."
+        }
+      ],
+      "additionalWork": [
+        "Supplier lead times",
+        "Workshop bay scheduling",
+        "Customer records",
+        "Responsive layout"
+      ]
+    },
+    "roleMap": {
+      "category": "Internal tools",
+      "title": "RoleMap",
+      "description": "A staffing tool for teams that spread the same people across several projects at once. Drag someone into a role, watch their allocation total update, and catch anyone over capacity before it turns into a problem.",
+      "demoNote": "This is a demo build we made ourselves, running on fictional data. It is not a live client system, but everything in it is clickable.",
+      "tags": [
+        "Demo build",
+        "Internal tool",
+        "Resource planning",
+        "Drag and drop",
+        "Bilingual EN / JA",
+        "React"
+      ],
+      "overview": "RoleMap is a demo of how team staffing looks once it stops living in a shared workbook. Seventeen people, four projects, four roles, laid out as a matrix where every assignment sits in the cell its project and role meet. Allocation totals are computed rather than typed, skills are scored so gaps show up as gaps, and time off feeds the same picture as staffing. We built it to show what a services team gets back when the plan and the numbers stop being two different documents.",
+      "problem": {
+        "heading": "The problem",
+        "body": "Almost every team this size runs staffing out of one shared workbook, and it fails the same way every time. The same person appears on three tabs with three different percentages. Someone inserts a column and half the totals turn into errors. Skills are recorded as “good” or “needs work”. A person is rolling off in two weeks and that fact lives in a cell comment nobody reads. We started from exactly that kind of workbook, down to a change log whose last entry reads “not written down anywhere”.",
+        "beforeLabel": "In the workbook",
+        "before": [
+          "The same person duplicated across project tabs with conflicting percentages",
+          "Allocation totals typed by hand, and broken formulas where a column was inserted",
+          "Skills kept as free text, so nobody could see where the team was thin",
+          "Roll-off dates and time off living in cell comments and mail threads"
+        ],
+        "afterLabel": "In RoleMap",
+        "after": [
+          "One record per person, project and role, so the totals add up on their own",
+          "Anyone over 100% flags immediately, before a project manager finds out the hard way",
+          "Skills scored 1 to 5 and rolled up per team, with the gaps called out",
+          "Every change writes to an activity log instead of disappearing"
+        ]
+      },
+      "showcase": [
+        {
+          "title": "Capacity at a glance",
+          "description": "Headcount, total FTE, average utilisation and anyone over capacity, next to an org-wide skill radar. Open positions and pending time-off requests sit in the same header, so a planning conversation can start and finish on one screen."
+        },
+        {
+          "title": "Skill coverage per team",
+          "description": "Pick a team and see its members, average experience and a skill radar aggregated across everyone in it. Anything below 3.0 gets a gap badge, which turns “we should probably hire” into a specific role and a specific skill."
+        },
+        {
+          "title": "Time off that affects the plan",
+          "description": "A month calendar coloured by leave type, with the approval queue next to it. Approving a request updates the calendar, the sidebar count and the activity log at once, so availability and staffing stay part of the same conversation."
+        },
+        {
+          "title": "The same matrix in Japanese",
+          "description": "Roles, projects, statuses and counters all have Japanese equivalents, switched from the sidebar. Dates and number formats follow the locale rather than being translated word for word."
+        }
+      ],
+      "additionalWork": [
+        "Org chart view",
+        "Employee directory",
+        "Drag-and-drop assignment",
+        "Session activity log"
       ]
     }
   },

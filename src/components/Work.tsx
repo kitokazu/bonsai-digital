@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Hammer, Lock } from "lucide-react";
+import { Hammer, Lock, MonitorPlay } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
@@ -17,8 +17,11 @@ interface MergedProject {
   image?: string;
   confidential?: boolean;
   inProgress?: boolean;
+  demo?: boolean;
   slug?: string;
   placeholderColor?: string;
+  frameClass?: string;
+  tileClass?: string;
   title: string;
   tag: string;
   outcome: string;
@@ -54,9 +57,12 @@ export const WorkCard = ({
         transition={{ duration: 0.45, delay: index * 0.05 }}
         className="group flex flex-col cursor-pointer"
       >
-        {/* Screenshot */}
+        {/* Framed screenshot: colored backdrop, top-left corner of the shot peeking in */}
         <div
-          className="relative rounded-2xl overflow-hidden mb-4 bg-secondary/60 shadow-sm"
+          className={cn(
+            "relative rounded-2xl overflow-hidden mb-4 bg-gradient-to-br shadow-sm",
+            project.frameClass ?? project.placeholderColor ?? "from-primary/15 to-primary/5"
+          )}
           style={{
             aspectRatio: "4/3",
             ...(project.slug
@@ -65,30 +71,34 @@ export const WorkCard = ({
           }}
         >
           {project.image ? (
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            />
+            <div className="absolute left-[9%] top-[10%] right-0 bottom-0 overflow-hidden rounded-tl-lg shadow-[0_12px_32px_-8px_rgba(0,0,0,0.35)]">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.02]"
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
+            </div>
           ) : (
-            <div
-              className={cn(
-                "w-full h-full bg-gradient-to-br",
-                project.placeholderColor ?? "from-primary/10 to-muted/10"
-              )}
-            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span
+                className="font-sans text-6xl font-bold tracking-tight text-white/50 select-none"
+                aria-hidden="true"
+              >
+                {project.title.charAt(0).toUpperCase()}
+              </span>
+            </div>
           )}
         </div>
 
         {/* Project info */}
-        <div className="flex items-start gap-3 px-1">
-          {/* Icon */}
+        <div className="flex items-center gap-3 px-1">
+          {/* Logo tile */}
           <div
             className={cn(
-              "w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-sm font-semibold",
-              iconColors
+              "w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center font-sans text-base font-bold tracking-tight shadow-sm",
+              project.tileClass ?? iconColors
             )}
           >
             {project.title.charAt(0).toUpperCase()}
@@ -109,6 +119,12 @@ export const WorkCard = ({
                 <span className="inline-flex items-center gap-1 text-[11px] font-medium text-accent">
                   <Hammer className="w-2.5 h-2.5" aria-hidden="true" />
                   {t.work.inProgressBadge}
+                </span>
+              )}
+              {project.demo && (
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground/70">
+                  <MonitorPlay className="w-2.5 h-2.5" aria-hidden="true" />
+                  {t.work.demoBadge}
                 </span>
               )}
             </div>
@@ -183,6 +199,12 @@ export const WorkCard = ({
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent border border-accent/30 rounded-full px-3 py-1">
               <Hammer className="w-3 h-3" aria-hidden="true" />
               {t.work.inProgressBadge}
+            </span>
+          )}
+          {project.demo && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-3 py-1">
+              <MonitorPlay className="w-3 h-3" aria-hidden="true" />
+              {t.work.demoBadge}
             </span>
           )}
         </div>
