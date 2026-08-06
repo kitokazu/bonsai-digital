@@ -18,6 +18,9 @@ export interface WorkProject {
   id: WorkProjectId;
   bucket: WorkBucket;
   image?: string;
+  /* Basename of a looping clip in public/, without extension. Plays on the
+     card in place of the still, with .webm and .mp4 sitting beside it. */
+  video?: string;
   confidential?: boolean;
   inProgress?: boolean;
   slug?: string;
@@ -61,7 +64,8 @@ export const workProjects: WorkProject[] = [
   {
     id: "enpadel",
     bucket: "websites",
-    image: "/enpadel/hero.jpg",
+    image: "/enpadel/scroll-poster.jpg",
+    video: "/enpadel/scroll",
     slug: "enpadel",
     frameClass: "from-[#012f21] to-[#4c7d68]",
     tileClass: "bg-[#012f21] text-[#e7dfcd]",

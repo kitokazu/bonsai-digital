@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,7 @@ interface MergedProject {
   id: WorkProjectId;
   bucket: WorkBucket;
   image?: string;
+  video?: string;
   confidential?: boolean;
   inProgress?: boolean;
   slug?: string;
@@ -26,6 +27,59 @@ interface MergedProject {
   tag: string;
   outcome: string;
 }
+
+/* A project that ships a clip plays it on the card instead of the still. The
+   poster is the clip's own first frame, so it covers the gap before playback
+   starts and stands in when motion is reduced. */
+const CardClip = ({
+  src,
+  poster,
+  label,
+  className,
+}: {
+  src: string;
+  poster: string;
+  label: string;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (media.matches) {
+        video.pause();
+        video.currentTime = 0;
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      poster={poster}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      aria-label={label}
+      className={className}
+    >
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
+    </video>
+  );
+};
 
 export const WorkCard = ({
   project,
@@ -72,13 +126,22 @@ export const WorkCard = ({
         >
           {project.image ? (
             <div className="absolute left-[9%] top-[10%] right-0 bottom-0 overflow-hidden rounded-tl-lg shadow-[0_12px_32px_-8px_rgba(0,0,0,0.35)]">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.02]"
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              />
+              {project.video ? (
+                <CardClip
+                  src={project.video}
+                  poster={project.image}
+                  label={project.title}
+                  className="absolute inset-0 w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              )}
             </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -159,13 +222,22 @@ export const WorkCard = ({
         }
       >
         {project.image ? (
-          <Image
-            src={project.image}
-            alt={project.title}
-            width={800}
-            height={450}
-            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          />
+          project.video ? (
+            <CardClip
+              src={project.video}
+              poster={project.image}
+              label={project.title}
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+          )
         ) : (
           <div
             className={cn(
