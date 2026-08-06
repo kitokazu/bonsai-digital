@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { localizedPath } from "@/lib/locale-path";
 
 export default function LanguageSwitcher({ className }: { className?: string }) {
   const { locale } = useTranslation();
+  const pathname = usePathname();
 
-  const otherLocale = locale === "en" ? "ja" : "en";
-  const href = locale === "en" ? "/ja" : "/";
+  const otherLocale: Locale = locale === "en" ? "ja" : "en";
+  const href = localizedPath(pathname ?? "/", otherLocale);
 
   return (
     <Link
