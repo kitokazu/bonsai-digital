@@ -79,14 +79,6 @@ export const workProjects: WorkProject[] = [
     tileClass: "bg-[#2f6a76] text-[#e8f3f5]",
   },
   {
-    id: "nicolita",
-    bucket: "websites",
-    image: "/nicolita/hero.jpg",
-    slug: "nicolita",
-    frameClass: "from-[#3d5c48] to-[#a3bfab]",
-    tileClass: "bg-[#3d5c48] text-[#e8f0ea]",
-  },
-  {
     id: "cgOnlineAcademy",
     bucket: "websites",
     image: "/cg-landing.png",
@@ -102,6 +94,14 @@ export const workProjects: WorkProject[] = [
     slug: "public-sector-ai",
     frameClass: "from-[#31507c] to-[#7b9ac4]",
     tileClass: "bg-[#31507c] text-[#dbe6f6]",
+  },
+  {
+    id: "nicolita",
+    bucket: "websites",
+    image: "/nicolita/hero.jpg",
+    slug: "nicolita",
+    frameClass: "from-[#3d5c48] to-[#a3bfab]",
+    tileClass: "bg-[#3d5c48] text-[#e8f0ea]",
   },
   {
     id: "definex",
