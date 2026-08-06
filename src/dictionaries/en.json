@@ -165,9 +165,9 @@
         "outcome": "Took a gelato shop that lived on Instagram and gave it a site that explains the weekly farm-driven flavours and gets people to a hard-to-find door."
       },
       "arGalleryMVP": {
-        "title": "AR Art Gallery MVP",
+        "title": "AR Art Gallery",
         "tag": "MVP",
-        "outcome": "Shipped a working AR art gallery MVP so the client could put the idea in front of real users fast."
+        "outcome": "Built an MVP that hangs public-domain masterworks on your own wall in augmented reality, at the size of the original, so the idea could go in front of real users fast."
       }
     },
     "viewAll": "View all projects"
@@ -737,6 +737,44 @@
         "Certification badges",
         "Instagram link-out",
         "Mobile carousel"
+      ]
+    },
+    "arGalleryMVP": {
+      "category": "AR / 3D",
+      "title": "AR Art Gallery",
+      "description": "A gallery of public-domain masterworks sold as digital editions, where any piece can be previewed on your own wall in augmented reality before you enquire. Five works, each rendered at the size of the original.",
+      "tags": [
+        "MVP",
+        "Augmented reality",
+        "WebXR",
+        "3D viewer",
+        "model-viewer",
+        "Next.js"
+      ],
+      "overview": "You cannot tell from a thumbnail whether a piece works in your room, or how big it actually is. This MVP answers both before anyone commits: browse the collection on a laptop, open a work on your phone, and place it on a real wall at true scale. Each painting is turned into a textured 3D object at build time, sized from the original's own dimensions, so a portrait work and a landscape one both sit correctly. It went out deliberately small, five works and an enquiry link, so the client could put the idea in front of real users before building a shop around it.",
+      "showcase": [
+        {
+          "title": "Turn the piece before you place it",
+          "description": "Every work loads in an interactive 3D viewer you can drag to orbit. It is the same asset that goes into augmented reality, so what you turn on the desktop is exactly what ends up on the wall. A poster image holds the frame while the model streams in."
+        },
+        {
+          "title": "Actual size, stated plainly",
+          "description": "The placard next to each work gives the edition, the real dimensions, how it mounts and where the original hangs. Scale is the whole argument for previewing in AR, so the number is on the page rather than buried in a spec."
+        },
+        {
+          "title": "A room, not a grid",
+          "description": "The collection is laid out as a gallery wall: gilt frames, a picture light falling across each canvas, museum placards under the work. It reads as somewhere you would buy art rather than a product listing with prices attached."
+        },
+        {
+          "title": "Each work becomes a 3D object at build time",
+          "description": "A build step turns every source image into a textured quad sized from its own aspect ratio, so adding a piece means dropping in a file rather than modelling anything. That is why a portrait like the Vermeer hangs correctly next to a landscape without hand-tuning."
+        }
+      ],
+      "additionalWork": [
+        "WebXR and Quick Look",
+        "Static per-work pages",
+        "Acquisition enquiry",
+        "Responsive layout"
       ]
     }
   },

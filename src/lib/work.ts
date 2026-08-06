@@ -131,8 +131,10 @@ export const workProjects: WorkProject[] = [
     id: "arGalleryMVP",
     bucket: "software",
     inProgress: true,
-    placeholderColor: "from-accent/20 to-accent/5",
-    frameClass: "from-[#8a4c3a] to-[#b07a5e]",
-    tileClass: "bg-[#8f5340] text-[#f8e6da]",
+    image: "/ar-gallery/orbit-poster.jpg",
+    video: "/ar-gallery/orbit",
+    slug: "ar-gallery",
+    frameClass: "from-[#1c241e] to-[#4f6353]",
+    tileClass: "bg-[#27312a] text-[#e3d8bc]",
   },
 ];
