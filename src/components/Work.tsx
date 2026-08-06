@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Hammer, Lock, MonitorPlay } from "lucide-react";
+import { Hammer, Lock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
@@ -17,8 +17,8 @@ interface MergedProject {
   image?: string;
   confidential?: boolean;
   inProgress?: boolean;
-  demo?: boolean;
   slug?: string;
+  tileLabel?: string;
   placeholderColor?: string;
   frameClass?: string;
   tileClass?: string;
@@ -101,7 +101,7 @@ export const WorkCard = ({
               project.tileClass ?? iconColors
             )}
           >
-            {project.title.charAt(0).toUpperCase()}
+            {project.tileLabel ?? project.title.charAt(0).toUpperCase()}
           </div>
 
           <div className="min-w-0 flex-1">
@@ -119,12 +119,6 @@ export const WorkCard = ({
                 <span className="inline-flex items-center gap-1 text-[11px] font-medium text-accent">
                   <Hammer className="w-2.5 h-2.5" aria-hidden="true" />
                   {t.work.inProgressBadge}
-                </span>
-              )}
-              {project.demo && (
-                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground/70">
-                  <MonitorPlay className="w-2.5 h-2.5" aria-hidden="true" />
-                  {t.work.demoBadge}
                 </span>
               )}
             </div>
@@ -199,12 +193,6 @@ export const WorkCard = ({
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent border border-accent/30 rounded-full px-3 py-1">
               <Hammer className="w-3 h-3" aria-hidden="true" />
               {t.work.inProgressBadge}
-            </span>
-          )}
-          {project.demo && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-3 py-1">
-              <MonitorPlay className="w-3 h-3" aria-hidden="true" />
-              {t.work.demoBadge}
             </span>
           )}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, MonitorPlay } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -10,18 +10,18 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-const DEMO_URL = "https://ecom-management.vercel.app/";
+const DEMO_URL = "https://rolemap-theta.vercel.app/";
 
 const showcaseImages = [
-  "/apex-autowerks/preorders.png",
-  "/apex-autowerks/inventory.png",
-  "/apex-autowerks/analytics.png",
-  "/apex-autowerks/dashboard-ja.png",
+  "/rolemap/dashboard.png",
+  "/rolemap/team.png",
+  "/rolemap/timeoff.png",
+  "/rolemap/matrix-ja.png",
 ];
 
-export default function ApexAutowerksPage() {
+export default function EmployeeManagementPage() {
   const { t, locale } = useTranslation();
-  const d = t.workDetail.apexAutowerks;
+  const d = t.workDetail.employeeManagement;
   const workHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
@@ -51,17 +51,6 @@ export default function ApexAutowerksPage() {
             {d.description}
           </p>
 
-          {/* Demo disclaimer */}
-          <div className="flex items-start gap-3 max-w-2xl mb-6 rounded-xl border border-border bg-muted/40 px-4 py-3">
-            <MonitorPlay
-              className="w-4 h-4 mt-0.5 flex-shrink-0 text-muted-foreground"
-              aria-hidden="true"
-            />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {d.demoNote}
-            </p>
-          </div>
-
           <div className="flex flex-wrap gap-2 mb-6">
             {d.tags.map((tag: string) => (
               <span
@@ -87,10 +76,10 @@ export default function ApexAutowerksPage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden border border-border/50 shadow-lg"
-            style={{ viewTransitionName: "wt-apexAutowerks" }}
+            style={{ viewTransitionName: "wt-employeeManagement" }}
           >
             <Image
-              src="/apex-autowerks/dashboard.png"
+              src="/rolemap/matrix.png"
               alt={d.title}
               width={1440}
               height={1000}
@@ -136,11 +125,11 @@ export default function ApexAutowerksPage() {
               {d.problem.body}
             </p>
 
-            {/* The workbook the console replaces */}
+            {/* The workbook the platform replaced */}
             <figure className="mb-12">
               <div className="rounded-xl overflow-x-auto border border-border shadow-lg bg-muted/30">
                 <Image
-                  src="/apex-autowerks/before-spreadsheet.png"
+                  src="/rolemap/before-spreadsheet.png"
                   alt={d.problem.artifactAlt}
                   width={1400}
                   height={649}

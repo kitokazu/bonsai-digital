@@ -17,8 +17,8 @@ interface MergedProject {
   image?: string;
   confidential?: boolean;
   inProgress?: boolean;
-  demo?: boolean;
   slug?: string;
+  tileLabel?: string;
   placeholderColor?: string;
   title: string;
   tag: string;

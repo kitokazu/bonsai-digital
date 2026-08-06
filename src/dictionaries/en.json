@@ -99,7 +99,7 @@
     "heading": "Explore Our Projects",
     "description": "A look at what we have built. Every project started with a real problem and a clear goal.",
     "allWorksHeading": "Explore Our Projects",
-    "allWorksDescription": "A complete look at the projects we have built for our clients, plus a couple of demo tools we built ourselves. Each one started with a real problem and a clear goal.",
+    "allWorksDescription": "A complete look at the projects we have built for our clients. Each one started with a real problem and a clear goal.",
     "filters": {
       "all": "All",
       "websites": "Websites",
@@ -108,7 +108,6 @@
     },
     "confidentialBadge": "Client confidential",
     "inProgressBadge": "In progress",
-    "demoBadge": "Demo build",
     "projects": {
       "homeHairCoffee": {
         "title": "Home Hair & Coffee Roaster",
@@ -140,15 +139,15 @@
         "tag": "AI",
         "outcome": "Built an internal AI assistant and analytics dashboard for a public-sector organization, so staff could pull answers and reporting straight from their own data. Client name kept confidential."
       },
-      "apexAutowerks": {
-        "title": "Apex Autowerks Ops",
-        "tag": "Ops console",
-        "outcome": "A demo console for a car parts retailer, built to replace the stack of spreadsheets where stock, deposits, container ETAs and workshop bays never talked to each other."
+      "ecommerceOps": {
+        "title": "E-commerce Operations Platform",
+        "tag": "Internal tool",
+        "outcome": "Took a car parts retailer off a stack of spreadsheets and onto one console, where stock, deposits, container ETAs and workshop bays all point at each other."
       },
-      "roleMap": {
-        "title": "RoleMap",
-        "tag": "Team staffing",
-        "outcome": "A demo staffing tool that turns the shared team workbook into a live projects-by-roles matrix, with allocation, skill gaps and time off in one place."
+      "employeeManagement": {
+        "title": "Employee Management Platform",
+        "tag": "Internal tool",
+        "outcome": "Replaced a shared staffing workbook with a live projects-by-roles matrix, so allocation, skill gaps and time off finally sit in one view."
       },
       "arGalleryMVP": {
         "title": "AR Art Gallery MVP",
@@ -495,25 +494,24 @@
         "Email Triggers"
       ]
     },
-    "apexAutowerks": {
+    "ecommerceOps": {
       "category": "Retail operations",
-      "title": "Apex Autowerks Ops",
-      "description": "An operations console for an aftermarket car parts retailer. Orders, pre-order deposits, inbound freight, stock and workshop bays sit in one place instead of six separate sheets.",
-      "demoNote": "This is a demo build we made ourselves, running on fictional data. It is not a live client system, but everything in it is clickable.",
+      "title": "E-commerce Operations Platform",
+      "description": "An operations console for a retailer selling aftermarket car parts online and through trade workshops. Orders, pre-order deposits, inbound freight, stock and workshop bays sit in one place instead of six separate sheets.",
       "tags": [
-        "Demo build",
+        "Internal tool",
         "Ops dashboard",
         "Inventory",
         "Analytics",
         "Bilingual EN / JA",
         "Next.js"
       ],
-      "overview": "Apex Autowerks is a fictional Sydney retailer that imports body kit and trim parts from overseas factories and sells to both walk-in customers and trade workshops. We built the whole thing as a demo so a real business in the same position can see what their day would look like on one screen instead of on a stack of tabs. Orders, pre-orders, suppliers, freight, stock and the workshop calendar all reference each other, and every figure on the dashboard traces back to the rows behind it.",
+      "overview": "The client imports body kit and trim parts from overseas factories and sells to both retail customers and trade workshops. Their whole day ran across a stack of spreadsheets nobody had planned, so we rebuilt it as one console. Orders, pre-orders, suppliers, freight, stock and the workshop calendar all reference each other, and every figure on the dashboard traces back to the rows behind it. The screens here run on stand-in data, with the client's own names, customers and numbers replaced.",
       "problem": {
         "heading": "The problem",
-        "body": "A business like this usually runs on five or six spreadsheets that nobody planned. One sheet for SKUs and stock counts, another for suppliers and lead times, a third for orders, a deposit tracker for pre-orders, and a freight tab for whatever is still on a boat. None of them reference each other, so a simple question like “which customer deposits are riding on the container that just slipped two weeks?” means opening four files and doing the maths by hand. The answer usually arrives after the customer has already called.",
+        "body": "The business ran on five or six spreadsheets nobody had planned. One sheet for SKUs and stock counts, another for suppliers and lead times, a third for orders, a deposit tracker for pre-orders, and a freight tab for whatever was still on a boat. None of them referenced each other, so a simple question like “which customer deposits are riding on the container that just slipped two weeks?” meant opening four files and doing the maths by hand. The answer usually arrived after the customer had already called.",
         "artifactAlt": "A spreadsheet tracking stock, reorder points and landed cost, with a hardcoded exchange rate and a broken formula",
-        "artifactCaption": "The stock master this replaces. One hand-typed exchange rate in F2 drives every landed cost on the sheet, the reorder point is blank on some rows, and the deposits customers have paid sit on a different tab that does not link back. Reconstructed with the same SKUs as the console, on the same fictional data.",
+        "artifactCaption": "The stock master this replaced. One hand-typed exchange rate in F2 drives every landed cost on the sheet, the reorder point is blank on some rows, and the deposits customers have paid sit on a different tab that does not link back. Recreated here from the original, with stand-in data.",
         "beforeLabel": "On spreadsheets",
         "before": [
           "Stock counts and reorder points typed by hand, out of date within a day",
@@ -554,25 +552,24 @@
         "Responsive layout"
       ]
     },
-    "roleMap": {
+    "employeeManagement": {
       "category": "Internal tools",
-      "title": "RoleMap",
+      "title": "Employee Management Platform",
       "description": "A staffing tool for teams that spread the same people across several projects at once. Drag someone into a role, watch their allocation total update, and catch anyone over capacity before it turns into a problem.",
-      "demoNote": "This is a demo build we made ourselves, running on fictional data. It is not a live client system, but everything in it is clickable.",
       "tags": [
-        "Demo build",
         "Internal tool",
         "Resource planning",
+        "Skills tracking",
         "Drag and drop",
         "Bilingual EN / JA",
         "React"
       ],
-      "overview": "RoleMap is a demo of how team staffing looks once it stops living in a shared workbook. Seventeen people, four projects, four roles, laid out as a matrix where every assignment sits in the cell its project and role meet. Allocation totals are computed rather than typed, skills are scored so gaps show up as gaps, and time off feeds the same picture as staffing. We built it to show what a services team gets back when the plan and the numbers stop being two different documents.",
+      "overview": "Seventeen people, four projects, four roles, laid out as a matrix where every assignment sits in the cell its project and role meet. Allocation totals are computed rather than typed, skills are scored so gaps show up as gaps, and time off feeds the same picture as staffing. The client got back the hours they had been spending reconciling a workbook, and a plan the whole team could read. The screens here run on stand-in data, with real names and project names replaced.",
       "problem": {
         "heading": "The problem",
-        "body": "Almost every team this size runs staffing out of one shared workbook, and it fails the same way every time. The same person appears on three tabs with three different percentages. Someone inserts a column and half the totals turn into errors. Skills are recorded as “good” or “needs work”. A person is rolling off in two weeks and that fact lives in a cell comment nobody reads. We started from exactly that kind of workbook, down to a change log whose last entry reads “not written down anywhere”.",
+        "body": "The team ran staffing out of one shared workbook, and it failed the same way every time. The same person appeared on three tabs with three different percentages. Someone inserted a column and half the totals turned into errors. Skills were recorded as “good” or “needs work”. A person was rolling off in two weeks and that fact lived in a cell comment nobody read. The workbook we started from had a change log whose last entry read “not written down anywhere”.",
         "artifactAlt": "A staffing spreadsheet with conflicting allocations, a hand-typed total and a broken formula",
-        "artifactCaption": "The workbook RoleMap replaces, shipped with the project. Naomi is at 120% but the total is typed as text, so nothing flags it. Emma's total broke when someone inserted a column. Nine tabs, and one of them is a copy of the file.",
+        "artifactCaption": "The workbook this replaced. One person is at 120% but the total is typed as text, so nothing flags it. Another total broke when someone inserted a column. Nine tabs, and one of them is a copy of the file. Recreated here from the original, with stand-in names.",
         "beforeLabel": "In the workbook",
         "before": [
           "The same person duplicated across project tabs with conflicting percentages",
@@ -580,7 +577,7 @@
           "Skills kept as free text, so nobody could see where the team was thin",
           "Roll-off dates and time off living in cell comments and mail threads"
         ],
-        "afterLabel": "In RoleMap",
+        "afterLabel": "In the platform",
         "after": [
           "One record per person, project and role, so the totals add up on their own",
           "Anyone over 100% flags immediately, before a project manager finds out the hard way",
