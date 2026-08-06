@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -12,12 +13,58 @@ import { cn } from "@/lib/utils";
 
 const SITE_URL = "https://www.enpadel.com";
 
-const showcaseImages = [
-  "/enpadel/concept.jpg",
-  "/enpadel/padel.jpg",
-  "/enpadel/event.jpg",
-  "/enpadel/english.jpg",
+/* The first slot is the scroll-scrubbed hero, captured off the live site and
+   played back as a loop. Everything else is a still. */
+const showcaseMedia = [
+  { type: "video" as const, src: "/enpadel/scroll", poster: "/enpadel/scroll-poster.jpg" },
+  { type: "image" as const, src: "/enpadel/padel.jpg" },
+  { type: "image" as const, src: "/enpadel/event.jpg" },
+  { type: "image" as const, src: "/enpadel/english.jpg" },
 ];
+
+function ScrollClip({ src, poster, label }: { src: string; poster: string; label: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  // The site this is taken from honours reduced motion, so the case study
+  // showing it off should too: hold on the poster frame instead of looping.
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (media.matches) {
+        video.pause();
+        video.currentTime = 0;
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      poster={poster}
+      width={880}
+      height={550}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      aria-label={label}
+      className="w-full h-auto block"
+    >
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
+    </video>
+  );
+}
 
 export default function EnPadelPage() {
   const { t, locale } = useTranslation();
@@ -140,13 +187,21 @@ export default function EnPadelPage() {
                   >
                     <div className="w-full md:w-1/2 flex-shrink-0">
                       <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
-                        <Image
-                          src={showcaseImages[index]}
-                          alt={item.title}
-                          width={2160}
-                          height={1500}
-                          className="w-full h-auto object-cover"
-                        />
+                        {showcaseMedia[index].type === "video" ? (
+                          <ScrollClip
+                            src={showcaseMedia[index].src}
+                            poster={showcaseMedia[index].poster!}
+                            label={item.title}
+                          />
+                        ) : (
+                          <Image
+                            src={showcaseMedia[index].src}
+                            alt={item.title}
+                            width={2160}
+                            height={1500}
+                            className="w-full h-auto object-cover"
+                          />
+                        )}
                       </div>
                     </div>
                     <div
