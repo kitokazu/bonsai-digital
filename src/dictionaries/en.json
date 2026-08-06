@@ -149,6 +149,21 @@
         "tag": "Internal tool",
         "outcome": "Replaced a shared staffing workbook with a live projects-by-roles matrix, so allocation, skill gaps and time off finally sit in one view."
       },
+      "enpadel": {
+        "title": "EnPadel",
+        "tag": "Brand site",
+        "outcome": "Gave a Tokyo padel community a bilingual home built around a scroll-driven film, so newcomers understand the sport and the idea behind it before they read a word of copy."
+      },
+      "milleGrass": {
+        "title": "Mille Grass",
+        "tag": "Restaurant site",
+        "outcome": "Put a fermented set-lunch place in Fujigaoka online with a live opening calendar and a menu the owner updates by swapping one photo."
+      },
+      "nicolita": {
+        "title": "Nicolita",
+        "tag": "Shop site",
+        "outcome": "Took a gelato shop that lived on Instagram and gave it a site that explains the weekly farm-driven flavours and gets people to a hard-to-find door."
+      },
       "arGalleryMVP": {
         "title": "AR Art Gallery MVP",
         "tag": "MVP",
@@ -608,6 +623,120 @@
         "Employee directory",
         "Drag-and-drop assignment",
         "Session activity log"
+      ]
+    },
+    "enpadel": {
+      "category": "Sports & community",
+      "title": "EnPadel",
+      "description": "A bilingual site for a Tokyo padel community built around the idea of 縁, the connections that form through the sport. The hero is a film you scrub by scrolling, with typography timed to the footage.",
+      "tags": [
+        "Brand site",
+        "Scroll-driven video",
+        "Bilingual EN / JA",
+        "Contact form",
+        "Motion design",
+        "Next.js"
+      ],
+      "overview": "EnPadel runs padel events in Tokyo for a mixed crowd of Japanese players and English-speaking residents, and most of them are meeting the sport for the first time. So the site leads with the feeling rather than the facts. A court film plays as you scroll, five lines of type land in time with it, and only then does the page explain what padel is, who runs it, and when the next event happens. The whole thing is mirrored in Japanese and English, down to the form's subject options.",
+      "showcase": [
+        {
+          "title": "A film you scroll through",
+          "description": "The hero binds scroll position to video playback rather than autoplaying. Three encodes are served depending on what the device can scrub smoothly, and every line of type is placed to avoid the players in frame. Anyone who prefers reduced motion gets a still."
+        },
+        {
+          "title": "Explaining the sport to newcomers",
+          "description": "Most visitors have never played padel, so a dedicated section covers the court, the equipment and how a game runs, using hand-drawn illustrations rather than stock photography. It answers the beginner question without making the brand feel like a beginner brand."
+        },
+        {
+          "title": "The next event, front and centre",
+          "description": "Events are the reason to come back, so the next one gets its own panel with the venue linked to Maps, and past events sit below it with a recap video. When there is nothing scheduled, the section still works as proof that things happen here."
+        },
+        {
+          "title": "The same site in English",
+          "description": "Japanese is the default and English sits at /en, with every string in a single typed dictionary so the two never drift apart. Nav, form labels and subject options all exist in both, which matters for a community that is genuinely half and half."
+        }
+      ],
+      "additionalWork": [
+        "Contact form with routing",
+        "Instagram integration",
+        "Mobile menu",
+        "Reduced-motion support"
+      ]
+    },
+    "milleGrass": {
+      "category": "Restaurant",
+      "title": "Mille Grass",
+      "description": "A bilingual site for a fermented set-lunch restaurant in Fujigaoka. One soup and three sides, changing weekly, with the koji and sake lees doing the quiet work in the background.",
+      "tags": [
+        "Restaurant site",
+        "Bilingual EN / JA",
+        "Opening calendar",
+        "Owner-editable",
+        "Tailwind",
+        "Next.js"
+      ],
+      "overview": "Mille Grass serves a weekly-changing tray built on koji and sake lees. The site has to do three unglamorous things well: explain what a fermented set lunch is to someone who has never heard of one, show the food honestly, and tell a hungry person holding a phone whether the place is open right now. It also has to stay editable by someone who is cooking all day, so the menu is a photograph and this month's opening days generate themselves.",
+      "showcase": [
+        {
+          "title": "A menu the owner can actually update",
+          "description": "The paper menu is published as a photograph, clickable to full size. No dish names or prices live in the code, so changing the menu means replacing one image rather than calling us. For a small restaurant that changes its tray weekly, this is the difference between a site that stays current and one that goes stale."
+        },
+        {
+          "title": "Opening days that generate themselves",
+          "description": "The current month builds itself in the browser from the opening rules: closed Sunday and Monday, 11:30 to 18:00 on Saturday, 11:30 to 14:30 midweek. Nobody has to remember to update a calendar, and a visitor gets a straight answer about today without reading a paragraph."
+        },
+        {
+          "title": "The fermentation, explained",
+          "description": "Shio-koji, onion koji and miso with the waiting time each one needs. It is the editorial hook that turns a set lunch into something worth travelling for, and it gives the cooking a reason that a photo alone cannot carry."
+        },
+        {
+          "title": "The same site in English",
+          "description": "The language toggle swaps every string with a fade and no page reload, since Fujigaoka gets enough non-Japanese residents to make it worth having. Both languages live in one content file, so the two versions cannot fall out of sync."
+        }
+      ],
+      "additionalWork": [
+        "Hero tray carousel",
+        "Embedded map and access",
+        "Sticky mobile call bar",
+        "Reduced-motion support"
+      ]
+    },
+    "nicolita": {
+      "category": "Food & retail",
+      "title": "Nicolita",
+      "description": "A bilingual site for a Yokohama gelato shop whose flavours change completely every week, built from local farm produce and vegetables that would otherwise be thrown away for looking wrong.",
+      "tags": [
+        "Shop site",
+        "Bilingual EN / JA",
+        "Flavour carousel",
+        "Hand-built map",
+        "Editorial layout",
+        "Next.js"
+      ],
+      "overview": "Nicolita opens three days a week and rebuilds its entire flavour list every week from whatever the farms nearby have too much of. Almost all of that was happening on Instagram, which is fine for regulars and useless for anyone else. The site gives the idea somewhere permanent to live: what is on this week and which farm it came from, the certifications that prove the sourcing is real, and clear directions to a door that is genuinely hard to find.",
+      "showcase": [
+        {
+          "title": "This week's flavours, with the farm named",
+          "description": "A scroll-snapping carousel of the current line-up, each card crediting the farm the produce came from. It changes completely every week, so the layout had to make a rotating list feel like the point rather than a maintenance burden."
+        },
+        {
+          "title": "Getting people to the door",
+          "description": "The shop is six minutes from the station down a street that gives you no clues, so the visit section pairs a hand-built map with a full address block, hours, parking, payment methods and step-by-step walking directions. The map is drawn in CSS rather than embedded, so it loads instantly and matches the rest of the page."
+        },
+        {
+          "title": "A year of flavours as an archive",
+          "description": "Roughly 150 flavours in the first year, shown as a stat block and a bilingual tag cloud. It turns the constant churn into evidence of range, and gives a first-time visitor a sense of what they will find on a week that is not this one."
+        },
+        {
+          "title": "The same site in English",
+          "description": "Both languages ship in the markup and swap on a data attribute, with an inline script reading the saved preference before the first paint so returning visitors never see a flash of the wrong language."
+        }
+      ],
+      "additionalWork": [
+        "Press and wholesale section",
+        "Certification badges",
+        "Instagram link-out",
+        "Mobile carousel"
       ]
     }
   },

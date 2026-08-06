@@ -9,6 +9,9 @@ export type WorkProjectId =
   | "publicSectorAI"
   | "ecommerceOps"
   | "employeeManagement"
+  | "enpadel"
+  | "milleGrass"
+  | "nicolita"
   | "arGalleryMVP";
 
 export interface WorkProject {
@@ -30,11 +33,19 @@ export interface WorkProject {
 
 export const workProjects: WorkProject[] = [
   {
+    id: "influencerAgency",
+    bucket: "software",
+    image: "/uncharted/dashboard.png",
+    slug: "influencer-platform",
+    frameClass: "from-[#3b3463] to-[#7c72c0]",
+    tileClass: "bg-[#3b3463] text-[#d9d4f6]",
+  },
+  {
     id: "ecommerceOps",
     bucket: "software",
     image: "/apex-autowerks/dashboard.png",
     slug: "ecommerce-ops",
-    tileLabel: "E",
+    tileLabel: "EC",
     frameClass: "from-[#7c2a24] to-[#cf6f66]",
     tileClass: "bg-[#7c2a24] text-[#f8dedb]",
   },
@@ -43,17 +54,33 @@ export const workProjects: WorkProject[] = [
     bucket: "software",
     image: "/rolemap/matrix.png",
     slug: "employee-management",
-    tileLabel: "M",
+    tileLabel: "EM",
     frameClass: "from-[#2b3383] to-[#7f8ae2]",
     tileClass: "bg-[#2b3383] text-[#e0e4fc]",
   },
   {
-    id: "influencerAgency",
-    bucket: "software",
-    image: "/uncharted/dashboard.png",
-    slug: "influencer-platform",
-    frameClass: "from-[#3b3463] to-[#7c72c0]",
-    tileClass: "bg-[#3b3463] text-[#d9d4f6]",
+    id: "enpadel",
+    bucket: "websites",
+    image: "/enpadel/hero.jpg",
+    slug: "enpadel",
+    frameClass: "from-[#012f21] to-[#4c7d68]",
+    tileClass: "bg-[#012f21] text-[#e7dfcd]",
+  },
+  {
+    id: "milleGrass",
+    bucket: "websites",
+    image: "/mille-grass/hero.jpg",
+    slug: "mille-grass",
+    frameClass: "from-[#2f6a76] to-[#8fc3ce]",
+    tileClass: "bg-[#2f6a76] text-[#e8f3f5]",
+  },
+  {
+    id: "nicolita",
+    bucket: "websites",
+    image: "/nicolita/hero.jpg",
+    slug: "nicolita",
+    frameClass: "from-[#3d5c48] to-[#a3bfab]",
+    tileClass: "bg-[#3d5c48] text-[#e8f0ea]",
   },
   {
     id: "cgOnlineAcademy",
