@@ -17,6 +17,7 @@ const showcaseImages = [
   "/apex-autowerks/inventory.png",
   "/apex-autowerks/analytics.png",
   "/apex-autowerks/dashboard-ja.png",
+  "/apex-autowerks/shopify.png",
 ];
 
 export default function EcommerceOpsPage() {
@@ -142,8 +143,8 @@ export default function EcommerceOpsPage() {
             </figure>
 
             <div className="grid md:grid-cols-2 gap-5">
-              <div className="rounded-2xl border border-border bg-muted/40 p-6 md:p-8">
-                <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-5">
+              <div className="rounded-2xl border border-accent/25 bg-accent/[0.05] p-6 md:p-8">
+                <p className="text-xs font-medium tracking-wider uppercase text-accent mb-5">
                   {d.problem.beforeLabel}
                 </p>
                 <ul className="space-y-3">
@@ -153,7 +154,7 @@ export default function EcommerceOpsPage() {
                       className="flex gap-3 text-muted-foreground leading-relaxed"
                     >
                       <span
-                        className="mt-2.5 h-px w-4 flex-shrink-0 bg-muted-foreground/40"
+                        className="mt-2.5 h-px w-4 flex-shrink-0 bg-accent/50"
                         aria-hidden="true"
                       />
                       <span>{item}</span>
@@ -162,7 +163,7 @@ export default function EcommerceOpsPage() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-primary/25 bg-primary/[0.04] p-6 md:p-8">
+              <div className="rounded-2xl border border-primary/25 bg-primary/[0.05] p-6 md:p-8">
                 <p className="text-xs font-medium tracking-wider uppercase text-primary mb-5">
                   {d.problem.afterLabel}
                 </p>

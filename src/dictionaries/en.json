@@ -516,6 +516,7 @@
       "tags": [
         "Internal tool",
         "Ops dashboard",
+        "Shopify",
         "Inventory",
         "Analytics",
         "Bilingual EN / JA",
@@ -558,6 +559,10 @@
         {
           "title": "The same console in Japanese",
           "description": "Every label, status and column has a Japanese counterpart, switched from the header without a reload. For a team in Japan this is not a nice extra, it decides whether the tool gets used at all."
+        },
+        {
+          "title": "Connected to Shopify",
+          "description": "Online sales run through Shopify. Orders flow into the console automatically and are linked to inventory and preorders, so the team never has to keep two systems up to date by hand. From order to arrival to stock on the shelf, the whole chain is visible in one place."
         }
       ],
       "additionalWork": [
