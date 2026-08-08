@@ -608,15 +608,15 @@
       "showcase": [
         {
           "title": "Capacity at a glance",
-          "description": "Headcount, total workload, average utilisation and anyone over capacity, shown next to a skill chart for the whole organisation. Open positions and pending time-off requests are on the same screen, so a planning conversation can start and finish in one place."
+          "description": "Headcount, total workload, average utilization and anyone over capacity, shown next to a skill chart for the whole organisation. Open positions and pending time-off requests are on the same screen, so a planning conversation can start and finish in one place."
         },
         {
           "title": "Skill coverage per team",
-          "description": "Pick a team to see its members, their average experience and a combined skill chart. Any skill scoring below 3.0 is marked as a gap, which turns “we should probably hire” into a specific role and skill."
+          "description": "Select a team to see who's on it, their average experience, and one chart that combines everyone's skill scores. Skills are rated 1 to 5, and any team average below 3.0 is flagged as a gap, so it's clear exactly which role and which skill is missing."
         },
         {
           "title": "Time off that affects the plan",
-          "description": "A monthly calendar colour-coded by leave type, with pending requests next to it. Approving a request updates the calendar, the counters and the activity log at once, so time off and staffing are never out of sync."
+          "description": "A monthly calendar color-coded by leave type, with pending requests next to it. Approving a request updates the calendar, the counters and the activity log at once, so time off and staffing are never out of sync."
         },
         {
           "title": "The same screen in Japanese",
