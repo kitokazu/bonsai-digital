@@ -89,7 +89,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={cn("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] mb-6", locale === "ja" && "text-4xl md:text-6xl lg:text-7xl text-left mx-auto w-fit")}
+            className={cn("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] mb-6", locale === "ja" && "text-[clamp(1.6rem,8.2vw,2.25rem)] sm:text-4xl md:text-6xl lg:text-7xl text-left mx-auto w-fit")}
           >
             {t.hero.headline1}
             <br />
