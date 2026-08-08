@@ -30,7 +30,9 @@ export interface WorkProject {
   /* Solid background + letter color for the square logo tile */
   tileClass?: string;
   /* Overrides the tile letter, which otherwise comes from the title's first
-     character. Needed where two titles would start with the same letter. */
+     character. Needed where two titles would start with the same letter, and
+     on projects whose Japanese titles would otherwise yield a kanji or kana
+     tile — the tile always shows Latin characters in both locales. */
   tileLabel?: string;
 }
 
@@ -40,6 +42,7 @@ export const workProjects: WorkProject[] = [
     bucket: "software",
     image: "/uncharted/dashboard.png",
     slug: "influencer-platform",
+    tileLabel: "I",
     frameClass: "from-[#3b3463] to-[#7c72c0]",
     tileClass: "bg-[#3b3463] text-[#d9d4f6]",
   },
@@ -92,6 +95,7 @@ export const workProjects: WorkProject[] = [
     confidential: true,
     image: "/public-sector/main-page.png",
     slug: "public-sector-ai",
+    tileLabel: "P",
     frameClass: "from-[#31507c] to-[#7b9ac4]",
     tileClass: "bg-[#31507c] text-[#dbe6f6]",
   },

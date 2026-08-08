@@ -149,7 +149,7 @@ export const WorkCard = ({
                 className="font-sans text-6xl font-bold tracking-tight text-white/50 select-none"
                 aria-hidden="true"
               >
-                {project.title.charAt(0).toUpperCase()}
+                {project.tileLabel ?? project.title.charAt(0).toUpperCase()}
               </span>
             </div>
           )}

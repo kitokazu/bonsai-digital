@@ -91,7 +91,7 @@ export default function InfluencerPlatformPage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
               {t.workDetail.overview}
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
               {d.overview}
             </p>
           </motion.div>
