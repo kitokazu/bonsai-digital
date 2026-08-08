@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Hammer, Lock } from "lucide-react";
@@ -117,12 +117,7 @@ export const WorkCard = ({
             "relative rounded-2xl overflow-hidden mb-4 bg-gradient-to-br shadow-sm",
             project.frameClass ?? project.placeholderColor ?? "from-primary/15 to-primary/5"
           )}
-          style={{
-            aspectRatio: "4/3",
-            ...(project.slug
-              ? { viewTransitionName: `wt-${project.id}` }
-              : {}),
-          }}
+          style={{ aspectRatio: "4/3" }}
         >
           {project.image ? (
             <div className="absolute left-[9%] top-[10%] right-0 bottom-0 overflow-hidden rounded-tl-lg shadow-[0_12px_32px_-8px_rgba(0,0,0,0.35)]">
@@ -213,14 +208,7 @@ export const WorkCard = ({
       className="group flex flex-col rounded-2xl overflow-hidden border border-border/50 bg-card hover:border-primary/20 transition-all duration-500 hover:shadow-lg h-full"
     >
       {/* Image or gradient placeholder */}
-      <div
-        className="aspect-[16/9] overflow-hidden flex-shrink-0"
-        style={
-          project.slug
-            ? { viewTransitionName: `wt-${project.id}` }
-            : undefined
-        }
-      >
+      <div className="aspect-[16/9] overflow-hidden flex-shrink-0">
         {project.image ? (
           project.video ? (
             <CardClip

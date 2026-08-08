@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -15,7 +15,6 @@ const SITE_URL = "https://mille-grass.vercel.app/";
 const showcaseImages = [
   "/mille-grass/menu.jpg",
   "/mille-grass/hours.jpg",
-  "/mille-grass/ferment.jpg",
   "/mille-grass/english.jpg",
 ];
 
@@ -76,7 +75,6 @@ export default function MilleGrassPage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden border border-border/50 shadow-lg"
-            style={{ viewTransitionName: "wt-milleGrass" }}
           >
             <Image
               src="/mille-grass/hero.jpg"

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -74,7 +74,6 @@ export default function HomeHairCoffeePage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden"
-            style={{ viewTransitionName: "wt-homeHairCoffee" }}
           >
             <Image
               src="/home-hair-coffee/home-hair-landing.png"

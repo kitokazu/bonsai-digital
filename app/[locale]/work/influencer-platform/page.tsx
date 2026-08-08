@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -65,7 +65,6 @@ export default function InfluencerPlatformPage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden"
-            style={{ viewTransitionName: "wt-influencerAgency" }}
           >
             <Image
               src="/uncharted/dashboard.png"

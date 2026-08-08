@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
@@ -123,7 +123,6 @@ export default function EnPadelPage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden border border-border/50 shadow-lg"
-            style={{ viewTransitionName: "wt-enpadel" }}
           >
             <Image
               src="/enpadel/hero.jpg"

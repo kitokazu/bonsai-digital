@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
@@ -115,7 +115,6 @@ export default function ArGalleryPage() {
         <div className="container mx-auto max-w-5xl">
           <div
             className="rounded-2xl overflow-hidden border border-border/50 shadow-lg"
-            style={{ viewTransitionName: "wt-arGalleryMVP" }}
           >
             <Image
               src="/ar-gallery/home.jpg"

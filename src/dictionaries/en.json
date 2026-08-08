@@ -157,7 +157,7 @@
       "milleGrass": {
         "title": "Mille Grass",
         "tag": "Restaurant site",
-        "outcome": "Put a fermented set-lunch place in Fujigaoka online with a live opening calendar and a menu the owner updates by swapping one photo."
+        "outcome": "Put a fermented set-lunch restaurant in Fujigaoka online, with an automatic opening calendar and a menu the owner updates by swapping one photo."
       },
       "nicolita": {
         "title": "Nicolita",
@@ -671,7 +671,7 @@
     "milleGrass": {
       "category": "Restaurant",
       "title": "Mille Grass",
-      "description": "A bilingual site for a fermented set-lunch restaurant in Fujigaoka. One soup and three sides, changing weekly, with the koji and sake lees doing the quiet work in the background.",
+      "description": "A bilingual site for a fermented set-lunch restaurant in Fujigaoka. One soup and three sides, changing weekly.",
       "tags": [
         "Restaurant site",
         "Bilingual EN / JA",
@@ -680,23 +680,19 @@
         "Tailwind",
         "Next.js"
       ],
-      "overview": "Mille Grass serves a weekly-changing tray built on koji and sake lees. The site has to do three unglamorous things well: explain what a fermented set lunch is to someone who has never heard of one, show the food honestly, and tell a hungry person holding a phone whether the place is open right now. It also has to stay editable by someone who is cooking all day, so the menu is a photograph and this month's opening days generate themselves.",
+      "overview": "Mille Grass serves a weekly-changing fermented set lunch. The site has three jobs: explain what a fermented set lunch is, show the food honestly, and make it easy to check whether the restaurant is open right now. The owner cooks all day, so it also has to be easy to update: the menu is a single photo, and each month's opening days are generated automatically.",
       "showcase": [
         {
           "title": "A menu the owner can actually update",
-          "description": "The paper menu is published as a photograph, clickable to full size. No dish names or prices live in the code, so changing the menu means replacing one image rather than calling us. For a small restaurant that changes its tray weekly, this is the difference between a site that stays current and one that goes stale."
+          "description": "The paper menu is published as a photo that opens to full size. No dish names or prices live in the code, so updating the menu just means replacing one image. For a restaurant that changes its tray weekly, that keeps the site current without any extra work."
         },
         {
           "title": "Opening days that generate themselves",
-          "description": "The current month builds itself in the browser from the opening rules: closed Sunday and Monday, 11:30 to 18:00 on Saturday, 11:30 to 14:30 midweek. Nobody has to remember to update a calendar, and a visitor gets a straight answer about today without reading a paragraph."
-        },
-        {
-          "title": "The fermentation, explained",
-          "description": "Shio-koji, onion koji and miso with the waiting time each one needs. It is the editorial hook that turns a set lunch into something worth travelling for, and it gives the cooking a reason that a photo alone cannot carry."
+          "description": "The current month's calendar is generated automatically from the opening rules: closed Sunday and Monday, 11:30 to 18:00 on Saturday, 11:30 to 14:30 on weekdays. Nobody has to update it by hand, and visitors can see at a glance whether the restaurant is open today."
         },
         {
           "title": "The same site in English",
-          "description": "The language toggle swaps every string with a fade and no page reload, since Fujigaoka gets enough non-Japanese residents to make it worth having. Both languages live in one content file, so the two versions cannot fall out of sync."
+          "description": "The language toggle swaps every string instantly, with no page reload. Fujigaoka has enough non-Japanese residents to make English worth having, and both languages live in one file, so the two versions can't drift apart."
         }
       ],
       "additionalWork": [

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
-import { ViewTransitions } from "next-view-transitions";
 import Providers from "../providers";
 import { LocaleProvider } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
@@ -90,11 +89,9 @@ export default function LocaleLayout({
       className={`${cormorantGaramond.variable} ${inter.variable}`}
     >
       <body>
-        <ViewTransitions>
-          <Providers>
-            <LocaleProvider locale={locale}>{children}</LocaleProvider>
-          </Providers>
-        </ViewTransitions>
+        <Providers>
+          <LocaleProvider locale={locale}>{children}</LocaleProvider>
+        </Providers>
       </body>
     </html>
   );
