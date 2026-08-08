@@ -147,7 +147,7 @@
       "employeeManagement": {
         "title": "Employee Management Platform",
         "tag": "Internal tool",
-        "outcome": "Replaced a shared staffing workbook with a live projects-by-roles matrix, so allocation, skill gaps and time off finally sit in one view."
+        "outcome": "Replaced a shared staffing workbook with a live board where who is working on what, skill gaps and time off all sit in one view."
       },
       "enpadel": {
         "title": "EnPadel",
@@ -575,7 +575,7 @@
     "employeeManagement": {
       "category": "Internal tools",
       "title": "Employee Management Platform",
-      "description": "A staffing tool for teams that spread the same people across several projects at once. Drag someone into a role, watch their allocation total update, and catch anyone over capacity before it turns into a problem.",
+      "description": "A staffing tool for teams where the same people work on several projects at once. Assign someone on screen, the totals update instantly, and anyone stretched too thin is flagged before it becomes a problem.",
       "tags": [
         "Internal tool",
         "Resource planning",
@@ -584,43 +584,43 @@
         "Bilingual EN / JA",
         "React"
       ],
-      "overview": "Seventeen people, four projects, four roles, laid out as a matrix where every assignment sits in the cell its project and role meet. Allocation totals are computed rather than typed, skills are scored so gaps show up as gaps, and time off feeds the same picture as staffing. The client got back the hours they had been spending reconciling a workbook, and a plan the whole team could read. The screens here run on stand-in data, with real names and project names replaced.",
+      "overview": "Who is on which project, and in what role? Seventeen people across four projects, all visible in a single table. Allocation totals are calculated automatically, skills are scored so weak spots stand out, and time off shows up in the same view. The client got back the hours they had been spending fixing the workbook, and a plan the whole team could read. The screens here run on stand-in data, with real names and project names replaced.",
       "problem": {
         "heading": "The problem",
-        "body": "The team ran staffing out of one shared workbook, and it failed the same way every time. The same person appeared on three tabs with three different percentages. Someone inserted a column and half the totals turned into errors. Skills were recorded as “good” or “needs work”. A person was rolling off in two weeks and that fact lived in a cell comment nobody read. The workbook we started from had a change log whose last entry read “not written down anywhere”.",
+        "body": "The team ran staffing out of one shared workbook, and it failed the same way every time. The same person appeared on three tabs with three different percentages. Someone inserted a column and half the totals turned into errors. Skills were recorded as “good” or “needs work”. One person was leaving the team in two weeks, and that fact lived in a cell comment nobody read. The workbook we started from had a change log whose last entry read “not written down anywhere”.",
         "artifactAlt": "A staffing spreadsheet with conflicting allocations, a hand-typed total and a broken formula",
         "artifactCaption": "The workbook this replaced. One person is at 120% but the total is typed as text, so nothing flags it. Another total broke when someone inserted a column. Nine tabs, and one of them is a copy of the file. Recreated here from the original, with stand-in names.",
         "beforeLabel": "In the workbook",
         "before": [
-          "The same person duplicated across project tabs with conflicting percentages",
-          "Allocation totals typed by hand, and broken formulas where a column was inserted",
-          "Skills kept as free text, so nobody could see where the team was thin",
-          "Roll-off dates and time off living in cell comments and mail threads"
+          "The same person listed on several tabs, each showing a different allocation",
+          "Totals typed by hand, with formulas that broke whenever a column was added",
+          "Skills written as notes, so nobody could tell which teams were lacking",
+          "Departure dates and time off buried in cell comments and email threads"
         ],
         "afterLabel": "In the platform",
         "after": [
-          "One record per person, project and role, so the totals add up on their own",
-          "Anyone over 100% flags immediately, before a project manager finds out the hard way",
-          "Skills scored 1 to 5 and rolled up per team, with the gaps called out",
-          "Every change writes to an activity log instead of disappearing"
+          "No duplicate entries, so allocation totals always add up",
+          "Anyone over 100% is flagged right away, not discovered later",
+          "Skills scored 1 to 5 per team, so gaps are easy to spot",
+          "Every change is saved to an activity log, so nothing gets lost"
         ]
       },
       "showcase": [
         {
           "title": "Capacity at a glance",
-          "description": "Headcount, total FTE, average utilisation and anyone over capacity, next to an org-wide skill radar. Open positions and pending time-off requests sit in the same header, so a planning conversation can start and finish on one screen."
+          "description": "Headcount, total workload, average utilisation and anyone over capacity, shown next to a skill chart for the whole organisation. Open positions and pending time-off requests are on the same screen, so a planning conversation can start and finish in one place."
         },
         {
           "title": "Skill coverage per team",
-          "description": "Pick a team and see its members, average experience and a skill radar aggregated across everyone in it. Anything below 3.0 gets a gap badge, which turns “we should probably hire” into a specific role and a specific skill."
+          "description": "Pick a team to see its members, their average experience and a combined skill chart. Any skill scoring below 3.0 is marked as a gap, which turns “we should probably hire” into a specific role and skill."
         },
         {
           "title": "Time off that affects the plan",
-          "description": "A month calendar coloured by leave type, with the approval queue next to it. Approving a request updates the calendar, the sidebar count and the activity log at once, so availability and staffing stay part of the same conversation."
+          "description": "A monthly calendar colour-coded by leave type, with pending requests next to it. Approving a request updates the calendar, the counters and the activity log at once, so time off and staffing are never out of sync."
         },
         {
-          "title": "The same matrix in Japanese",
-          "description": "Roles, projects, statuses and counters all have Japanese equivalents, switched from the sidebar. Dates and number formats follow the locale rather than being translated word for word."
+          "title": "The same screen in Japanese",
+          "description": "Roles, projects, statuses and counters all have Japanese versions, switched from the sidebar. Dates and numbers follow Japanese formatting too, not just translated labels."
         }
       ],
       "additionalWork": [
