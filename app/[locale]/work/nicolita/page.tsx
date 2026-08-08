@@ -15,7 +15,6 @@ const SITE_URL = "https://nicolita-gelato.vercel.app/";
 const showcaseImages = [
   "/nicolita/flavors.jpg",
   "/nicolita/visit.jpg",
-  "/nicolita/archive.jpg",
   "/nicolita/english.jpg",
 ];
 

@@ -162,7 +162,7 @@
       "nicolita": {
         "title": "Nicolita",
         "tag": "Shop site",
-        "outcome": "Took a gelato shop that lived on Instagram and gave it a site that explains the weekly farm-driven flavours and gets people to a hard-to-find door."
+        "outcome": "Gave an Instagram-only gelato shop a simple site that shows this week's flavors and helps people find the store."
       },
       "arGalleryMVP": {
         "title": "AR Art Gallery",
@@ -705,7 +705,7 @@
     "nicolita": {
       "category": "Food & retail",
       "title": "Nicolita",
-      "description": "A bilingual site for a Yokohama gelato shop whose flavours change completely every week, built from local farm produce and vegetables that would otherwise be thrown away for looking wrong.",
+      "description": "A landing site for a Yokohama gelato shop. The flavors change every week, made from local farm produce.",
       "tags": [
         "Shop site",
         "Bilingual EN / JA",
@@ -714,23 +714,19 @@
         "Editorial layout",
         "Next.js"
       ],
-      "overview": "Nicolita opens three days a week and rebuilds its entire flavour list every week from whatever the farms nearby have too much of. Almost all of that was happening on Instagram, which is fine for regulars and useless for anyone else. The site gives the idea somewhere permanent to live: what is on this week and which farm it came from, the certifications that prove the sourcing is real, and clear directions to a door that is genuinely hard to find.",
+      "overview": "Nicolita opens three days a week, and its flavors change weekly based on produce from nearby farms. Until now, all of its information lived on Instagram, which works for regulars but not for first-time visitors. This site covers the essentials: what's available this week, which farm it came from, and clear directions to a store that is genuinely hard to find.",
       "showcase": [
         {
           "title": "This week's flavours, with the farm named",
-          "description": "A scroll-snapping carousel of the current line-up, each card crediting the farm the produce came from. It changes completely every week, so the layout had to make a rotating list feel like the point rather than a maintenance burden."
+          "description": "A carousel of this week's line-up, with each card naming the farm the produce came from. The flavors change every week, so the layout makes that rotation part of the shop's appeal."
         },
         {
           "title": "Getting people to the door",
-          "description": "The shop is six minutes from the station down a street that gives you no clues, so the visit section pairs a hand-built map with a full address block, hours, parking, payment methods and step-by-step walking directions. The map is drawn in CSS rather than embedded, so it loads instantly and matches the rest of the page."
-        },
-        {
-          "title": "A year of flavours as an archive",
-          "description": "Roughly 150 flavours in the first year, shown as a stat block and a bilingual tag cloud. It turns the constant churn into evidence of range, and gives a first-time visitor a sense of what they will find on a week that is not this one."
+          "description": "The shop is six minutes from the station on a street with few landmarks. The visit section brings together the address, hours, parking, payment methods and step-by-step walking directions, with a custom map drawn to match the rest of the page."
         },
         {
           "title": "The same site in English",
-          "description": "Both languages ship in the markup and swap on a data attribute, with an inline script reading the saved preference before the first paint so returning visitors never see a flash of the wrong language."
+          "description": "The language toggle swaps every string instantly, and the saved preference is read before the page first renders, so returning visitors never see a flash of the wrong language."
         }
       ],
       "additionalWork": [
