@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useAutoplayClip } from "@/hooks/use-autoplay-clip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -24,27 +25,7 @@ const showcaseMedia = [
 
 function ScrollClip({ src, poster, label }: { src: string; poster: string; label: string }) {
   const ref = useRef<HTMLVideoElement>(null);
-
-  // The site this is taken from honours reduced motion, so the case study
-  // showing it off should too: hold on the poster frame instead of looping.
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => {
-      if (media.matches) {
-        video.pause();
-        video.currentTime = 0;
-      } else {
-        video.play().catch(() => {});
-      }
-    };
-
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
+  useAutoplayClip(ref);
 
   return (
     <video

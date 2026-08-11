@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useAutoplayClip } from "@/hooks/use-autoplay-clip";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -43,25 +44,7 @@ const CardClip = ({
   className?: string;
 }) => {
   const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => {
-      if (media.matches) {
-        video.pause();
-        video.currentTime = 0;
-      } else {
-        video.play().catch(() => {});
-      }
-    };
-
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
+  useAutoplayClip(ref);
 
   return (
     <video
