@@ -22,21 +22,29 @@
     "cta1": "Get a free quote",
     "cta2": "View our work",
     "projects": {
-      "homeHair": {
-        "title": "Home Hair and Coffee",
-        "category": "Hair Salon"
+      "influencerAgency": {
+        "title": "Influencer Agency Platform",
+        "category": "Automation"
       },
-      "defineAcademy": {
-        "title": "Define Academy",
-        "category": "Sports Coaching"
+      "enpadel": {
+        "title": "EnPadel",
+        "category": "Brand Site"
       },
-      "cgOnlineCourses": {
-        "title": "CG Online Courses",
-        "category": "Learning Platform"
+      "ecommerceOps": {
+        "title": "E-commerce Operations Platform",
+        "category": "Internal Tool"
       },
-      "chnl301": {
-        "title": "chnl301",
-        "category": "Artist Website"
+      "milleGrass": {
+        "title": "Mille Grass",
+        "category": "Restaurant Site"
+      },
+      "employeeManagement": {
+        "title": "Employee Management Platform",
+        "category": "Internal Tool"
+      },
+      "nicolita": {
+        "title": "Nicolita",
+        "category": "Shop Site"
       }
     }
   },

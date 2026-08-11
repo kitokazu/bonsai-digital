@@ -22,21 +22,29 @@
     "cta1": "無料見積もりを依頼する",
     "cta2": "実績を見る",
     "projects": {
-      "homeHair": {
-        "title": "Home Hair and Coffee",
-        "category": "ヘアサロン"
+      "influencerAgency": {
+        "title": "インフルエンサーエージェンシー社内プラットフォーム",
+        "category": "自動化"
       },
-      "defineAcademy": {
-        "title": "Define Academy",
-        "category": "スポーツコーチング"
+      "enpadel": {
+        "title": "EnPadel",
+        "category": "ブランドサイト"
       },
-      "cgOnlineCourses": {
-        "title": "CG Online Courses",
-        "category": "学習プラットフォーム"
+      "ecommerceOps": {
+        "title": "EC運営管理プラットフォーム",
+        "category": "社内ツール"
       },
-      "chnl301": {
-        "title": "chnl301",
-        "category": "アーティストウェブサイト"
+      "milleGrass": {
+        "title": "Mille Grass",
+        "category": "飲食店サイト"
+      },
+      "employeeManagement": {
+        "title": "従業員管理プラットフォーム",
+        "category": "社内ツール"
+      },
+      "nicolita": {
+        "title": "Nicolita",
+        "category": "店舗サイト"
       }
     }
   },

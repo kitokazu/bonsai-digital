@@ -10,10 +10,12 @@ import { localizedPath } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
 const projectImages = [
-  { key: "homeHair", image: "/home-hair.png" },
-  { key: "defineAcademy", image: "/define-academy-landing.png" },
-  { key: "cgOnlineCourses", image: "/cg-online-courses.png" },
-  { key: "chnl301", image: "/chnl301-landing.png" },
+  { key: "influencerAgency", image: "/uncharted/dashboard.png" },
+  { key: "enpadel", image: "/enpadel/scroll-poster.jpg" },
+  { key: "ecommerceOps", image: "/apex-autowerks/dashboard.png" },
+  { key: "milleGrass", image: "/mille-grass/hero.jpg" },
+  { key: "employeeManagement", image: "/rolemap/matrix.png" },
+  { key: "nicolita", image: "/nicolita/hero.jpg" },
 ];
 
 function ShowcaseCard({
