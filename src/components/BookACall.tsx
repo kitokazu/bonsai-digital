@@ -24,13 +24,11 @@ const BookACall = () => {
           textAlign(locale),
         )}
       >
+        {/* inline-flex, so the section's text-align places it. */}
         <Reveal
           as="span"
           blur={false}
-          className={cn(
-            "mb-6 inline-flex items-center gap-2",
-            locale === "ja" && "flex w-fit",
-          )}
+          className="mb-6 inline-flex items-center gap-2"
         >
           <CalendarDays className="h-4 w-4 text-primary" />
           <span className="type-eyebrow inline">{t.bookACall.eyebrow}</span>

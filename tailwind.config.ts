@@ -13,9 +13,32 @@ export default {
       },
     },
     extend: {
+      /* Cormorant and Inter ship Latin only, so Japanese always falls through
+         to the next family. Naming the CJK faces explicitly means JA headings
+         land on a real mincho and JA body on a real gothic on every platform,
+         instead of whatever the generic `serif` keyword happens to be (MS
+         PMincho on Windows, which is not a display face). */
       fontFamily: {
-        serif: ['var(--font-cormorant)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: [
+          'var(--font-cormorant)',
+          'Cormorant Garamond',
+          'Georgia',
+          'Hiragino Mincho ProN',
+          'Yu Mincho',
+          'YuMincho',
+          'Noto Serif JP',
+          'serif',
+        ],
+        sans: [
+          'var(--font-inter)',
+          'Inter',
+          'system-ui',
+          'Hiragino Sans',
+          'Hiragino Kaku Gothic ProN',
+          'Yu Gothic',
+          'Noto Sans JP',
+          'sans-serif',
+        ],
       },
       colors: {
         border: "hsl(var(--border))",

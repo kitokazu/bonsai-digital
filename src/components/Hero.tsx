@@ -125,12 +125,11 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
+            {/* inline-flex, so the wrapper's text-align places it: centred in
+                English, flush left in Japanese. */}
             <motion.span
               variants={blurFadeRise}
-              className={cn(
-                "mb-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary",
-                locale === "ja" && "flex w-fit",
-              )}
+              className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
             >
               <span className="h-2 w-2 rounded-full bg-primary motion-safe:animate-pulse" />
               {t.hero.badge}
@@ -153,10 +152,7 @@ const Hero = () => {
             // stagger "Cultivating" ahead of "Your" and pull the eye sideways
             // before the gradient line lands.
             split="lines"
-            className={cn(
-              "type-display mb-6 text-foreground",
-              locale === "ja" && "mx-auto w-fit text-left",
-            )}
+            className="type-display mb-6 text-foreground"
           />
 
           <motion.div

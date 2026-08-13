@@ -144,7 +144,10 @@
   :lang(ja) {
     font-feature-settings: "palt" 1;
     line-break: strict;
-    overflow-wrap: anywhere;
+    /* `break-word` rather than `anywhere`: both rescue a long unbreakable run,
+       but `anywhere` also feeds back into min-content sizing, which quietly
+       lets flex and grid children collapse narrower than their text. */
+    overflow-wrap: break-word;
   }
 
   :lang(ja) p,
@@ -256,17 +259,31 @@
 
   /* Japanese runs a notch smaller at display sizes: the glyphs carry more ink
      per character, so matching the Latin size reads as shouting. Uppercase and
-     wide letterspacing do nothing for kana either. */
+     wide letterspacing do nothing for kana either.
+
+     The leading opens up at the same time. Latin display type can sit at 1.06
+     because most lowercase letters only fill the x-height; kanji fill the
+     whole em box, so the same value has the lines almost touching. */
   :lang(ja) .type-display {
     font-size: clamp(2rem, 5.2vw, 4rem);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
   }
 
   :lang(ja) .type-h1 {
     font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+    line-height: 1.35;
+    letter-spacing: 0;
   }
 
   :lang(ja) .type-h2 {
     font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  :lang(ja) .type-h3 {
+    line-height: 1.5;
   }
 
   :lang(ja) .type-eyebrow {
@@ -312,6 +329,13 @@
 .mask-word > span {
   display: inline-block;
   will-change: transform;
+}
+
+/* Kanji fill the em box top to bottom, so a mask cut to the Latin metrics
+   shaves the top of the glyph. Same trick as the descender padding below. */
+:lang(ja) .mask-word {
+  padding-top: 0.1em;
+  margin-top: -0.1em;
 }
 
 /* ------------------------------------------------------------------ curtain */
