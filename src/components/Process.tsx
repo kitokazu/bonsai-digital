@@ -54,6 +54,8 @@ type Step = {
   label: string;
   title: string;
   description: string;
+  duration: string;
+  role: string;
   caption?: string;
 };
 
@@ -112,11 +114,15 @@ const StepCard = ({
   index,
   total,
   progress,
+  durationLabel,
+  roleLabel,
 }: {
   step: Step;
   index: number;
   total: number;
   progress: MotionValue<number>;
+  durationLabel: string;
+  roleLabel: string;
 }) => {
   // Cards already covered by later ones ease back slightly, so the deck
   // reads as layers rather than a hard swap.
@@ -153,6 +159,24 @@ const StepCard = ({
               {step.description}
             </p>
           </div>
+
+          {/* The two questions an owner is actually holding while they read
+              this: how long does it take, and what does it cost me in effort.
+              Answered per step rather than left to the sales call. */}
+          <dl className="mt-auto grid gap-x-8 gap-y-4 border-t border-border/60 pt-6 sm:grid-cols-2">
+            <div>
+              <dt className="type-eyebrow mb-1.5">{durationLabel}</dt>
+              <dd className="text-sm font-medium text-foreground">
+                {step.duration}
+              </dd>
+            </div>
+            <div>
+              <dt className="type-eyebrow mb-1.5">{roleLabel}</dt>
+              <dd className="text-sm leading-relaxed text-muted-foreground">
+                {step.role}
+              </dd>
+            </div>
+          </dl>
         </div>
 
         {/* Screenshot */}
@@ -252,6 +276,8 @@ const Process = () => {
               index={index}
               total={t.process.steps.length}
               progress={scrollYProgress}
+              durationLabel={t.process.durationLabel}
+              roleLabel={t.process.roleLabel}
             />
           ))}
         </div>

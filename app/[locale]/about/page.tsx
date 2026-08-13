@@ -7,7 +7,7 @@ import BookACall from "@/components/BookACall";
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      <About />
+      <About variant="page" />
       <FAQ />
       <BookACall />
     </div>
