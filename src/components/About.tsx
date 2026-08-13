@@ -129,8 +129,7 @@ const About = ({ variant = "section" }: AboutProps) => {
 
             <Reveal delay={0.1}>
               <p className="type-lede mb-5">{t.about.paragraph1}</p>
-              <p className="type-lede mb-5">{t.about.paragraph2}</p>
-              <p className="type-lede">{t.about.paragraph3}</p>
+              <p className="type-lede">{t.about.paragraph2}</p>
             </Reveal>
 
             {isPage && (
