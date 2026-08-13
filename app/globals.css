@@ -157,11 +157,24 @@
 }
 
 @layer components {
+  /*
+   * `background-clip: text` shows the gradient through the glyphs, but it only
+   * paints across the element's own background box, and an inline box is no
+   * taller than its content area. Anything hanging outside that box has no
+   * gradient behind it and comes out transparent, which is why the tails of
+   * "Digital Growth" went missing at hero size.
+   *
+   * The padding grows the paint area past the glyph extents; the negative
+   * margin hands the space straight back, so nothing moves.
+   */
   .text-gradient {
     background: var(--text-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
+    padding-block: 0.2em;
+    margin-block: -0.2em;
   }
 
   .hero-gradient {
