@@ -1,15 +1,16 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useAutoplayClip } from "@/hooks/use-autoplay-clip";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Hammer, Lock } from "lucide-react";
+import { SectionHeading } from "@/components/layout/SectionHeading";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
+import { fadeRise, STAGGER, viewportOnce } from "@/lib/motion";
+import { cn, textAlign } from "@/lib/utils";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
 
 interface MergedProject {
@@ -68,17 +69,17 @@ export const WorkCard = ({
   project,
   index,
   variant = "default",
+  reveal = true,
 }: {
   project: MergedProject;
   index: number;
   variant?: "default" | "fullbleed";
+  /* The work index wraps each card in its own filter animation, so it turns
+     the card's scroll entrance off rather than run two at once. */
+  reveal?: boolean;
 }) => {
-  const { t, locale } = useTranslation();
-  const href = project.slug
-    ? locale === "en"
-      ? `/work/${project.slug}`
-      : `/ja/work/${project.slug}`
-    : undefined;
+  const { t } = useTranslation();
+  const href = project.slug ? `/work/${project.slug}` : undefined;
 
   if (variant === "fullbleed") {
     const iconColors =
@@ -88,11 +89,12 @@ export const WorkCard = ({
 
     const inner = (
       <motion.article
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.45, delay: index * 0.05 }}
-        className="group flex flex-col cursor-pointer"
+        variants={reveal ? fadeRise : undefined}
+        initial={reveal ? "hidden" : false}
+        whileInView={reveal ? "visible" : undefined}
+        viewport={viewportOnce}
+        transition={{ delay: index * STAGGER.tight }}
+        className="group flex flex-col"
       >
         {/* Framed screenshot: colored backdrop, top-left corner of the shot peeking in */}
         <div
@@ -173,9 +175,9 @@ export const WorkCard = ({
 
     if (href) {
       return (
-        <Link href={href} className="block">
+        <TransitionLink href={href} className="block">
           {inner}
-        </Link>
+        </TransitionLink>
       );
     }
     return inner;
@@ -184,10 +186,11 @@ export const WorkCard = ({
   // Default variant (homepage cards)
   const inner = (
     <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: index * 0.08 }}
+      variants={reveal ? fadeRise : undefined}
+      initial={reveal ? "hidden" : false}
+      whileInView={reveal ? "visible" : undefined}
+      viewport={viewportOnce}
+      transition={{ delay: index * STAGGER.base }}
       className="group flex flex-col rounded-2xl overflow-hidden border border-border/50 bg-card hover:border-primary/20 transition-all duration-500 hover:shadow-lg h-full"
     >
       {/* Image or gradient placeholder */}
@@ -255,9 +258,9 @@ export const WorkCard = ({
 
   if (href) {
     return (
-      <Link href={href} className="block h-full">
+      <TransitionLink href={href} className="block h-full">
         {inner}
-      </Link>
+      </TransitionLink>
     );
   }
 
@@ -265,10 +268,7 @@ export const WorkCard = ({
 };
 
 const Work = () => {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const { t, locale } = useTranslation();
-  const router = useRouter();
 
   const featured: MergedProject[] = workProjects.slice(0, 3).map((p) => ({
     ...p,
@@ -278,37 +278,15 @@ const Work = () => {
     >)[p.id],
   }));
 
-  const workHref = locale === "en" ? "/work" : "/ja/work";
-
   return (
     <section id="work" className="section-padding">
       <div className="container mx-auto px-6">
-        {/* Section header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={
-            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-          }
-          transition={{ duration: 0.6 }}
-          className={cn(
-            "max-w-2xl mx-auto mb-12",
-            locale === "ja" ? "text-left" : "text-center"
-          )}
-        >
-          <span
-            className={cn(
-              "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
-              locale === "ja" && "text-base"
-            )}
-          >
-            {t.work.label}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            {t.work.heading}
-          </h2>
-          <p className="text-muted-foreground text-lg">{t.work.description}</p>
-        </motion.div>
+        <SectionHeading
+          eyebrow={t.work.label}
+          heading={t.work.heading}
+          lede={t.work.description}
+          className="mb-12"
+        />
 
         {/* 3-up project grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
@@ -322,21 +300,20 @@ const Work = () => {
           ))}
         </div>
 
-        {/* View all */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className={cn(locale === "ja" ? "text-left" : "text-center")}
+          variants={fadeRise}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className={textAlign(locale)}
         >
-          <button
-            onClick={() => router.push(workHref)}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors group"
+          <TransitionLink
+            href="/work"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors"
           >
-            {(t.work as any).viewAll}
+            {t.work.viewAll}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </TransitionLink>
         </motion.div>
       </div>
     </section>

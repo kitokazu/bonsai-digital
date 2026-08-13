@@ -13,9 +13,32 @@ export default {
       },
     },
     extend: {
+      /* Cormorant and Inter ship Latin only, so Japanese always falls through
+         to the next family. Naming the CJK faces explicitly means JA headings
+         land on a real mincho and JA body on a real gothic on every platform,
+         instead of whatever the generic `serif` keyword happens to be (MS
+         PMincho on Windows, which is not a display face). */
       fontFamily: {
-        serif: ['var(--font-cormorant)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: [
+          'var(--font-cormorant)',
+          'Cormorant Garamond',
+          'Georgia',
+          'Hiragino Mincho ProN',
+          'Yu Mincho',
+          'YuMincho',
+          'Noto Serif JP',
+          'serif',
+        ],
+        sans: [
+          'var(--font-inter)',
+          'Inter',
+          'system-ui',
+          'Hiragino Sans',
+          'Hiragino Kaku Gothic ProN',
+          'Yu Gothic',
+          'Noto Sans JP',
+          'sans-serif',
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,6 +84,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      /* Mirrors EASE in src/lib/motion.ts, so a CSS transition and a Framer
+         Motion tween decelerate identically. */
+      transitionTimingFunction: {
+        expo: "var(--ease-expo-out)",
+        power3: "var(--ease-power3-out)",
+        quint: "var(--ease-in-out-quint)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -109,7 +139,9 @@ export default {
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
-        marquee: "marquee 150s linear infinite",
+        /* Duration is a per-instance variable so a track can be paced to its
+           own content length; 90s is the fallback for callers that skip it. */
+        marquee: "marquee var(--marquee-duration, 90s) linear infinite",
       },
     },
   },

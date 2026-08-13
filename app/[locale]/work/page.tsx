@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { SectionHeading } from "@/components/layout/SectionHeading";
 import { WorkCard } from "@/components/Work";
 import { useTranslation } from "@/lib/i18n";
+import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { workProjects, type WorkBucket, type WorkProjectId } from "@/lib/work";
-import { cn } from "@/lib/utils";
+import { cn, textAlign } from "@/lib/utils";
 
 type FilterValue = "all" | WorkBucket;
 
@@ -21,6 +21,8 @@ interface MergedProject {
   slug?: string;
   tileLabel?: string;
   placeholderColor?: string;
+  frameClass?: string;
+  tileClass?: string;
   title: string;
   tag: string;
   outcome: string;
@@ -40,69 +42,92 @@ export default function AllWorksPage() {
     .filter((p) => activeFilter === "all" || p.bucket === activeFilter)
     .map((p) => ({
       ...p,
-      ...(t.work.projects as Record<string, { title: string; tag: string; outcome: string }>)[p.id],
+      ...(t.work.projects as Record<
+        string,
+        { title: string; tag: string; outcome: string }
+      >)[p.id],
     }));
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
-      {/* Header */}
       <section className="pt-32 pb-10 px-6 md:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className={cn(locale === "ja" ? "text-left" : "text-center")}
-        >
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-4">
-            {t.work.allWorksHeading}
-          </h1>
-          <p className={cn("text-muted-foreground text-lg max-w-xl", locale === "ja" ? "" : "mx-auto")}>
-            {t.work.allWorksDescription}
-          </p>
-        </motion.div>
+        <SectionHeading
+          heading={t.work.allWorksHeading}
+          lede={t.work.allWorksDescription}
+          as="h1"
+          trigger="mount"
+        />
       </section>
 
       {/* Filter chips */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className={cn("flex gap-2 pb-8 px-6 md:px-10 flex-wrap", locale === "ja" ? "" : "justify-center")}
+        transition={{ duration: DURATION.short, delay: 0.25, ease: EASE.expoOut }}
+        className={cn(
+          "relative flex gap-2 pb-8 px-6 md:px-10 flex-wrap",
+          locale === "ja" ? "" : "justify-center",
+        )}
         role="group"
-        aria-label="Filter projects"
+        aria-label={t.work.label}
       >
-        {filters.map((filter) => (
-          <button
-            key={filter.value}
-            onClick={() => setActiveFilter(filter.value)}
-            aria-pressed={activeFilter === filter.value}
-            className={cn(
-              "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-              activeFilter === filter.value
-                ? "bg-foreground text-background"
-                : "border border-border text-foreground/70 hover:border-foreground/50 hover:text-foreground bg-transparent"
-            )}
-          >
-            {filter.label}
-          </button>
-        ))}
+        {filters.map((filter) => {
+          const active = activeFilter === filter.value;
+          return (
+            <button
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              aria-pressed={active}
+              className={cn(
+                "relative px-5 py-2 rounded-full text-sm font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                active
+                  ? "text-background"
+                  : "border border-border text-foreground/70 hover:border-foreground/50 hover:text-foreground",
+              )}
+            >
+              {/* The filled pill is one shared element that slides between
+                  chips, rather than three that fade independently. */}
+              {active && (
+                <motion.span
+                  layoutId="work-filter-pill"
+                  className="absolute inset-0 rounded-full bg-foreground"
+                  transition={{ duration: DURATION.short, ease: EASE.expoOut }}
+                />
+              )}
+              <span className="relative">{filter.label}</span>
+            </button>
+          );
+        })}
       </motion.div>
 
-      {/* Project grid */}
+      {/* Project grid. `popLayout` lets the leaving cards animate out while the
+          survivors slide into their new positions, instead of the whole grid
+          snapping on every filter change. */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 px-6 md:px-10 pb-16">
-        {projects.map((project, index) => (
-          <WorkCard
-            key={project.id}
-            project={project}
-            index={index}
-            variant="fullbleed"
-          />
-        ))}
+        <AnimatePresence mode="popLayout" initial={false}>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{
+                duration: DURATION.short,
+                ease: EASE.expoOut,
+                delay: index * STAGGER.tight * 0.5,
+              }}
+            >
+              <WorkCard
+                project={project}
+                index={0}
+                variant="fullbleed"
+                reveal={false}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
-
-      <Footer />
     </div>
   );
 }

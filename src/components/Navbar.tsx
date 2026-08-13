@@ -1,21 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/lib/i18n";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { TransitionLink } from "@/components/nav/TransitionLink";
+import { Button } from "@/components/ui/button";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
+import { useTranslation } from "@/lib/i18n";
+import { DURATION, EASE, maskRise, stagger, STAGGER } from "@/lib/motion";
+import { cn } from "@/lib/utils";
+
+/** Scroll distance before the bar is allowed to hide on a downward scroll. */
+const HIDE_AFTER = 240;
 
 const Navbar = () => {
+  const { t } = useTranslation();
+  const pathname = usePathname() ?? "/";
+
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t, locale } = useTranslation();
-  const pathname = usePathname();
-  const router = useRouter();
-  const isHome = pathname === "/" || pathname === "/en" || pathname === "/ja";
+  const [isHidden, setIsHidden] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const lastY = useRef(0);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
     { name: t.navbar.about, href: "#about" },
@@ -24,143 +40,161 @@ const Navbar = () => {
     { name: t.navbar.blog, href: "/blog" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  /* Driven off the scroll motion value rather than a scroll listener, so the
+     reads stay batched into the frame instead of firing setState per event. */
+  const { scrollY } = useScroll();
 
-  const scrollToSection = (href: string) => {
-    if (!href.startsWith("#")) {
-      const path = locale === "en" ? href : `/ja${href}`;
-      router.push(path);
-    } else if (isHome) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+  useMotionValueEvent(scrollY, "change", (y) => {
+    setIsScrolled(y > 20);
+
+    const goingDown = y > lastY.current;
+    // Never hide near the top, and never while the mobile panel is open.
+    setIsHidden(goingDown && y > HIDE_AFTER && !isMenuOpen);
+    lastY.current = y;
+  });
+
+  // Close the panel on navigation, and hand focus back to the button that
+  // opened it.
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  useScrollLock(isMenuOpen);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
       }
-    } else {
-      const base = locale === "en" ? "/" : "/ja";
-      router.push(`${base}${href}`);
-    }
-    setIsMobileMenuOpen(false);
-  };
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-lg shadow-sm"
-            : "bg-transparent"
-        }`}
+      <motion.header
+        initial={{ y: "-100%" }}
+        animate={{ y: isHidden && !isMenuOpen ? "-100%" : "0%" }}
+        transition={{ duration: DURATION.short, ease: EASE.expoOut }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color] duration-300",
+          isScrolled || isMenuOpen
+            ? "bg-background/85 backdrop-blur-xl border-b border-border/60"
+            : "bg-transparent border-b border-transparent",
+        )}
       >
         <div className="container mx-auto px-6">
           <div className="relative flex items-center justify-between h-20">
-            {/* Logo */}
-            <a
-              href="#"
-              className="flex items-center gap-3 text-foreground hover:opacity-80 transition-opacity"
-              onClick={(e) => {
-                e.preventDefault();
-                if (isHome) {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                } else {
-                  const base = locale === "en" ? "/" : "/ja";
-                  router.push(base);
-                }
-              }}
+            <TransitionLink
+              href="/"
+              className="flex items-center gap-3 text-foreground transition-opacity hover:opacity-70"
             >
               <Image
                 src="/logo.png"
-                alt="Bonsai Digital"
+                alt=""
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                priority
               />
               <span className="font-serif text-xl font-bold">
                 Bonsai Digital
               </span>
-            </a>
+            </TransitionLink>
 
-            {/* Desktop Navigation — absolutely centered */}
-            <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            {/* Desktop navigation, optically centred in the bar */}
+            <nav
+              className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2"
+              aria-label={t.chrome.menu}
+            >
               {navLinks.map((link) => (
-                <button
+                <TransitionLink
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-foreground/70 hover:text-foreground transition-colors link-underline text-sm font-semibold"
+                  href={link.href}
+                  className="link-underline text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors aria-[current=page]:text-foreground"
                 >
                   {link.name}
-                </button>
+                </TransitionLink>
               ))}
-              <Button
-                variant="default"
-                onClick={() => scrollToSection("/contact")}
-              >
-                {t.navbar.cta}
-              </Button>
-            </div>
+            </nav>
 
-            {/* Language Switcher */}
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center gap-4">
               <LanguageSwitcher />
+              <Magnetic>
+                <Button asChild>
+                  <TransitionLink href="/contact">{t.navbar.cta}</TransitionLink>
+                </Button>
+              </Magnetic>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-foreground"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              ref={menuButtonRef}
+              type="button"
+              className="md:hidden -mr-2 p-2 text-foreground"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? t.chrome.closeMenu : t.chrome.openMenu}
+              onClick={() => setIsMenuOpen((open) => !open)}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
-      </motion.nav>
+      </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background pt-20 md:hidden"
+            id="mobile-menu"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: DURATION.base, ease: EASE.inOutQuint }}
+            className="fixed inset-0 z-40 bg-background pt-24 md:hidden"
           >
-            <div className="flex flex-col items-center gap-8 p-8">
-              {navLinks.map((link, index) => (
-                <motion.button
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-2xl font-serif text-foreground"
-                >
-                  {link.name}
-                </motion.button>
+            <motion.nav
+              variants={stagger(STAGGER.loose, 0.15)}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col gap-2 px-8"
+              aria-label={t.chrome.menu}
+            >
+              {navLinks.map((link) => (
+                <span className="mask-line" key={link.name}>
+                  <motion.span variants={maskRise} className="block">
+                    <TransitionLink
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block py-3 font-serif text-4xl text-foreground"
+                    >
+                      {link.name}
+                    </TransitionLink>
+                  </motion.span>
+                </span>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex flex-col items-center gap-4"
-              >
-                <LanguageSwitcher />
-                <Button
-                  variant="hero"
-                  onClick={() => scrollToSection("/contact")}
+            </motion.nav>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: DURATION.base }}
+              className="mt-10 flex flex-col items-start gap-5 px-8"
+            >
+              <Button asChild variant="hero" className="w-full">
+                <TransitionLink
+                  href="/contact"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {t.navbar.cta}
-                </Button>
-              </motion.div>
-            </div>
+                </TransitionLink>
+              </Button>
+              <LanguageSwitcher />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CalendarDays,
@@ -11,10 +10,12 @@ import {
   ListChecks,
   Video,
 } from "lucide-react";
-import Link from "next/link";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/layout/SectionHeading";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
+import { fadeRise, STAGGER, viewportOnce } from "@/lib/motion";
+import { cn, textAlign } from "@/lib/utils";
 
 const formatIcons = [Video, ListChecks, Laptop, Languages];
 
@@ -89,45 +90,20 @@ const PythonPreview = () => (
 const coursePreviews = [ScratchPreview, PythonPreview];
 
 const Education = () => {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
-  const ctaRef = useRef(null);
-  const isCtaInView = useInView(ctaRef, { once: true, margin: "-80px" });
   const { t, locale } = useTranslation();
-  const contactHref = locale === "en" ? "/contact" : "/ja/contact";
 
   return (
     <>
       {/* Page header */}
       <section className="pt-32 pb-12 md:pb-16">
         <div className="container mx-auto px-6">
-          <motion.div
-            ref={headerRef}
-            initial={{ opacity: 0, y: 30 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-            }
-            transition={{ duration: 0.6 }}
-            className={cn(
-              "max-w-2xl mx-auto",
-              locale === "ja" ? "text-left" : "text-center"
-            )}
-          >
-            <span
-              className={cn(
-                "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
-                locale === "ja" && "text-base"
-              )}
-            >
-              {t.education.label}
-            </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              {t.education.heading}
-            </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {t.education.description}
-            </p>
-          </motion.div>
+          <SectionHeading
+            eyebrow={t.education.label}
+            heading={t.education.heading}
+            lede={t.education.description}
+            as="h1"
+            trigger="mount"
+          />
         </div>
       </section>
 
@@ -140,10 +116,11 @@ const Education = () => {
               return (
                 <motion.article
                   key={course.name}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6, delay: index * 0.12 }}
+                  variants={fadeRise}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
+                  transition={{ delay: index * STAGGER.loose }}
                   className="rounded-[1.75rem] p-6 md:p-8 bg-card border border-border/60 shadow-sm flex flex-col gap-6"
                 >
                   <ScreenshotFrame>
@@ -160,7 +137,7 @@ const Education = () => {
                   </div>
 
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-serif font-bold leading-tight text-foreground">
+                    <h2 className="type-h3 text-foreground">
                       {course.name}
                     </h2>
                     <p className="text-sm text-muted-foreground mt-1">
@@ -196,7 +173,7 @@ const Education = () => {
           <p
             className={cn(
               "max-w-5xl mx-auto mt-8 text-sm text-muted-foreground/80 leading-relaxed",
-              locale === "ja" ? "text-left" : "text-center"
+              textAlign(locale)
             )}
           >
             {t.education.agesFootnote}
@@ -207,28 +184,11 @@ const Education = () => {
       {/* How lessons work */}
       <section className="section-padding bg-secondary/20">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className={cn(
-              "max-w-2xl mx-auto mb-14",
-              locale === "ja" ? "text-left" : "text-center"
-            )}
-          >
-            <span
-              className={cn(
-                "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
-                locale === "ja" && "text-base"
-              )}
-            >
-              {t.education.format.label}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
-              {t.education.format.heading}
-            </h2>
-          </motion.div>
+          <SectionHeading
+            eyebrow={t.education.format.label}
+            heading={t.education.format.heading}
+            className="mb-14"
+          />
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {t.education.format.items.map((item, index) => {
@@ -236,10 +196,11 @@ const Education = () => {
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  variants={fadeRise}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
+                  transition={{ delay: index * STAGGER.loose }}
                   className="rounded-2xl bg-card border border-border/60 p-6 md:p-8"
                 >
                   <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
@@ -260,16 +221,16 @@ const Education = () => {
 
       {/* Trial lesson CTA */}
       <section
-        ref={ctaRef}
         className="relative overflow-hidden bg-foreground border-y border-primary/20 py-20 md:py-28"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="inline-flex items-center gap-2 mb-6"
           >
             <CalendarDays className="w-4 h-4 text-primary" />
@@ -279,41 +240,47 @@ const Education = () => {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 28 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-background leading-[1.1] mb-6"
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            transition={{ delay: 0.1 }}
+            className="type-h1 text-background mb-6"
           >
             {t.education.cta.heading}
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            transition={{ delay: 0.2 }}
             className="text-background/55 text-lg leading-relaxed mb-10 max-w-xl mx-auto"
           >
             {t.education.cta.description}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button asChild variant="hero" className="group">
-              <Link href={contactHref}>
+              <TransitionLink href="/contact">
                 {t.education.cta.cta}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </TransitionLink>
             </Button>
-            <Link
-              href={contactHref}
+            <TransitionLink
+              href="/contact"
               className="text-background/50 hover:text-background/80 text-sm font-medium transition-colors underline underline-offset-4"
             >
               {t.education.cta.ctaAlt}
-            </Link>
+            </TransitionLink>
           </motion.div>
         </div>
       </section>

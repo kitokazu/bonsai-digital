@@ -1,50 +1,29 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { Bot, Check, Globe, Wrench } from "lucide-react";
-import Link from "next/link";
+import { SectionHeading } from "@/components/layout/SectionHeading";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
+import { fadeRise, STAGGER, viewportOnce } from "@/lib/motion";
+import { cn, textAlign } from "@/lib/utils";
 
 const bucketIcons = [Globe, Bot, Wrench];
 
 const WhatWeDo = () => {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
   const { t, locale } = useTranslation();
-  const contactHref = locale === "en" ? "/contact" : "/ja/contact";
 
   return (
     <section id="services" className="section-padding bg-secondary/20">
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className={cn(
-            "max-w-2xl mx-auto mb-16",
-            locale === "ja" ? "text-left" : "text-center"
-          )}
-        >
-          <span
-            className={cn(
-              "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
-              locale === "ja" && "text-base"
-            )}
-          >
-            {t.whatWeDo.label}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            {t.whatWeDo.heading}
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {t.whatWeDo.description}
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow={t.whatWeDo.label}
+          heading={t.whatWeDo.heading}
+          lede={t.whatWeDo.description}
+          className="mb-16"
+        />
 
         {/* Pricing cards — subgrid keeps header, description, price, CTA, and
             checklist rows aligned across all three cards on desktop */}
@@ -55,12 +34,14 @@ const WhatWeDo = () => {
             return (
               <motion.div
                 key={bucket.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: index * 0.12 }}
+                variants={fadeRise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+                transition={{ delay: index * STAGGER.loose }}
                 className={cn(
                   "rounded-[1.75rem] p-8 shadow-sm flex flex-col gap-6 lg:grid lg:grid-rows-subgrid lg:row-span-5",
+                  "transition-shadow duration-500 hover:shadow-[var(--card-shadow-hover)]",
                   dark
                     ? "bg-foreground text-background"
                     : "bg-card text-foreground border border-border/60"
@@ -127,18 +108,22 @@ const WhatWeDo = () => {
                 </div>
 
                 {/* CTA */}
-                <Button
-                  asChild
-                  variant={dark ? "default" : "outline"}
-                  size="lg"
-                  className={cn(
-                    "w-full",
-                    dark &&
-                      "bg-background text-foreground hover:bg-background/90"
-                  )}
-                >
-                  <Link href={contactHref}>{t.whatWeDo.cta}</Link>
-                </Button>
+                <Magnetic className="w-full">
+                  <Button
+                    asChild
+                    variant={dark ? "default" : "outline"}
+                    size="lg"
+                    className={cn(
+                      "w-full",
+                      dark &&
+                        "bg-background text-foreground hover:bg-background/90"
+                    )}
+                  >
+                    <TransitionLink href="/contact">
+                      {t.whatWeDo.cta}
+                    </TransitionLink>
+                  </Button>
+                </Magnetic>
 
                 {/* What's included */}
                 <div
@@ -179,7 +164,7 @@ const WhatWeDo = () => {
         <p
           className={cn(
             "max-w-5xl mx-auto mt-8 text-sm text-muted-foreground/80 leading-relaxed",
-            locale === "ja" ? "text-left" : "text-center"
+            textAlign(locale)
           )}
         >
           {t.whatWeDo.footnote}
