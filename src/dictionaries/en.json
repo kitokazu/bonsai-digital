@@ -242,6 +242,21 @@
       "Bosch",
       "Woven",
       "Toyota"
+    ],
+    "valuesLabel": "How I work",
+    "values": [
+      {
+        "title": "Speed",
+        "description": "Usually there is a working demo within a week. Often I build it before we even meet, so the first conversation is about something real instead of a proposal."
+      },
+      {
+        "title": "Built from scratch",
+        "description": "No templates and no page builders. Everything is written for your business, which makes it quicker to load, safer to run, and possible to change later without starting over."
+      },
+      {
+        "title": "Made for real users",
+        "description": "The people using it are usually not technical, and often on a phone in a hurry. It gets designed for them and tested on real devices, not just in a browser on my desk."
+      }
     ]
   },
   "contact": {

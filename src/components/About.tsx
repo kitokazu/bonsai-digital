@@ -1,5 +1,6 @@
 "use client";
 
+import { Code2, ScanEye, Zap } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -18,6 +19,8 @@ import { cn } from "@/lib/utils";
  * Wants a squarish crop, roughly 1000px on the short edge.
  */
 const PORTRAIT_SRC = "/portrait.jpg";
+
+const valueIcons = [Zap, Code2, ScanEye];
 
 // Drop logo files here and they render automatically.
 // Any company without a matching file falls back to a text label.
@@ -173,6 +176,44 @@ const About = ({ variant = "section" }: AboutProps) => {
               </p>
             </figcaption>
           </Reveal>
+        </div>
+
+        {/*
+          Three, not the previous four. "Long-term partnership" said the same
+          thing as paragraph3 above, and "Quality" plus "User experience" were
+          two ways of claiming care, so they are folded into one claim that
+          names who it is actually for. Each of these three is checkable,
+          which is the difference between a differentiator and a virtue.
+        */}
+        <div className="mt-20 border-t border-border/60 pt-12">
+          <Reveal as="p" blur={false} className="type-eyebrow mb-8">
+            {t.about.valuesLabel}
+          </Reveal>
+
+          <RevealGroup
+            as="ul"
+            each={STAGGER.loose}
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {t.about.values.map((value, index) => {
+              const Icon = valueIcons[index];
+              return (
+                <RevealItem
+                  as="li"
+                  key={value.title}
+                  className="group rounded-2xl border border-border/50 bg-card p-6 transition-colors duration-300 hover:border-primary/30"
+                >
+                  <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-transform duration-500 ease-expo group-hover:-translate-y-0.5">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h3 className="type-h3 mb-2 text-foreground">{value.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {value.description}
+                  </p>
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
         </div>
       </div>
     </section>
