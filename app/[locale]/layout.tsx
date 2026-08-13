@@ -22,9 +22,11 @@ const inter = Inter({
   display: "swap",
 });
 
+/* The search snippet. Kept in step with about.paragraph1 in the dictionaries,
+   which is the other block search engines tend to pull from. */
 const descriptions: Record<Locale, string> = {
-  en: "Japan-based digital agency cultivating your digital growth. We craft websites and applications with precision and care.",
-  ja: "日本拠点のデジタルスタジオ。ウェブサイトからアプリケーションまで、ビジネスに本当に役立つデジタルプロダクトを丁寧に設計し、形にします。",
+  en: "Japan-based digital studio cultivating your digital growth. We build websites, web applications, internal tools, and AI agents with precision and care.",
+  ja: "日本拠点のデジタルスタジオ。ウェブサイトやウェブアプリケーション、社内ツール、AIエージェントまで、ビジネスに本当に役立つデジタルプロダクトを丁寧に設計し、形にします。",
 };
 
 export function generateMetadata({

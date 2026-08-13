@@ -76,12 +76,17 @@ export const fade: Variants = {
 /**
  * Word-mask reveal: the child rides up inside an `overflow: hidden` wrapper.
  *
+ * 130%, not 100%. The mask is padded past the line box so it does not shave
+ * ascenders and descenders (see `.mask-word` in globals.css), which means the
+ * text has to clear that padding too. At the tight leading these headings use,
+ * anything under ~120% leaves a sliver of type showing below the mask.
+ *
  * Transform-only on purpose. Chrome skips `opacity: 0` elements when picking
  * the LCP candidate, so fading a headline in adds its full delay plus duration
  * to the reported LCP.
  */
 export const maskRise: Variants = {
-  hidden: { y: "110%" },
+  hidden: { y: "130%" },
   visible: { y: "0%", transition: transition(DURATION.long) },
 };
 

@@ -311,19 +311,29 @@
  */
 
 /* Word / line masks used by MaskHeading and the preloader. */
+/*
+ * Line wrapper only. It deliberately does NOT clip: the mask-word inside is
+ * what hides the text, and it needs to bleed past the line box to do so
+ * without shaving the type. Clipping here as well caps everything at the line
+ * height, which at display sizes cut the tails off every g and y.
+ */
 .mask-line {
   display: block;
-  overflow: hidden;
 }
 
 .mask-word {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  /* An exact-height mask clips descenders; the padding buys them room and the
-     negative margin hands it back to the layout. */
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+  /*
+   * A mask cut to the exact line box shears the type, and display sizes run
+   * tighter leading than the font's own metrics, so it loses room at both
+   * ends. Cormorant is a Garamond revival with long extenders, which makes it
+   * obvious. The padding buys the glyphs room and the negative margin hands
+   * the space straight back to the layout, so nothing shifts.
+   */
+  padding-block: 0.2em;
+  margin-block: -0.2em;
 }
 
 .mask-word > span {
@@ -331,12 +341,6 @@
   will-change: transform;
 }
 
-/* Kanji fill the em box top to bottom, so a mask cut to the Latin metrics
-   shaves the top of the glyph. Same trick as the descender padding below. */
-:lang(ja) .mask-word {
-  padding-top: 0.1em;
-  margin-top: -0.1em;
-}
 
 /* ------------------------------------------------------------------ curtain */
 
@@ -354,6 +358,19 @@
   /* A hairline of sage on the leading edge, so the wipe reads as brand rather
      than as a black rectangle. */
   border-top: 2px solid hsl(var(--primary));
+}
+
+/*
+ * The lighter transition, for moving around inside one area of the site. Page
+ * coloured rather than ink, so it reads as the content dissolving and
+ * reforming instead of a dark shutter coming down every time.
+ */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: hsl(var(--background));
+  pointer-events: none;
 }
 
 .curtain-mark {
@@ -390,7 +407,7 @@
 /* Pre-paint start states, so the first frame is the animation's frame zero
    rather than the finished layout snapping backwards. */
 .js-preload .preloader .mask-word > span {
-  transform: translateY(110%);
+  transform: translateY(130%);
 }
 
 .js-preload .preloader .preloader-rule span {

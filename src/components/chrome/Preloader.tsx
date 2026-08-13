@@ -83,7 +83,7 @@ export function Preloader({ tagline }: { tagline: string }) {
         )
         .add(
           ".mask-word > span",
-          { y: ["110%", "0%"], duration: 900, delay: stagger(70), ease: "out(4)" },
+          { y: ["130%", "0%"], duration: 900, delay: stagger(70), ease: "out(4)" },
           220,
         )
         .add(".preloader-meta", { opacity: [0, 1], duration: 500 }, 620)
@@ -92,7 +92,7 @@ export function Preloader({ tagline }: { tagline: string }) {
         // so it has to read as craft, not as a wait.
         .add(
           ".mask-word > span",
-          { y: ["0%", "-110%"], duration: 560, delay: stagger(45), ease: "in(3)" },
+          { y: ["0%", "-130%"], duration: 560, delay: stagger(45), ease: "in(3)" },
           1180,
         )
         .add(
