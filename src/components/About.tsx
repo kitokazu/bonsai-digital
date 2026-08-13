@@ -12,13 +12,14 @@ import { STAGGER } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * Drop a portrait here and it appears. Until then the monogram below stands in,
- * so the layout is complete either way rather than showing a broken image or a
- * person-shaped hole.
+ * Swap this for a different file and it picks it up. If the file is missing
+ * the monogram below stands in, so the layout is complete either way rather
+ * than showing a broken image.
  *
- * Wants a squarish crop, roughly 1000px on the short edge.
+ * Wants a portrait crop with the face in the upper third; `object-position`
+ * below is tuned to the current file.
  */
-const PORTRAIT_SRC = "/portrait.jpg";
+const PORTRAIT_SRC = "/park_headshot.jpg";
 
 const valueIcons = [Zap, Code2, ScanEye];
 
@@ -84,8 +85,9 @@ const Portrait = ({ alt }: { alt: string }) => {
       alt={alt}
       width={800}
       height={1000}
-      className="aspect-[4/5] w-full rounded-2xl border border-border/60 object-cover"
+      className="aspect-[4/5] w-full rounded-2xl border border-border/60 object-cover object-[38%_18%]"
       onError={() => setFailed(true)}
+      priority={false}
     />
   );
 };
