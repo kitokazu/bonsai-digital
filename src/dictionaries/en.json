@@ -231,12 +231,12 @@
     "name": "Kaito Itokazu",
     "role": "Founder and engineer",
     "portraitAlt": "Kaito Itokazu, founder of Bonsai Digital",
-    "paragraph1": "I am Kaito. I grew up in the US, I live in Tokyo, and I have spent my career as an engineer at Meta, Bosch, and Toyota. Bonsai Digital is the studio I run, building websites, web applications, internal tools, and AI agents for businesses here.",
-    "paragraph2": "Engineering is the part most studios leave until last. System design, clean architecture and security are where I start, because a site that looks right but falls over in real use has not actually solved anything.",
-    "paragraph3": "You work with me directly. No account managers, no ticket queues, and we can do all of it in Japanese or English.",
-    "storyLabel": "Why I started this",
-    "story": "A lot of good businesses in Tokyo are running on a site somebody built ten years ago, or on nothing at all. That is a solvable problem, and fixing it changes how a business gets seen before anyone walks through the door. So I usually build the site first and bring it to the meeting, because it is easier to talk about something you can actually click.",
-    "companiesLabel": "Where I have worked",
+    "paragraph1": "Bonsai Digital is a small studio in Tokyo. We build websites, web apps, internal tools, and lately a lot of AI agents. Before this we were engineers at Meta, Bosch and Toyota, which is where the way we work comes from.",
+    "paragraph2": "Most studios treat the engineering as the last step. We start there. Plenty of sites look fine on launch day and come apart the first time real people use them, and that is almost always a structure problem rather than a design one.",
+    "paragraph3": "You deal with us directly. No account manager, no ticket system. Japanese or English, whichever is easier for you.",
+    "storyLabel": "Why we started",
+    "story": "A lot of good businesses around Tokyo are still running on a site somebody built ten years ago. Some have nothing at all. That is fixable, and it changes the impression people form long before they walk in the door. So we tend to build the site first and bring it to the meeting. It is easier to talk about something you can click than something described in a proposal.",
+    "companiesLabel": "Where we have worked",
     "companies": [
       "Meta",
       "Bosch",
@@ -247,15 +247,15 @@
     "values": [
       {
         "title": "Speed",
-        "description": "Usually there is a working demo within a week. Often I build it before we even meet, so the first conversation is about something real instead of a proposal."
+        "description": "Most of the time there is a working demo inside a week. Often we build it before the first meeting, so you have something to click instead of a proposal to read."
       },
       {
         "title": "Built from scratch",
-        "description": "No templates and no page builders. Everything is written for your business, which makes it quicker to load, safer to run, and possible to change later without starting over."
+        "description": "No templates, no page builders. Everything is written for your business, so it loads faster, holds up better, and can be changed later without a rebuild."
       },
       {
         "title": "Made for real users",
-        "description": "The people using it are usually not technical, and often on a phone in a hurry. It gets designed for them and tested on real devices, not just in a browser on my desk."
+        "description": "The people using it are usually not technical, and usually on a phone. We design for that, and test on real devices rather than a browser window on a laptop."
       }
     ]
   },
