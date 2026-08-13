@@ -2,12 +2,12 @@
 
 import {
   motion,
-  useInView,
   useScroll,
   useTransform,
   type MotionValue,
 } from "framer-motion";
 import { useRef, useState } from "react";
+import { SectionHeading } from "@/components/layout/SectionHeading";
 import {
   MessagesSquare,
   MonitorSmartphone,
@@ -16,7 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
+import { cn, textAlign } from "@/lib/utils";
 import ProcessBonsai from "@/components/ProcessBonsai";
 
 // Real client work, in step order: the site a client came to us with, the
@@ -98,10 +98,7 @@ const StepImage = ({
       </div>
       {caption && (
         <figcaption
-          className={cn(
-            "mt-3 text-sm text-muted-foreground",
-            locale === "ja" ? "text-left" : "text-center"
-          )}
+          className={cn("mt-3 text-sm text-muted-foreground", textAlign(locale))}
         >
           {caption}
         </figcaption>
@@ -166,10 +163,8 @@ const StepCard = ({
 };
 
 const Process = () => {
-  const headerRef = useRef(null);
   const stackRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll({
     target: stackRef,
     offset: ["start start", "end end"],
@@ -241,32 +236,12 @@ const Process = () => {
       </motion.div>
 
       <div className="container mx-auto px-6 relative">
-        {/* Header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className={cn(
-            "max-w-2xl mx-auto mb-16",
-            locale === "ja" ? "text-left" : "text-center"
-          )}
-        >
-          <span
-            className={cn(
-              "text-primary text-sm font-medium tracking-wider uppercase mb-4 block",
-              locale === "ja" && "text-base"
-            )}
-          >
-            {t.process.label}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            {t.process.heading}
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {t.process.description}
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow={t.process.label}
+          heading={t.process.heading}
+          lede={t.process.description}
+          className="mb-16"
+        />
 
         {/* Stacked step cards */}
         <div ref={stackRef} className="max-w-6xl mx-auto space-y-10 pb-8">

@@ -1,89 +1,81 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { ArrowRight, CalendarDays } from "lucide-react";
+
+import { Magnetic } from "@/components/motion/Magnetic";
+import { MaskHeading } from "@/components/motion/MaskHeading";
+import { Reveal } from "@/components/motion/Reveal";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-
-// Replace with your calendar booking URL (e.g. Calendly, Cal.com)
-const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL || "";
+import { cn, textAlign } from "@/lib/utils";
 
 const BookACall = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { t, locale } = useTranslation();
-  const router = useRouter();
-
-  const handleBookCall = () => {
-    router.push(locale === "en" ? "/contact" : "/ja/contact");
-  };
-
-  const handleSendMessage = () => {
-    router.push(locale === "en" ? "/contact" : "/ja/contact");
-  };
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden bg-foreground border-y border-primary/20 py-20 md:py-28"
-    >
+    <section className="relative overflow-hidden border-y border-primary/20 bg-foreground py-20 md:py-28">
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+      <div
+        className={cn(
+          "container relative z-10 mx-auto px-6",
+          textAlign(locale),
+        )}
+      >
+        <Reveal
+          as="span"
+          blur={false}
           className={cn(
-            "inline-flex items-center gap-2 mb-6",
-            locale === "ja" ? "flex w-fit mx-auto" : ""
+            "mb-6 inline-flex items-center gap-2",
+            locale === "ja" && "flex w-fit",
           )}
         >
-          <CalendarDays className="w-4 h-4 text-primary" />
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">
-            {t.bookACall.eyebrow}
-          </span>
-        </motion.div>
+          <CalendarDays className="h-4 w-4 text-primary" />
+          <span className="type-eyebrow inline">{t.bookACall.eyebrow}</span>
+        </Reveal>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 28 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-background leading-[1.1] mb-6"
-        >
-          {t.bookACall.heading}
-        </motion.h2>
+        <MaskHeading
+          text={t.bookACall.heading}
+          delay={0.08}
+          className="type-h1 mb-6 text-background"
+        />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-background/55 text-lg leading-relaxed mb-10 max-w-xl mx-auto"
-        >
-          {t.bookACall.description}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Button variant="hero" onClick={handleBookCall} className="group">
-            {t.bookACall.cta}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Button>
-          <button
-            onClick={handleSendMessage}
-            className="text-background/50 hover:text-background/80 text-sm font-medium transition-colors underline underline-offset-4"
+        <Reveal delay={0.16}>
+          <p
+            className={cn(
+              "mb-10 max-w-xl text-lg leading-relaxed text-background/55",
+              locale === "ja" ? "" : "mx-auto",
+            )}
           >
-            {t.bookACall.ctaAlt}
-          </button>
-        </motion.div>
+            {t.bookACall.description}
+          </p>
+
+          <div
+            className={cn(
+              "flex flex-col gap-4 sm:flex-row",
+              locale === "ja"
+                ? "items-start"
+                : "items-center justify-center",
+            )}
+          >
+            <Magnetic>
+              <Button asChild variant="hero" className="group">
+                <TransitionLink href="/contact">
+                  {t.bookACall.cta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </TransitionLink>
+              </Button>
+            </Magnetic>
+            <TransitionLink
+              href="/contact"
+              className="text-sm font-medium text-background/50 underline underline-offset-4 transition-colors hover:text-background/80"
+            >
+              {t.bookACall.ctaAlt}
+            </TransitionLink>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

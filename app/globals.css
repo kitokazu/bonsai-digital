@@ -59,6 +59,19 @@
     --text-gradient: linear-gradient(135deg, hsl(150 25% 30%) 0%, hsl(150 20% 45%) 100%);
     --card-shadow: 0 4px 20px -4px hsl(200 15% 15% / 0.08);
     --card-shadow-hover: 0 12px 40px -8px hsl(200 15% 15% / 0.15);
+
+    /* Height of the fixed header, mirrored by HEADER_OFFSET in
+       src/hooks/use-scroll-to.ts */
+    --header-h: 5rem;
+
+    /* Motion tokens, kept in sync with src/lib/motion.ts */
+    --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-power3-out: cubic-bezier(0.33, 1, 0.68, 1);
+    --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+    --dur-micro: 200ms;
+    --dur-short: 350ms;
+    --dur-base: 600ms;
+    --dur-long: 900ms;
   }
 
   .dark {
@@ -106,8 +119,37 @@
     @apply border-border;
   }
 
+  html {
+    /* Fallback for native anchor jumps; the smooth path goes through Lenis. */
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+
+  /*
+   * Japanese typography.
+   *
+   * `palt` tightens the built-in side bearings on kana and punctuation, which
+   * otherwise leave visible gaps after 、and 。at display sizes. `line-break:
+   * strict` applies the full kinsoku rules so a line never opens with a small
+   * kana or closing bracket, and the looser leading gives the denser glyphs
+   * room to breathe.
+   */
+  :lang(ja) {
+    font-feature-settings: "palt" 1;
+    line-break: strict;
+    overflow-wrap: anywhere;
+  }
+
+  :lang(ja) p,
+  :lang(ja) li {
+    line-height: 1.9;
   }
 }
 
@@ -133,17 +175,24 @@
     transform: translateY(-2px);
   }
 
-  /* Link underline animation */
+  /*
+   * Link underline: wipes in from the left on hover, out to the right on
+   * leave. A hairline in the link's own colour, sitting below the baseline,
+   * rather than the old 2px primary bar butted against the text.
+   */
   .link-underline {
     @apply relative;
   }
 
   .link-underline::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary origin-bottom-right scale-x-0 transition-transform duration-300 ease-out;
+    @apply absolute -bottom-1 left-0 h-px w-full origin-bottom-right scale-x-0 bg-current;
+    transition: transform var(--dur-short) var(--ease-expo-out);
   }
 
-  .link-underline:hover::after {
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after,
+  .link-underline[aria-current="page"]::after {
     @apply origin-bottom-left scale-x-100;
   }
 
@@ -167,6 +216,64 @@
   }
 }
 
+@layer components {
+  /*
+   * Type scale.
+   *
+   * Headings were previously sized ad hoc at every call site, which is why the
+   * same rank rendered at three different sizes across sections. These clamp
+   * between the mobile and desktop ends, so a heading is chosen by rank rather
+   * than by pixel guess.
+   */
+  .type-display {
+    @apply font-serif font-bold leading-[1.06] tracking-[-0.02em];
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+  }
+
+  .type-h1 {
+    @apply font-serif font-bold leading-[1.1] tracking-[-0.015em];
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+  }
+
+  .type-h2 {
+    @apply font-serif font-bold leading-[1.15] tracking-[-0.01em];
+    font-size: clamp(2rem, 3.6vw, 3rem);
+  }
+
+  .type-h3 {
+    @apply font-serif font-semibold leading-snug;
+    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  }
+
+  .type-lede {
+    @apply text-muted-foreground leading-relaxed;
+    font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
+  }
+
+  .type-eyebrow {
+    @apply block text-primary font-medium uppercase tracking-[0.16em] text-xs;
+  }
+
+  /* Japanese runs a notch smaller at display sizes: the glyphs carry more ink
+     per character, so matching the Latin size reads as shouting. Uppercase and
+     wide letterspacing do nothing for kana either. */
+  :lang(ja) .type-display {
+    font-size: clamp(2rem, 5.2vw, 4rem);
+  }
+
+  :lang(ja) .type-h1 {
+    font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+  }
+
+  :lang(ja) .type-h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+  }
+
+  :lang(ja) .type-eyebrow {
+    @apply text-sm normal-case tracking-[0.06em];
+  }
+}
+
 @layer utilities {
   .section-padding {
     @apply py-20 md:py-32;
@@ -174,5 +281,151 @@
 
   .container-narrow {
     @apply max-w-5xl mx-auto px-6;
+  }
+}
+
+/* ------------------------------------------------------------- motion chrome
+ *
+ * The rule that governs everything below: the default, un-animated state must
+ * be the finished, visible layout. Anything that starts hidden is hidden by JS
+ * after mount (Framer Motion writes initial styles inline) or is decorative
+ * chrome that can be skipped outright. A stylesheet that ships `opacity: 0`
+ * and waits for a script leaves a blank page when the script never runs.
+ */
+
+/* Word / line masks used by MaskHeading and the preloader. */
+.mask-line {
+  display: block;
+  overflow: hidden;
+}
+
+.mask-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* An exact-height mask clips descenders; the padding buys them room and the
+     negative margin hands it back to the layout. */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.mask-word > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ curtain */
+
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  pointer-events: none;
+}
+
+.curtain-panel {
+  background: hsl(var(--foreground));
+  /* A hairline of sage on the leading edge, so the wipe reads as brand rather
+     than as a black rectangle. */
+  border-top: 2px solid hsl(var(--primary));
+}
+
+.curtain-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
+  color: hsl(var(--background));
+}
+
+/* ---------------------------------------------------------------- preloader */
+
+/* Hidden unless the pre-paint script opts in. See Preloader.tsx: without JS
+   there is nothing to dismiss the overlay, so the safe default is "absent". */
+.preloader {
+  display: none;
+}
+
+.js-preload .preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.75rem;
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+/* Pre-paint start states, so the first frame is the animation's frame zero
+   rather than the finished layout snapping backwards. */
+.js-preload .preloader .mask-word > span {
+  transform: translateY(110%);
+}
+
+.js-preload .preloader .preloader-rule span {
+  transform: scaleX(0);
+}
+
+.js-preload .preloader .preloader-meta {
+  opacity: 0;
+}
+
+.preloader-words {
+  display: flex;
+  gap: 0.3em;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.preloader-rule {
+  width: min(280px, 60vw);
+  height: 1px;
+  background: hsl(var(--background) / 0.14);
+  overflow: hidden;
+}
+
+.preloader-rule span {
+  display: block;
+  height: 100%;
+  background: hsl(var(--primary));
+  /* Opens from the centre out. */
+  transform-origin: 50% 50%;
+}
+
+.preloader-meta {
+  color: hsl(var(--background) / 0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+:lang(ja) .preloader-meta {
+  letter-spacing: 0.08em;
+  text-transform: none;
+  font-size: 0.75rem;
+}
+
+/* ----------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

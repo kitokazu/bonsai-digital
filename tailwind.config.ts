@@ -62,6 +62,13 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      /* Mirrors EASE in src/lib/motion.ts, so a CSS transition and a Framer
+         Motion tween decelerate identically. */
+      transitionTimingFunction: {
+        expo: "var(--ease-expo-out)",
+        power3: "var(--ease-power3-out)",
+        quint: "var(--ease-in-out-quint)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -109,7 +116,9 @@ export default {
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
-        marquee: "marquee 150s linear infinite",
+        /* Duration is a per-instance variable so a track can be paced to its
+           own content length; 90s is the fallback for callers that skip it. */
+        marquee: "marquee var(--marquee-duration, 90s) linear infinite",
       },
     },
   },

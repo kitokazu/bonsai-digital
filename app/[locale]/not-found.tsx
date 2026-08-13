@@ -1,25 +1,34 @@
 "use client";
 
-import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+import { MaskHeading } from "@/components/motion/MaskHeading";
+import { Reveal } from "@/components/motion/Reveal";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { useTranslation } from "@/lib/i18n";
 
 export default function NotFound() {
-  const { t, locale } = useTranslation();
-  const homeHref = locale === "en" ? "/" : "/ja";
+  const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">{t.notFound.title}</h1>
-        <p className="mb-4 text-xl text-muted-foreground">
-          {t.notFound.message}
-        </p>
-        <Link
-          href={homeHref}
-          className="text-primary underline hover:text-primary/90"
-        >
-          {t.notFound.link}
-        </Link>
+    <div className="flex min-h-[80svh] items-center justify-center px-6">
+      <div className="max-w-lg text-center">
+        <MaskHeading
+          as="h1"
+          trigger="mount"
+          text={t.notFound.title}
+          className="type-h1 mb-4 text-foreground"
+        />
+        <Reveal delay={0.15}>
+          <p className="type-lede mb-8">{t.notFound.message}</p>
+          <TransitionLink
+            href="/"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            {t.notFound.link}
+          </TransitionLink>
+        </Reveal>
       </div>
     </div>
   );

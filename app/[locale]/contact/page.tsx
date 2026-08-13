@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { CalendarDays, Mail, MapPin } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ContactMethods from "@/components/ContactMethods";
+import { MaskHeading } from "@/components/motion/MaskHeading";
 import { useTranslation } from "@/lib/i18n";
+import { blurFadeRise } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export default function ContactPage() {
@@ -30,16 +30,14 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       <section className="pt-36 pb-24 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Left - intro and contact details */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              variants={blurFadeRise}
+              initial="hidden"
+              animate="visible"
               className={cn(
                 "lg:sticky lg:top-32",
                 locale === "ja" ? "text-left" : "text-center lg:text-left"
@@ -49,9 +47,13 @@ export default function ContactPage() {
                 <CalendarDays className="w-4 h-4" />
                 {c.eyebrow}
               </span>
-              <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
-                {c.heading}
-              </h1>
+              <MaskHeading
+                as="h1"
+                trigger="mount"
+                delay={0.1}
+                text={c.heading}
+                className="type-h1 text-foreground mb-6"
+              />
               <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
                 {c.subheading}
               </p>
@@ -96,17 +98,16 @@ export default function ContactPage() {
 
             {/* Right - message or booking */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
+              variants={blurFadeRise}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
             >
               <ContactMethods />
             </motion.div>
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

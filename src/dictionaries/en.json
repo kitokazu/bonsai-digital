@@ -1,4 +1,13 @@
 {
+  "chrome": {
+    "skipToContent": "Skip to content",
+    "backToTop": "Back to top",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "loading": "Loading page",
+    "introTagline": "Crafted from scratch in Japan",
+    "menu": "Menu"
+  },
   "navbar": {
     "whatWeDo": "Pricing",
     "work": "Work",
@@ -292,6 +301,8 @@
     "link": "Return to Home"
   },
   "workDetail": {
+    "previousProject": "Previous project",
+    "nextProject": "Next project",
     "backToWork": "Back to Work",
     "overview": "Overview",
     "whatWeDid": "What We Did",

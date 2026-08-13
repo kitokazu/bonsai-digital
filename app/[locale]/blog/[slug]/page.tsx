@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { notFound, useParams } from "next/navigation";
 import { ArrowLeft, ImageIcon } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { getBlogPost } from "@/lib/blog";
 import { formatBlogDate } from "@/lib/blog-format";
 import { useTranslation } from "@/lib/i18n";
+import { blurFadeRise } from "@/lib/motion";
 
 const ArticleImage = ({ src, alt }: { src: string; alt: string }) => {
   const [failed, setFailed] = useState(false);
@@ -112,7 +111,6 @@ export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const { t, locale } = useTranslation();
   const post = getBlogPost(params.slug);
-  const base = locale === "en" ? "" : "/ja";
 
   if (!post) {
     notFound();
@@ -120,28 +118,26 @@ export default function BlogPostPage() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       <article className="pt-36 pb-24 px-6">
         <div className="container mx-auto max-w-2xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={blurFadeRise}
+            initial="hidden"
+            animate="visible"
           >
-            <Link
-              href={`${base}/blog`}
+            <TransitionLink
+              href="/blog"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-10"
             >
               <ArrowLeft className="w-4 h-4" />
               {t.blog.back}
-            </Link>
+            </TransitionLink>
 
             <p className="text-sm text-muted-foreground mb-4">
               {formatBlogDate(post.date, locale)}
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground leading-tight mb-10">
+            <h1 className="type-h2 text-foreground mb-10">
               {post.title}
             </h1>
 
@@ -149,8 +145,6 @@ export default function BlogPostPage() {
           </motion.div>
         </div>
       </article>
-
-      <Footer />
     </div>
   );
 }

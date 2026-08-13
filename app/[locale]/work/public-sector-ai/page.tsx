@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { WorkPager } from "@/components/layout/WorkPager";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
+import { fadeRise, viewportOnce } from "@/lib/motion";
 
 const showcaseImages = [
   "/public-sector/chatbot-page.png",
@@ -19,28 +19,25 @@ const showcaseImages = [
 export default function PublicSectorAIPage() {
   const { t, locale } = useTranslation();
   const d = t.workDetail.publicSectorAI;
-  const workHref = locale === "en" ? "/work" : "/ja/work";
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       {/* Hero */}
       <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto max-w-5xl">
           <div>
-            <Link
-              href={workHref}
+            <TransitionLink
+              href="/work"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="text-sm font-medium">{t.workDetail.backToWork}</span>
-            </Link>
+            </TransitionLink>
 
-            <span className="text-primary text-sm font-medium tracking-wider uppercase block mb-4">
+            <span className="type-eyebrow mb-4">
               {d.category}
             </span>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
+            <h1 className="type-h1 text-foreground mb-6">
               {d.title}
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">
@@ -82,12 +79,12 @@ export default function PublicSectorAIPage() {
       <section className="px-6 pb-20">
         <div className="container mx-auto max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
+            <h2 className="type-h2 text-foreground mb-6">
               {t.workDetail.overview}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
@@ -101,11 +98,11 @@ export default function PublicSectorAIPage() {
       <section className="px-6 pb-20">
         <div className="container mx-auto max-w-5xl">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-16"
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="type-h2 text-foreground mb-16"
           >
             {t.workDetail.whatWeDid}
           </motion.h2>
@@ -117,10 +114,10 @@ export default function PublicSectorAIPage() {
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
+                  variants={fadeRise}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
                   className={`flex flex-col ${
                     isEven ? "md:flex-row" : "md:flex-row-reverse"
                   } items-center gap-10 md:gap-12`}
@@ -154,10 +151,10 @@ export default function PublicSectorAIPage() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="mt-24 grid sm:grid-cols-2 md:grid-cols-4 gap-6"
           >
             {d.additionalWork.map((item) => (
@@ -178,22 +175,21 @@ export default function PublicSectorAIPage() {
       <section className="px-6 pb-24">
         <div className="container mx-auto max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
-            <Link href={workHref}>
+            <TransitionLink href="/work">
               <Button variant="outline" className="gap-2">
                 <ArrowLeft className="w-4 h-4" />
                 {t.workDetail.backToWork}
               </Button>
-            </Link>
+            </TransitionLink>
           </motion.div>
         </div>
       </section>
-
-      <Footer />
+      <WorkPager />
     </div>
   );
 }

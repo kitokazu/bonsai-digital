@@ -1,88 +1,74 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { useTranslation } from "@/lib/i18n";
-import { localizedPath } from "@/lib/locale-path";
 import Image from "next/image";
 
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { TransitionLink } from "@/components/nav/TransitionLink";
+import { useTranslation } from "@/lib/i18n";
+import { STAGGER } from "@/lib/motion";
+
 const Footer = () => {
-  const { t, locale } = useTranslation();
-  const router = useRouter();
+  const { t } = useTranslation();
 
   const footerLinks = [
     { name: t.navbar.whatWeDo, href: "#services" },
     { name: t.navbar.work, href: "/work" },
     { name: t.navbar.about, href: "#about" },
-    { name: (t.navbar as any).book, href: "/contact" },
+    { name: t.navbar.book, href: "/contact" },
   ];
 
-  const handleFooterLink = (href: string) => {
-    if (href.startsWith("/")) {
-      router.push(localizedPath(href, locale));
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   return (
-    <footer className="bg-foreground text-background py-16">
+    <footer className="bg-foreground py-16 text-background">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3"
-          >
-            <Image
-              src="/logo.png"
-              alt="Bonsai Digital"
-              width={40}
-              height={40}
-              className="w-10 h-10"
-            />
-            <span className="font-serif text-2xl font-semibold">Bonsai Digital</span>
-          </motion.div>
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+          <Reveal blur={false}>
+            <TransitionLink href="/" className="flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10"
+              />
+              <span className="font-serif text-2xl font-semibold">
+                Bonsai Digital
+              </span>
+            </TransitionLink>
+          </Reveal>
 
-          {/* Links */}
-          <motion.nav
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+          <RevealGroup
+            as="ul"
+            each={STAGGER.tight}
             className="flex flex-wrap items-center justify-center gap-8"
           >
             {footerLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => handleFooterLink(link.href)}
-                className="text-background/70 hover:text-background transition-colors text-sm"
-              >
-                {link.name}
-              </button>
+              <RevealItem as="li" key={link.name}>
+                <TransitionLink
+                  href={link.href}
+                  className="text-sm text-background/70 transition-colors hover:text-background"
+                >
+                  {link.name}
+                </TransitionLink>
+              </RevealItem>
             ))}
-          </motion.nav>
+          </RevealGroup>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-background/10 my-10" />
+        <div className="my-10 h-px bg-background/10" />
 
-        {/* Bottom */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/70"
+        <Reveal
+          blur={false}
+          delay={0.1}
+          className="flex flex-col items-center justify-between gap-4 text-sm text-background/70 md:flex-row"
         >
-          <p>{t.footer.copyright.replace("{year}", new Date().getFullYear().toString())}</p>
+          <p>
+            {t.footer.copyright.replace(
+              "{year}",
+              new Date().getFullYear().toString(),
+            )}
+          </p>
           <p>{t.footer.tagline}</p>
-        </motion.div>
+        </Reveal>
       </div>
     </footer>
   );

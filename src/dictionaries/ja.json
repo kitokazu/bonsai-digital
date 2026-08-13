@@ -1,4 +1,13 @@
 {
+  "chrome": {
+    "skipToContent": "本文へスキップ",
+    "backToTop": "ページの先頭へ戻る",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "loading": "ページを読み込んでいます",
+    "introTagline": "日本から、ひとつずつ丁寧に。",
+    "menu": "メニュー"
+  },
   "navbar": {
     "whatWeDo": "料金",
     "work": "実績",
@@ -294,6 +303,8 @@
     "link": "ホームに戻る"
   },
   "workDetail": {
+    "previousProject": "前のプロジェクト",
+    "nextProject": "次のプロジェクト",
     "backToWork": "実績に戻る",
     "overview": "概要",
     "whatWeDid": "制作内容",

@@ -1,157 +1,228 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useTranslation } from "@/lib/i18n";
-import { localizedPath } from "@/lib/locale-path";
-import { cn } from "@/lib/utils";
+import { useRef } from "react";
 
-const projectImages = [
+import { Magnetic } from "@/components/motion/Magnetic";
+import { MaskHeading } from "@/components/motion/MaskHeading";
+import { TransitionLink } from "@/components/nav/TransitionLink";
+import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/lib/i18n";
+import { blurFadeRise, DURATION, EASE, stagger, STAGGER } from "@/lib/motion";
+import { cn, textAlign } from "@/lib/utils";
+import { workProjects } from "@/lib/work";
+
+/* The six most recent projects, in the order they should ride past. Images are
+   chosen for how they read at card size, so they do not always match the still
+   used on the work index. */
+const showcase = [
   { key: "influencerAgency", image: "/uncharted/dashboard.png" },
   { key: "enpadel", image: "/enpadel/scroll-poster.jpg" },
   { key: "ecommerceOps", image: "/apex-autowerks/dashboard.png" },
   { key: "milleGrass", image: "/mille-grass/hero.jpg" },
   { key: "employeeManagement", image: "/rolemap/matrix.png" },
   { key: "nicolita", image: "/nicolita/hero.jpg" },
-];
+] as const;
 
-function ShowcaseCard({
-  title,
-  category,
-  image,
-}: {
+interface ShowcaseItem {
   title: string;
   category: string;
   image: string;
+  slug?: string;
+}
+
+function ShowcaseCard({
+  project,
+  duplicate,
+}: {
+  project: ShowcaseItem;
+  duplicate: boolean;
 }) {
-  return (
-    <div className="group/card relative w-[340px] md:w-[420px] lg:w-[480px] aspect-[3/2] flex-shrink-0 rounded-xl overflow-hidden border border-border/50 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] hover:border-primary/30">
+  const card = (
+    <>
       <Image
-        src={image}
-        alt={title}
+        src={project.image}
+        alt={duplicate ? "" : project.title}
         fill
-        className="object-cover object-top transition-transform duration-500 group-hover/card:scale-105"
+        className="object-cover object-top transition-transform duration-700 group-hover/card:scale-[1.04]"
         sizes="(min-width: 1024px) 480px, (min-width: 768px) 420px, 340px"
       />
-      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover/card:bg-black/55" />
-      <div className="absolute top-0 left-0 right-0 p-4 -translate-y-2 opacity-0 transition-all duration-300 group-hover/card:translate-y-0 group-hover/card:opacity-100">
-        <span className="inline-block px-2.5 py-0.5 rounded-full bg-primary/90 text-primary-foreground text-xs font-medium mb-1.5">
-          {category}
-        </span>
-        <p className="text-white font-medium text-sm drop-shadow-md">{title}</p>
+
+      {/* Caption panel rises out of the bottom edge on hover, rather than the
+          old full-card black wash. */}
+      <div className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 transition-all duration-500 ease-expo group-hover/card:translate-y-0 group-hover/card:opacity-100">
+        <div className="bg-gradient-to-t from-black/85 to-transparent px-5 pb-4 pt-10">
+          <span className="text-xs font-medium uppercase tracking-widest text-white/70">
+            {project.category}
+          </span>
+          <p className="mt-1 font-serif text-lg text-white">{project.title}</p>
+        </div>
       </div>
-    </div>
+    </>
+  );
+
+  const className =
+    "group/card relative w-[340px] md:w-[420px] lg:w-[480px] aspect-[3/2] flex-shrink-0 overflow-hidden rounded-xl border border-border/50 shadow-lg transition-[transform,box-shadow,opacity,filter] duration-500 hover:shadow-2xl hover:!opacity-100 hover:!blur-0 group-hover/track:opacity-40 group-hover/track:blur-[1px]";
+
+  if (!project.slug) {
+    return <div className={className}>{card}</div>;
+  }
+
+  /* The second pass of the track is what makes the loop seamless, so it stays
+     clickable, but it is hidden from assistive tech and taken out of the tab
+     order: the same six projects should only be announced once. */
+  return (
+    <TransitionLink
+      href={`/work/${project.slug}`}
+      className={className}
+      aria-hidden={duplicate || undefined}
+      tabIndex={duplicate ? -1 : undefined}
+    >
+      {card}
+    </TransitionLink>
   );
 }
 
 const Hero = () => {
   const { t, locale } = useTranslation();
-  const router = useRouter();
+  const ref = useRef<HTMLElement>(null);
 
-  const projects = projectImages.map((p) => {
-    const proj = t.hero.projects[p.key as keyof typeof t.hero.projects];
-    return { title: proj.title, category: proj.category, image: p.image };
+  const projects: ShowcaseItem[] = showcase.map((entry) => {
+    const copy = t.hero.projects[entry.key as keyof typeof t.hero.projects];
+    return {
+      title: copy.title,
+      category: copy.category,
+      image: entry.image,
+      slug: workProjects.find((project) => project.id === entry.key)?.slug,
+    };
   });
 
-  const scrollToSection = (href: string) => {
-    if (!href.startsWith("#")) {
-      router.push(localizedPath(href, locale));
-      return;
-    }
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  /* The copy drifts up and dissolves as the section leaves, so the marquee
+     takes over the frame instead of the whole block sliding away together. */
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const copyY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+    <section
+      ref={ref}
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 pt-32 pb-12">
-        <div className={cn("max-w-4xl mx-auto", locale === "ja" ? "text-left" : "text-center")}>
-          {/* Badge */}
+      <motion.div
+        style={{ y: copyY, opacity: copyOpacity }}
+        className="relative z-10 container mx-auto px-6 pb-12 pt-32"
+      >
+        <div className={cn("mx-auto max-w-4xl", textAlign(locale))}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className={cn("inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8", locale === "ja" && "flex w-fit mx-auto")}
+            variants={stagger(STAGGER.base, 0.1)}
+            initial="hidden"
+            animate="visible"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            {t.hero.badge}
+            <motion.span
+              variants={blurFadeRise}
+              className={cn(
+                "mb-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary",
+                locale === "ja" && "flex w-fit",
+              )}
+            >
+              <span className="h-2 w-2 rounded-full bg-primary motion-safe:animate-pulse" />
+              {t.hero.badge}
+            </motion.span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className={cn("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] mb-6", locale === "ja" && "text-[clamp(1.6rem,8.2vw,2.25rem)] sm:text-4xl md:text-6xl lg:text-7xl text-left mx-auto w-fit")}
-          >
-            {t.hero.headline1}
-            <br />
-            <span className="text-gradient">{t.hero.headline2}</span>
-          </motion.h1>
+          {/*
+            Transform-only reveal, on purpose. This heading is the LCP element,
+            and Chrome skips `opacity: 0` nodes when picking its candidate, so
+            fading it in would add the whole delay plus duration to the score.
+          */}
+          <MaskHeading
+            as="h1"
+            trigger="mount"
+            delay={0.18}
+            each={STAGGER.tight}
+            text={`${t.hero.headline1}\n${t.hero.headline2}`}
+            accent={[t.hero.headline2]}
+            // Two masks, one per line. Splitting the first line per word would
+            // stagger "Cultivating" ahead of "Your" and pull the eye sideways
+            // before the gradient line lands.
+            split="lines"
+            className={cn(
+              "type-display mb-6 text-foreground",
+              locale === "ja" && "mx-auto w-fit text-left",
+            )}
+          />
 
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            {t.hero.subheadline}
-          </motion.p>
-
-          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            variants={stagger(STAGGER.base, 0.5)}
+            initial="hidden"
+            animate="visible"
           >
-            <Button
-              variant="hero"
-              onClick={() => scrollToSection("/contact")}
-              className="group"
+            <motion.p
+              variants={blurFadeRise}
+              className={cn(
+                "type-lede mb-10 max-w-2xl",
+                locale === "ja" ? "" : "mx-auto",
+              )}
             >
-              {t.hero.cta1}
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              variant="heroOutline"
-              onClick={() => scrollToSection("/work")}
+              {t.hero.subheadline}
+            </motion.p>
+
+            <motion.div
+              variants={blurFadeRise}
+              className={cn(
+                "flex flex-col gap-4 sm:flex-row",
+                locale === "ja" ? "items-start" : "items-center justify-center",
+              )}
             >
-              {t.hero.cta2}
-            </Button>
+              <Magnetic>
+                <Button asChild variant="hero" className="group">
+                  <TransitionLink href="/contact">
+                    {t.hero.cta1}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </TransitionLink>
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button asChild variant="heroOutline">
+                  <TransitionLink href="/work">{t.hero.cta2}</TransitionLink>
+                </Button>
+              </Magnetic>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Project Showcase Marquee — full viewport width */}
+      {/* Project showcase, full viewport width */}
       <motion.div
-        initial={{ opacity: 0, y: 100, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{
-          duration: 1,
-          delay: 0.5,
-          ease: [0.25, 0.46, 0.45, 0.94],
-        }}
-        className="relative mt-8 md:mt-12 w-full"
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: DURATION.long + 0.2, delay: 0.6, ease: EASE.expoOut }}
+        className="relative mt-8 w-full md:mt-12"
       >
-        {/* Marquee track */}
+        {/* Feathered edges, so cards leave the frame instead of being sliced
+            off by the viewport. */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-28" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-28" />
+
+        {/* Hovering the track dims every card except the one under the cursor
+            and holds the scroll, so a project can actually be read. */}
         <div
-          className="flex gap-5 animate-marquee motion-reduce:[animation-play-state:paused]"
-          style={{ width: "max-content" }}
+          className="group/track flex w-max gap-5 animate-marquee hover:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]"
+          style={{ ["--marquee-duration" as string]: "72s" }}
         >
-          {/* Render twice for seamless loop */}
-          {[...projects, ...projects].map((project, i) => (
-            <ShowcaseCard key={`${project.title}-${i}`} {...project} />
+          {[...projects, ...projects].map((project, index) => (
+            <ShowcaseCard
+              key={`${project.title}-${index}`}
+              project={project}
+              duplicate={index >= projects.length}
+            />
           ))}
         </div>
       </motion.div>
