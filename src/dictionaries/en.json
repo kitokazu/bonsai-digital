@@ -193,14 +193,12 @@
     "label": "Our process",
     "heading": "How we work",
     "description": "Most projects run through the same four steps. You will have something real to click within the first week, and you will never have to guess what happens next.",
-    "durationLabel": "Takes",
     "roleLabel": "What we need from you",
     "steps": [
       {
         "label": "Listen",
         "title": "Understand the need",
         "description": "We talk about how the business actually runs, what customers ask you for most, and where the current site or process gets in the way. No forms, no discovery questionnaire.",
-        "duration": "About an hour",
         "role": "One conversation, in person or online.",
         "caption": "CG Online Academy, the site as we first saw it"
       },
@@ -208,7 +206,6 @@
         "label": "Build",
         "title": "Build a working demo",
         "description": "We build a real, clickable version using your actual content, not a wireframe and not a flat mockup. You see your own business on screen before you have committed to anything.",
-        "duration": "3 to 5 days",
         "role": "Nothing at all. We come back to you when it is ready.",
         "caption": "The working demo from our first meeting"
       },
@@ -216,7 +213,6 @@
         "label": "Refine",
         "title": "You see it, then we refine",
         "description": "You click through it, show it to whoever else needs to weigh in, and tell us what is wrong. We adjust and send it back. Two or three rounds is usually enough.",
-        "duration": "1 to 2 weeks",
         "role": "Your honest reaction, plus any photos or text only you have.",
         "caption": "Lesson pages shaped by client feedback"
       },
@@ -224,7 +220,6 @@
         "label": "Ship",
         "title": "Ship and keep improving",
         "description": "We handle the domain, the hosting, the analytics and the handover. After launch we stay on to maintain it and keep adding to it as the business changes.",
-        "duration": "Launch day, then ongoing",
         "role": "Approve the launch. We take care of the rest.",
         "caption": "A client dashboard, live and growing"
       }
