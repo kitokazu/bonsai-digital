@@ -1,16 +1,15 @@
 "use client";
 
+import { Code2, ScanEye, Zap } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-import { CountUp } from "@/components/motion/CountUp";
 import { MaskHeading } from "@/components/motion/MaskHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { ClipReveal } from "@/components/motion/ScrollEffects";
 import { useTranslation } from "@/lib/i18n";
 import { STAGGER } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-import { workProjects } from "@/lib/work";
 
 /**
  * Drop a portrait here and it appears. Until then the monogram below stands in,
@@ -21,16 +20,18 @@ import { workProjects } from "@/lib/work";
  */
 const PORTRAIT_SRC = "/portrait.jpg";
 
+const valueIcons = [Zap, Code2, ScanEye];
+
 // Drop logo files here and they render automatically.
 // Any company without a matching file falls back to a text label.
 // Heights are per logo because the source images have different aspect
 // ratios (square marks read smaller than wide wordmarks at equal height).
 const companyLogos: Record<string, { src: string; heightClass: string }> = {
-  Meta: { src: "/logos/meta.png", heightClass: "h-11" },
-  Bosch: { src: "/logos/bosch.png", heightClass: "h-11" },
-  Woven: { src: "/logos/woven.png", heightClass: "h-11" },
-  Toyota: { src: "/logos/toyota.png", heightClass: "h-8" },
-  トヨタ: { src: "/logos/toyota.png", heightClass: "h-8" },
+  Meta: { src: "/logos/meta.png", heightClass: "h-12" },
+  Bosch: { src: "/logos/bosch.png", heightClass: "h-12" },
+  Woven: { src: "/logos/woven.png", heightClass: "h-12" },
+  Toyota: { src: "/logos/toyota.png", heightClass: "h-9" },
+  トヨタ: { src: "/logos/toyota.png", heightClass: "h-9" },
 };
 
 const CompanyLogo = ({ name }: { name: string }) => {
@@ -69,7 +70,7 @@ const Portrait = ({ alt }: { alt: string }) => {
   if (failed) {
     return (
       <div
-        className="flex aspect-[4/5] w-full items-center justify-center border border-border/60 bg-secondary/40"
+        className="flex aspect-[4/5] w-full items-center justify-center rounded-2xl border border-border/60 bg-secondary/40"
         aria-hidden="true"
       >
         <span className="font-serif text-6xl text-primary/25">BD</span>
@@ -83,7 +84,7 @@ const Portrait = ({ alt }: { alt: string }) => {
       alt={alt}
       width={800}
       height={1000}
-      className="aspect-[4/5] w-full object-cover"
+      className="aspect-[4/5] w-full rounded-2xl border border-border/60 object-cover"
       onError={() => setFailed(true)}
     />
   );
@@ -98,21 +99,9 @@ interface AboutProps {
   variant?: "section" | "page";
 }
 
-/**
- * About.
- *
- * Laid out as an editorial profile rather than a stack of cards: a narrow left
- * rail carrying the person and the countable facts, the argument at full width
- * beside it, and the three claims set in a hairline grid.
- *
- * Rounded cards with tinted icon chips are the shadcn default look, and they
- * read as a template. Rules and numerals do the same organising work while
- * looking like a decision.
- */
 const About = ({ variant = "section" }: AboutProps) => {
   const { t } = useTranslation();
   const isPage = variant === "page";
-  const facts = t.about.facts;
 
   return (
     <section
@@ -120,52 +109,10 @@ const About = ({ variant = "section" }: AboutProps) => {
       className={cn("section-padding bg-primary/5", isPage && "pt-32")}
     >
       <div className="container mx-auto px-6">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,19rem)_1fr] lg:gap-20">
-          {/* Left rail: the person, then what can be counted */}
-          <div className="order-1">
-            <Reveal blur={false} as="figure">
-              <ClipReveal from={6} radius={2}>
-                <Portrait alt={t.about.portraitAlt} />
-              </ClipReveal>
-              <figcaption className="mt-4">
-                <p className="font-serif text-xl text-foreground">
-                  {t.about.name}
-                </p>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  {t.about.role}
-                </p>
-              </figcaption>
-            </Reveal>
-
-            {/* Countable, not claimable. The project total comes straight from
-                the work list, so it cannot drift out of date. */}
-            <Reveal blur={false} delay={0.1} className="mt-10">
-              <dl className="border-t border-border/60">
-                <div className="flex items-baseline justify-between gap-5 border-b border-border/60 py-3.5">
-                  <dt className="type-eyebrow">{facts.projectsLabel}</dt>
-                  <dd className="text-sm font-medium tabular-nums text-foreground">
-                    <CountUp value={workProjects.length} />
-                  </dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-5 border-b border-border/60 py-3.5">
-                  <dt className="type-eyebrow">{facts.languagesLabel}</dt>
-                  <dd className="text-sm font-medium text-foreground">
-                    {facts.languagesValue}
-                  </dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-5 border-b border-border/60 py-3.5">
-                  <dt className="type-eyebrow">{facts.baseLabel}</dt>
-                  <dd className="text-sm font-medium text-foreground">
-                    {facts.baseValue}
-                  </dd>
-                </div>
-              </dl>
-            </Reveal>
-          </div>
-
-          {/* Right: the argument */}
-          <div className="order-2">
-            <Reveal as="span" className="type-eyebrow mb-5" blur={false}>
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,22rem)] lg:gap-16">
+          {/* Left, the story */}
+          <div className="order-2 lg:order-1">
+            <Reveal as="span" className="type-eyebrow mb-4" blur={false}>
               {t.about.label}
             </Reveal>
 
@@ -178,18 +125,14 @@ const About = ({ variant = "section" }: AboutProps) => {
               )}
             />
 
-            {/* Capped measure. The column is wide enough to run past 100
-                characters a line otherwise, which is roughly double a
-                comfortable read, and worse in Japanese where the glyphs are
-                fixed width. The heading above is free to use the full width. */}
-            <Reveal delay={0.1} className="max-w-[64ch]">
+            <Reveal delay={0.1}>
               <p className="type-lede mb-5">{t.about.paragraph1}</p>
               <p className="type-lede mb-5">{t.about.paragraph2}</p>
               <p className="type-lede">{t.about.paragraph3}</p>
             </Reveal>
 
             {isPage && (
-              <Reveal delay={0.15} className="mt-10 max-w-[64ch]">
+              <Reveal delay={0.15} className="mt-10">
                 <p className="type-eyebrow mb-3">{t.about.storyLabel}</p>
                 <p className="type-lede border-l-2 border-primary/30 pl-6">
                   {t.about.story}
@@ -197,17 +140,13 @@ const About = ({ variant = "section" }: AboutProps) => {
               </Reveal>
             )}
 
-            {/* Credentials, on a rule rather than in a footnote */}
-            <Reveal
-              delay={0.2}
-              blur={false}
-              className="mt-12 border-t border-border/60 pt-8"
-            >
-              <p className="type-eyebrow mb-6">{t.about.companiesLabel}</p>
+            {/* Credentials, promoted out of the footnote they used to be */}
+            <Reveal delay={0.2} blur={false} className="mt-12">
+              <p className="type-eyebrow mb-5">{t.about.companiesLabel}</p>
               <RevealGroup
                 as="ul"
                 each={STAGGER.tight}
-                className="flex flex-wrap items-center gap-x-10 gap-y-6"
+                className="flex flex-wrap items-center gap-x-9 gap-y-5"
               >
                 {t.about.companies.map((name) => (
                   <RevealItem as="li" key={name}>
@@ -217,36 +156,63 @@ const About = ({ variant = "section" }: AboutProps) => {
               </RevealGroup>
             </Reveal>
           </div>
+
+          {/* Right, the person */}
+          <Reveal
+            as="figure"
+            blur={false}
+            delay={0.1}
+            className="order-1 lg:sticky lg:top-28 lg:order-2"
+          >
+            <ClipReveal from={6} radius={16}>
+              <Portrait alt={t.about.portraitAlt} />
+            </ClipReveal>
+            <figcaption className="mt-4">
+              <p className="font-serif text-xl text-foreground">
+                {t.about.name}
+              </p>
+              <p className="mt-0.5 text-sm text-muted-foreground">
+                {t.about.role}
+              </p>
+            </figcaption>
+          </Reveal>
         </div>
 
-        {/* The three claims, set as a table of rules. No cards and no icon
-            chips: the numerals and the grid carry the structure, which reads
-            as considered rather than assembled from a component library. */}
-        <div className="mt-20">
-          <Reveal as="p" blur={false} className="type-eyebrow mb-6">
+        {/*
+          Three, not the previous four. "Long-term partnership" said the same
+          thing as paragraph3 above, and "Quality" plus "User experience" were
+          two ways of claiming care, so they are folded into one claim that
+          names who it is actually for. Each of these three is checkable,
+          which is the difference between a differentiator and a virtue.
+        */}
+        <div className="mt-20 border-t border-border/60 pt-12">
+          <Reveal as="p" blur={false} className="type-eyebrow mb-8">
             {t.about.valuesLabel}
           </Reveal>
 
           <RevealGroup
             as="ul"
             each={STAGGER.loose}
-            className="grid border-l border-t border-border/60 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {t.about.values.map((value, index) => (
-              <RevealItem
-                as="li"
-                key={value.title}
-                className="border-b border-r border-border/60 p-7 transition-colors duration-300 hover:bg-card sm:min-h-[15rem]"
-              >
-                <b className="type-eyebrow mb-8 block font-normal tabular-nums">
-                  {String(index + 1).padStart(2, "0")}
-                </b>
-                <h3 className="type-h3 mb-3 text-foreground">{value.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {value.description}
-                </p>
-              </RevealItem>
-            ))}
+            {t.about.values.map((value, index) => {
+              const Icon = valueIcons[index];
+              return (
+                <RevealItem
+                  as="li"
+                  key={value.title}
+                  className="group rounded-2xl border border-border/50 bg-card p-6 transition-colors duration-300 hover:border-primary/30"
+                >
+                  <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-transform duration-500 ease-expo group-hover:-translate-y-0.5">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h3 className="type-h3 mb-2 text-foreground">{value.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {value.description}
+                  </p>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </div>

@@ -259,14 +259,7 @@
         "title": "実際に使う人のために",
         "description": "使うのは、パソコンに詳しいわけではない方や、外出先でスマートフォンをご覧になっている方がほとんどです。そうした方に合わせて設計し、公開前に実機で確認します。"
       }
-    ],
-    "facts": {
-      "projectsLabel": "これまでの制作数",
-      "languagesLabel": "対応言語",
-      "languagesValue": "日本語・英語",
-      "baseLabel": "拠点",
-      "baseValue": "東京"
-    }
+    ]
   },
   "contact": {
     "label": "お問い合わせ",

@@ -257,14 +257,7 @@
         "title": "Made for real users",
         "description": "The people using it are usually not technical, and often on a phone in a hurry. It gets designed for them and tested on real devices, not just in a browser on my desk."
       }
-    ],
-    "facts": {
-      "projectsLabel": "Projects delivered",
-      "languagesLabel": "Languages",
-      "languagesValue": "Japanese, English",
-      "baseLabel": "Based in",
-      "baseValue": "Tokyo"
-    }
+    ]
   },
   "contact": {
     "label": "Get in touch",

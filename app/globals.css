@@ -299,14 +299,6 @@
     line-height: 1.5;
   }
 
-  /* A `ch` in Japanese is measured against the Latin "0", but the glyphs that
-     fill the line are full width, so a 64ch column holds roughly twice the
-     characters it would in English. Two thirds gets both languages into the
-     same comfortable measure. */
-  :lang(ja) .max-w-\[64ch\] {
-    max-width: 42ch;
-  }
-
   :lang(ja) .type-eyebrow {
     @apply text-sm normal-case tracking-[0.06em];
   }
