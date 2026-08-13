@@ -228,10 +228,10 @@
   "about": {
     "label": "About us",
     "heading": "Small studio. No shortcuts",
-    "name": "Kai Itokazu",
+    "name": "Kaito Itokazu",
     "role": "Founder and engineer",
-    "portraitAlt": "Kai Itokazu, founder of Bonsai Digital",
-    "paragraph1": "I am Kai. I grew up in the US, I live in Tokyo, and I have spent my career as an engineer at Meta, Bosch, and Toyota. Bonsai Digital is the studio I run, building websites, web applications, internal tools, and AI agents for businesses here.",
+    "portraitAlt": "Kaito Itokazu, founder of Bonsai Digital",
+    "paragraph1": "I am Kaito. I grew up in the US, I live in Tokyo, and I have spent my career as an engineer at Meta, Bosch, and Toyota. Bonsai Digital is the studio I run, building websites, web applications, internal tools, and AI agents for businesses here.",
     "paragraph2": "Engineering is the part most studios leave until last. System design, clean architecture and security are where I start, because a site that looks right but falls over in real use has not actually solved anything.",
     "paragraph3": "You work with me directly. No account managers, no ticket queues, and we can do all of it in Japanese or English.",
     "storyLabel": "Why I started this",
