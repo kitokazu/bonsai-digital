@@ -54,6 +54,7 @@ type Step = {
   label: string;
   title: string;
   description: string;
+  role: string;
   caption?: string;
 };
 
@@ -112,11 +113,13 @@ const StepCard = ({
   index,
   total,
   progress,
+  roleLabel,
 }: {
   step: Step;
   index: number;
   total: number;
   progress: MotionValue<number>;
+  roleLabel: string;
 }) => {
   // Cards already covered by later ones ease back slightly, so the deck
   // reads as layers rather than a hard swap.
@@ -153,6 +156,16 @@ const StepCard = ({
               {step.description}
             </p>
           </div>
+
+          {/* What the step asks of the client. Deliberately no timings: a
+              studio of one cannot promise a date per stage, and a promise you
+              might miss is worth less than not making it. */}
+          <dl className="mt-auto border-t border-border/60 pt-6">
+            <dt className="type-eyebrow mb-1.5">{roleLabel}</dt>
+            <dd className="text-sm leading-relaxed text-muted-foreground">
+              {step.role}
+            </dd>
+          </dl>
         </div>
 
         {/* Screenshot */}
@@ -252,6 +265,7 @@ const Process = () => {
               index={index}
               total={t.process.steps.length}
               progress={scrollYProgress}
+              roleLabel={t.process.roleLabel}
             />
           ))}
         </div>

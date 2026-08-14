@@ -192,30 +192,35 @@
   "process": {
     "label": "Our process",
     "heading": "How we work",
-    "description": "We simplify complex builds into fast, focused sprints that ship real results every week.",
+    "description": "Most projects run through the same four steps. You will have something real to click within the first week, and you will never have to guess what happens next.",
+    "roleLabel": "What we need from you",
     "steps": [
       {
         "label": "Listen",
         "title": "Understand the need",
-        "description": "We start with a real conversation about your business, not a form to fill out.",
+        "description": "We talk about how the business actually runs, what customers ask you for most, and where the current site or process gets in the way. No forms, no discovery questionnaire.",
+        "role": "One conversation, in person or online.",
         "caption": "CG Online Academy, the site as we first saw it"
       },
       {
         "label": "Build",
         "title": "Build a working demo",
-        "description": "We put together a real, working version you can actually click through.",
+        "description": "We build a real, clickable version using your actual content, not a wireframe and not a flat mockup. You see your own business on screen before you have committed to anything.",
+        "role": "Nothing at all. We come back to you when it is ready.",
         "caption": "The working demo from our first meeting"
       },
       {
         "label": "Refine",
         "title": "You see it, then we refine",
-        "description": "You look it over, share it with your team, and we shape it together from there.",
+        "description": "You click through it, show it to whoever else needs to weigh in, and tell us what is wrong. We adjust and send it back. Two or three rounds is usually enough.",
+        "role": "Your honest reaction, plus any photos or text only you have.",
         "caption": "Lesson pages shaped by client feedback"
       },
       {
         "label": "Ship",
         "title": "Ship and keep improving",
-        "description": "We launch, then stick around to maintain it and grow it with you.",
+        "description": "We handle the domain, the hosting, the analytics and the handover. After launch we stay on to maintain it and keep adding to it as the business changes.",
+        "role": "Approve the launch. We take care of the rest.",
         "caption": "A client dashboard, live and growing"
       }
     ]
@@ -223,32 +228,34 @@
   "about": {
     "label": "About us",
     "heading": "Small studio. No shortcuts",
+    "name": "Kaito Itokazu",
+    "role": "Founder and engineer",
+    "portraitAlt": "Kaito Itokazu, founder of Bonsai Digital",
     "paragraph1": "Bonsai Digital is a Japan-based studio run by an engineer raised in the US, with experience at Meta, Bosch, and Toyota. We build websites, web applications, internal tools, AI agents, and AI systems. We are engineers first: proper system design, clean architecture, and security are the baseline here, not an afterthought.",
     "paragraph2": "Building something that stays secure and holds up under real use is engineering, and that is the standard we work to. And whatever you are building, you work directly with the person building it. No account managers, no ticket systems, just clear communication in Japanese or English.",
-    "values": [
-      {
-        "title": "Speed",
-        "description": "We move quickly without cutting corners. You will have something real to review in days, not months."
-      },
-      {
-        "title": "Quality",
-        "description": "Every pixel and every line of code is intentional. Nothing is too small to get right, because the details are usually what people feel even when they cannot name them."
-      },
-      {
-        "title": "User experience",
-        "description": "We design for the people who will actually use it. How something feels to use matters more than how it looks on a spec sheet."
-      },
-      {
-        "title": "Long-term partnership",
-        "description": "You work directly with the person building it. No account managers, no handoffs. And when we launch, we stick around and grow with you."
-      }
-    ],
+    "storyLabel": "Why we started",
+    "story": "A lot of good businesses around Tokyo are still running on a site somebody built ten years ago. Some have nothing at all. That is fixable, and it changes the impression people form long before they walk in the door. So we tend to build the site first and bring it to the meeting. It is easier to talk about something you can click than something described in a proposal.",
     "companiesLabel": "Work experience",
     "companies": [
       "Meta",
       "Bosch",
       "Woven",
       "Toyota"
+    ],
+    "valuesLabel": "How we work",
+    "values": [
+      {
+        "title": "Speed",
+        "description": "Most of the time there is a working demo inside a week. Often we build it before the first meeting, so you have something to click instead of a proposal to read."
+      },
+      {
+        "title": "Built from scratch",
+        "description": "No templates, no page builders. Everything is written for your business, so it loads faster, holds up better, and can be changed later without a rebuild."
+      },
+      {
+        "title": "Made for real users",
+        "description": "The people using it are usually not technical, and usually on a phone. We design for that, and test on real devices rather than a browser window on a laptop."
+      }
     ]
   },
   "contact": {
