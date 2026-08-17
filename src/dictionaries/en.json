@@ -12,7 +12,6 @@
     "whatWeDo": "Pricing",
     "work": "Work",
     "about": "About",
-    "education": "Kids classes",
     "blog": "Blog",
     "cta": "Start a project",
     "book": "Contact"
@@ -804,18 +803,18 @@
   },
   "education": {
     "label": "Education",
-    "heading": "Programming classes for kids",
-    "description": "Alongside our client work, we teach kids how to code. Every lesson is one on one over Zoom, taught in English by the engineer behind Bonsai Digital, who also speaks Japanese.",
-    "courses": [
+    "heading": "One on one coding lessons",
+    "description": "Alongside our client work, we teach people to code, one on one over Zoom. Kids building their first game, teenagers writing real Python, adults who want to finally make the thing they keep talking about. Taught by the engineer behind Bonsai Digital, in English or Japanese.",
+    "tracks": [
       {
         "name": "Scratch",
-        "ages": "Ages 9 to 11",
-        "agesNote": "recommended",
+        "audience": "Ages 9 to 11",
+        "audienceNote": "a good first step",
         "tagline": "A first step into programming",
         "description": "Scratch is a visual programming language built by MIT for kids. Students snap colorful blocks together to make games and animations, and along the way they pick up the ideas every programmer uses, like loops, conditions, and variables. It feels like play, which is exactly why it works.",
-        "learnLabel": "What they'll build and learn:",
+        "learnLabel": "What you'll build and learn:",
         "learn": [
-          "Games and animations they can share with friends",
+          "Games and animations you can share with friends",
           "The basics: loops, conditions, and variables",
           "How to break a big idea into small steps",
           "A finished project every few lessons"
@@ -823,47 +822,89 @@
       },
       {
         "name": "Python",
-        "ages": "Ages 12 to 15",
-        "agesNote": "recommended",
+        "audience": "Ages 12 and up",
+        "audienceNote": "teens and adults",
         "tagline": "Real code, real projects",
-        "description": "Python is a real programming language used at companies like Google and Toyota, and it sits at the center of AI. Students write actual code from the very first lesson, building small games and tools while learning to think the way an engineer does.",
-        "learnLabel": "What they'll build and learn:",
+        "description": "Python is a real programming language used at companies like Google and Toyota, and it sits at the center of AI. You write actual code from the very first lesson, building small games and tools while learning to think the way an engineer does. It works just as well for a 12 year old as for an adult starting from zero.",
+        "learnLabel": "What you'll build and learn:",
         "learn": [
           "Real code, written in a real editor",
           "Functions, data structures, and logic",
-          "Small games and tools they can actually use",
+          "Small games and tools you can actually use",
           "A foundation for AI and more advanced study"
+        ]
+      },
+      {
+        "name": "Web projects",
+        "audience": "Adults and older teens",
+        "audienceNote": "no experience needed",
+        "tagline": "Build something and put it online",
+        "description": "For anyone who wants something to show at the end. You build a real site or a small app with HTML, CSS, and JavaScript, pick up Git along the way, and put it somewhere people can actually visit. Most people get there in about four sessions.",
+        "learnLabel": "What you'll build and learn:",
+        "learn": [
+          "A real site or small app, live on the internet",
+          "HTML, CSS, and JavaScript from the ground up",
+          "Git and GitHub, the way teams actually use them",
+          "Something you can show an employer or a client"
         ]
       }
     ],
-    "agesFootnote": "Ages are a guide, not a rule. If your child is close in age and curious, the trial lesson is a good place to find the right fit.",
+    "tracksFootnote": "Ages are a guide, not a rule. If you're not sure which one fits, the free first lesson is the easiest way to find out.",
     "format": {
       "label": "How lessons work",
       "heading": "Small steps, real progress",
       "items": [
         {
           "title": "One on one, over Zoom",
-          "description": "Every lesson is private, so it moves at your child's pace. Shy kids get room to ask questions, and quick learners never sit around waiting."
+          "description": "Every lesson is private, so it moves at your pace. Beginners get room to ask the obvious questions, and quick learners never sit around waiting."
         },
         {
-          "title": "A real curriculum",
-          "description": "Lessons follow a structured curriculum that builds project by project, so you can see the progress, not just the screen time."
+          "title": "A plan, not just sessions",
+          "description": "We start from what you want to build and work backward into a lesson plan. That way you can see the progress, not just the screen time."
         },
         {
           "title": "Taught by a working engineer",
-          "description": "Kids learn from the engineer behind Bonsai Digital, with experience at Meta, Bosch, and Toyota. The habits they pick up are the real ones."
+          "description": "You learn from the engineer behind Bonsai Digital, with experience at Meta, Bosch, and Toyota. The habits you pick up are the real ones."
         },
         {
-          "title": "Taught in English",
-          "description": "Lessons are in English, so kids get real language practice along with the code. The teacher also speaks Japanese, so beginners never get stuck."
+          "title": "English or Japanese",
+          "description": "Lessons run in English by default, which doubles as language practice for younger students. Japanese is always there when you get stuck, and adults can pick whichever they prefer."
         }
+      ]
+    },
+    "pricing": {
+      "label": "Pricing",
+      "heading": "Pay by the lesson",
+      "description": "No contract and no enrollment fee. Take a single lesson, or a pack of four if you want to keep a rhythm going.",
+      "plans": [
+        {
+          "name": "50 minute lesson",
+          "for": "Best for younger students, usually Scratch",
+          "price": "¥6,000",
+          "unit": "per lesson",
+          "pack": "¥22,000 for four lessons",
+          "note": "Younger students tend to focus better in 50 minutes than in a full hour."
+        },
+        {
+          "name": "60 minute session",
+          "for": "Python, web projects, and adults starting from zero",
+          "price": "¥8,000",
+          "unit": "per session",
+          "pack": "¥30,000 for four sessions",
+          "note": "Student rate: ¥6,000 per session, or ¥22,000 for four."
+        }
+      ],
+      "footnotes": [
+        "The first lesson is free, and there's nothing to pay until you decide to keep going.",
+        "Packs don't expire. Once a week is the usual rhythm, but every other week works too.",
+        "Everything is online over Zoom, scheduled around you."
       ]
     },
     "cta": {
       "eyebrow": "Try a lesson",
       "heading": "The first lesson is free",
-      "description": "Book a free trial lesson. Your child gives it a try, you see how it all works, and then you decide if it's a good fit.",
-      "cta": "Book a trial lesson",
+      "description": "Book a free first lesson. You try it, you see how it works, and then you decide whether to keep going.",
+      "cta": "Book a free lesson",
       "ctaAlt": "Send a message"
     }
   },
