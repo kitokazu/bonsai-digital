@@ -872,34 +872,6 @@
         }
       ]
     },
-    "pricing": {
-      "label": "Pricing",
-      "heading": "Pay by the lesson",
-      "description": "No contract and no enrollment fee. Take a single lesson, or a pack of four if you want to keep a rhythm going.",
-      "plans": [
-        {
-          "name": "50 minute lesson",
-          "for": "Best for younger students, usually Scratch",
-          "price": "¥6,000",
-          "unit": "per lesson",
-          "pack": "¥22,000 for four lessons",
-          "note": "Younger students tend to focus better in 50 minutes than in a full hour."
-        },
-        {
-          "name": "60 minute session",
-          "for": "Python, web projects, and adults starting from zero",
-          "price": "¥8,000",
-          "unit": "per session",
-          "pack": "¥30,000 for four sessions",
-          "note": "Student rate: ¥6,000 per session, or ¥22,000 for four."
-        }
-      ],
-      "footnotes": [
-        "The first lesson is free, and there's nothing to pay until you decide to keep going.",
-        "Packs don't expire. Once a week is the usual rhythm, but every other week works too.",
-        "Everything is online over Zoom, scheduled around you."
-      ]
-    },
     "cta": {
       "eyebrow": "Try a lesson",
       "heading": "The first lesson is free",

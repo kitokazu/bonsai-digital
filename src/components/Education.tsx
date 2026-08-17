@@ -252,64 +252,6 @@ const Education = () => {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6">
-          <SectionHeading
-            eyebrow={t.education.pricing.label}
-            heading={t.education.pricing.heading}
-            lede={t.education.pricing.description}
-            className="mb-14"
-          />
-
-          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
-            {t.education.pricing.plans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                variants={fadeRise}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
-                transition={{ delay: index * STAGGER.loose }}
-                className="rounded-[1.75rem] bg-card border border-border/60 p-8 flex flex-col text-left"
-              >
-                <h3 className="text-lg font-semibold text-foreground">
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">{plan.for}</p>
-
-                <p className="mt-7 flex items-baseline gap-2">
-                  <span className="font-serif text-4xl text-foreground">
-                    {plan.price}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {plan.unit}
-                  </span>
-                </p>
-                <p className="mt-2 text-sm font-medium text-primary">
-                  {plan.pack}
-                </p>
-
-                <p className="mt-auto pt-7 text-sm leading-relaxed text-muted-foreground">
-                  {plan.note}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          <ul
-            className={cn(
-              "max-w-4xl mx-auto mt-8 space-y-2 text-sm text-muted-foreground/80 leading-relaxed",
-              textAlign(locale)
-            )}
-          >
-            {t.education.pricing.footnotes.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       {/* Trial lesson CTA */}
       <section
         className="relative overflow-hidden bg-foreground border-y border-primary/20 py-20 md:py-28"
