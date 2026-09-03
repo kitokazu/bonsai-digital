@@ -895,18 +895,8 @@
         "readMore": "Read the full testimonial",
     "items": [
       {
-        "id": "taisei",
-        "quote": "Kai is always easy and great to work with. He always takes the time to really understand what I need and brings my ideas to life. I could trust him with the creative direction of the website, and he made sure it was responsive on both desktop and mobile. Adding new features and integrations later was super smooth, and he responds fast. Would definitely recommend him to anyone looking for a new website or needing help with anything web-related.",
-        "sections": [],
-        "name": "Taisei Kitahara",
-        "role": "CEO",
-        "company": "DefineX and EnPadel",
-        "projectHref": "/work/enpadel",
-        "projectLabel": "View the project"
-      },
-      {
         "id": "victor",
-        "quote": "Kai is one of the best AI developers in the market at the moment. His level of flexibility and urgency when it comes to updates is insane, and a lot of the time we'd ask for a function and he'd think of a better process to implement. Hundreds of hours saved on database upkeep, plus a custom platform built to assist with creator matching for complex campaigns.",
+        "quote": "Kai is the best developer we've worked with on AI and automation, mostly because he understands the business side and not just the code. His level of flexibility and urgency when it comes to updates is insane, and a lot of the time we'd ask for a function and he'd think of a better process to implement. Hundreds of hours saved on database upkeep, plus a custom platform built to assist with creator matching for complex campaigns.",
         "sections": [
           {
             "label": "The problem",
@@ -914,7 +904,7 @@
           },
           {
             "label": "Working together",
-            "text": "Kai is one of the best AI developers in the market at the moment. His level of flexibility and urgency when it comes to updates is insane. There were times where we've needed last minute functions added and he got it done and exceeded what was requested. A lot of the time we'd ask for a function and he'd think of a better process to implement."
+            "text": "Kai is the best developer we've worked with on AI and automation, mostly because he understands the business side and not just the code. His level of flexibility and urgency when it comes to updates is insane. There were times where we've needed last minute functions added and he got it done and exceeded what was requested. A lot of the time we'd ask for a function and he'd think of a better process to implement."
           },
           {
             "label": "The result",
@@ -929,6 +919,16 @@
         "role": "Co-founder and CEO",
         "company": "Uncharted Influencer Agency",
         "projectHref": "/work/influencer-platform",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "taisei",
+        "quote": "Kai is always easy and great to work with. He always takes the time to really understand what I need and brings my ideas to life. I could trust him with the creative direction of the website, and he made sure it was responsive on both desktop and mobile. Adding new features and integrations later was super smooth, and he responds fast. Would definitely recommend him to anyone looking for a new website or needing help with anything web-related.",
+        "sections": [],
+        "name": "Taisei Kitahara",
+        "role": "CEO",
+        "company": "DefineX and EnPadel",
+        "projectHref": "/work/enpadel",
         "projectLabel": "View the project"
       }
     ]
