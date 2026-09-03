@@ -26,7 +26,7 @@ interface MergedProject {
   frameClass?: string;
   tileClass?: string;
   title: string;
-  tag: string;
+  tags: string[];
   outcome: string;
 }
 
@@ -100,7 +100,9 @@ export const WorkCard = ({
         <div
           className={cn(
             "relative rounded-2xl overflow-hidden mb-4 bg-gradient-to-br shadow-sm",
-            project.frameClass ?? project.placeholderColor ?? "from-primary/15 to-primary/5"
+            project.frameClass ??
+              project.placeholderColor ??
+              "from-primary/15 to-primary/5",
           )}
           style={{ aspectRatio: "4/3" }}
         >
@@ -141,7 +143,7 @@ export const WorkCard = ({
           <div
             className={cn(
               "w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center font-sans text-base font-bold tracking-tight shadow-sm",
-              project.tileClass ?? iconColors
+              project.tileClass ?? iconColors,
             )}
           >
             {project.tileLabel ?? project.title.charAt(0).toUpperCase()}
@@ -216,7 +218,7 @@ export const WorkCard = ({
           <div
             className={cn(
               "w-full h-full bg-gradient-to-br",
-              project.placeholderColor ?? "from-primary/10 to-muted/10"
+              project.placeholderColor ?? "from-primary/10 to-muted/10",
             )}
           />
         )}
@@ -226,9 +228,14 @@ export const WorkCard = ({
       <div className="flex flex-col flex-1 p-6 md:p-8">
         {/* Tag row */}
         <div className="flex items-center gap-2 flex-wrap mb-4">
-          <span className="text-xs font-medium text-primary border border-primary/30 rounded-full px-3 py-1">
-            {project.tag}
-          </span>
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-medium text-primary border border-primary/30 rounded-full px-3 py-1"
+            >
+              {tag}
+            </span>
+          ))}
           {project.confidential && (
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-3 py-1">
               <Lock className="w-3 h-3" aria-hidden="true" />
@@ -272,10 +279,12 @@ const Work = () => {
 
   const featured: MergedProject[] = workProjects.slice(0, 3).map((p) => ({
     ...p,
-    ...(t.work.projects as Record<
-      string,
-      { title: string; tag: string; outcome: string }
-    >)[p.id],
+    ...(
+      t.work.projects as Record<
+        string,
+        { title: string; tags: string[]; outcome: string }
+      >
+    )[p.id],
   }));
 
   return (

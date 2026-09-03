@@ -462,7 +462,7 @@ const Testimonials = () => {
      one already on the work cards, so a visitor meets the same vocabulary
      twice, and it is written in both languages already. */
   const project = workProjects.find((entry) => entry.slug === featured.slug);
-  const kind = project ? t.work.projects[project.id].tag : "";
+  const kinds = project ? t.work.projects[project.id].tags : [];
   const projectHref = featured.slug
     ? `/work/${featured.slug}`
     : active.projectHref;
@@ -630,11 +630,14 @@ const Testimonials = () => {
                         It names the job the quote is actually about, which
                         the client's own title cannot: Taisei's two projects
                         are a brand site and a platform. */}
-                    {kind && (
-                      <span className="rounded-full border border-primary/30 px-3 py-1 text-xs font-medium text-primary">
+                    {kinds.map((kind) => (
+                      <span
+                        key={kind}
+                        className="rounded-full border border-primary/30 px-3 py-1 text-xs font-medium text-primary"
+                      >
                         {kind}
                       </span>
-                    )}
+                    ))}
 
                     {projectHref && (
                       <TransitionLink
@@ -653,7 +656,8 @@ const Testimonials = () => {
             {hasFull && (
               <DialogContent
                 className={cn(
-                  "max-h-[88vh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-[1.5rem] border-border/60 bg-background p-7 sm:p-10",
+                  "max-h-[88vh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-[1.5rem] border-border/60 bg-background",
+                  "p-7 pb-11 sm:p-10 sm:pb-14",
                   textAlign(locale),
                 )}
               >
@@ -695,7 +699,7 @@ const Testimonials = () => {
                   <TransitionLink
                     href={projectHref}
                     className={cn(
-                      "group mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-primary/80",
+                      "group mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-primary/80",
                       locale === "ja"
                         ? "justify-self-start"
                         : "justify-self-center",

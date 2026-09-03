@@ -128,62 +128,62 @@
     "projects": {
       "homeHairCoffee": {
         "title": "Home Hair & Coffee Roaster",
-        "tag": "Brand site",
+        "tags": ["Brand site"],
         "outcome": "Gave a two-in-one salon and coffee roaster a clean bilingual site that presents both sides of the business without one overshadowing the other."
       },
       "chnl301": {
         "title": "Chnl301",
-        "tag": "Brand site",
+        "tags": ["Brand site"],
         "outcome": "Built a band a home online that actually feels like their music, not just a list of links."
       },
       "cgOnlineAcademy": {
         "title": "CG Online Academy",
-        "tag": "3D / Motion",
+        "tags": ["3D / Motion"],
         "outcome": "Rebuilt a 3D artist's site with their real models rendered live in the browser, plus a course platform students can actually learn on."
       },
       "definex": {
         "title": "DefineX",
-        "tag": "Platform",
+        "tags": ["Platform"],
         "outcome": "Gave an athlete-education platform a conversion-focused site with course pages and secure payments built in."
       },
       "influencerAgency": {
         "title": "Influencer Agency Platform",
-        "tag": "Automation",
+        "tags": ["Automation", "AI and data agent", "Internal tool"],
         "outcome": "Took an influencer management agency off fragile spreadsheets. We automated their daily work, moved the data into a real database with a live dashboard, then added AI matching on top."
       },
       "publicSectorAI": {
         "title": "Public-sector AI platform",
-        "tag": "AI",
+        "tags": ["AI"],
         "outcome": "Built an internal AI assistant and analytics dashboard for a public-sector organization, so staff could pull answers and reporting straight from their own data. Client name kept confidential."
       },
       "ecommerceOps": {
         "title": "E-commerce Operations Platform",
-        "tag": "Internal tool",
+        "tags": ["Internal tool"],
         "outcome": "Took a car parts retailer off a stack of spreadsheets and onto one console, where stock, deposits, container ETAs and workshop bays all point at each other."
       },
       "employeeManagement": {
         "title": "Employee Management Platform",
-        "tag": "Internal tool",
+        "tags": ["Internal tool"],
         "outcome": "Replaced a shared staffing workbook with a live board where who is working on what, skill gaps and time off all sit in one view."
       },
       "enpadel": {
         "title": "EnPadel",
-        "tag": "Brand site",
+        "tags": ["Brand site"],
         "outcome": "Gave a Tokyo padel community a bilingual home built around a scroll-driven film, so newcomers understand the sport and the idea behind it before they read a word of copy."
       },
       "milleGrass": {
         "title": "Mille Grass",
-        "tag": "Restaurant site",
+        "tags": ["Restaurant site"],
         "outcome": "Put a fermented set-lunch restaurant in Fujigaoka online, with an automatic opening calendar and a menu the owner updates by swapping one photo."
       },
       "nicolita": {
         "title": "Nicolita",
-        "tag": "Shop site",
+        "tags": ["Shop site"],
         "outcome": "Gave an Instagram-only gelato shop a simple site that shows this week's flavors and helps people find the store."
       },
       "arGalleryMVP": {
         "title": "AR Art Gallery",
-        "tag": "MVP",
+        "tags": ["MVP"],
         "outcome": "Built an MVP that hangs public-domain masterworks on your own wall in augmented reality, at the size of the original, so the idea could go in front of real users fast."
       }
     },

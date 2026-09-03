@@ -24,7 +24,7 @@ interface MergedProject {
   frameClass?: string;
   tileClass?: string;
   title: string;
-  tag: string;
+  tags: string[];
   outcome: string;
 }
 
@@ -42,10 +42,12 @@ export default function AllWorksPage() {
     .filter((p) => activeFilter === "all" || p.bucket === activeFilter)
     .map((p) => ({
       ...p,
-      ...(t.work.projects as Record<
-        string,
-        { title: string; tag: string; outcome: string }
-      >)[p.id],
+      ...(
+        t.work.projects as Record<
+          string,
+          { title: string; tags: string[]; outcome: string }
+        >
+      )[p.id],
     }));
 
   return (
@@ -63,7 +65,11 @@ export default function AllWorksPage() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: DURATION.short, delay: 0.25, ease: EASE.expoOut }}
+        transition={{
+          duration: DURATION.short,
+          delay: 0.25,
+          ease: EASE.expoOut,
+        }}
         className={cn(
           "relative flex gap-2 pb-8 px-6 md:px-10 flex-wrap",
           locale === "ja" ? "" : "justify-center",
