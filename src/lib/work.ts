@@ -47,6 +47,15 @@ export const workProjects: WorkProject[] = [
     tileClass: "bg-[#3b3463] text-[#d9d4f6]",
   },
   {
+    id: "enpadel",
+    bucket: "websites",
+    image: "/enpadel/scroll-poster.jpg",
+    video: "/enpadel/scroll",
+    slug: "enpadel",
+    frameClass: "from-[#012f21] to-[#4c7d68]",
+    tileClass: "bg-[#012f21] text-[#e7dfcd]",
+  },
+  {
     id: "ecommerceOps",
     bucket: "software",
     image: "/apex-autowerks/dashboard.png",
@@ -56,6 +65,14 @@ export const workProjects: WorkProject[] = [
     tileClass: "bg-[#7c2a24] text-[#f8dedb]",
   },
   {
+    id: "definex",
+    bucket: "websites",
+    image: "/define-x-about.png",
+    slug: "definex",
+    frameClass: "from-[#14203c] to-[#43619b]",
+    tileClass: "bg-[#14203c] text-[#c9d7f0]",
+  },
+  {
     id: "employeeManagement",
     bucket: "software",
     image: "/rolemap/matrix.png",
@@ -63,15 +80,6 @@ export const workProjects: WorkProject[] = [
     tileLabel: "EM",
     frameClass: "from-[#2b3383] to-[#7f8ae2]",
     tileClass: "bg-[#2b3383] text-[#e0e4fc]",
-  },
-  {
-    id: "enpadel",
-    bucket: "websites",
-    image: "/enpadel/scroll-poster.jpg",
-    video: "/enpadel/scroll",
-    slug: "enpadel",
-    frameClass: "from-[#012f21] to-[#4c7d68]",
-    tileClass: "bg-[#012f21] text-[#e7dfcd]",
   },
   {
     id: "milleGrass",
@@ -106,14 +114,6 @@ export const workProjects: WorkProject[] = [
     slug: "nicolita",
     frameClass: "from-[#3d5c48] to-[#a3bfab]",
     tileClass: "bg-[#3d5c48] text-[#e8f0ea]",
-  },
-  {
-    id: "definex",
-    bucket: "websites",
-    image: "/define-x-about.png",
-    slug: "definex",
-    frameClass: "from-[#14203c] to-[#43619b]",
-    tileClass: "bg-[#14203c] text-[#c9d7f0]",
   },
   {
     id: "homeHairCoffee",
