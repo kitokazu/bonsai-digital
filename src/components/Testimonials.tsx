@@ -21,6 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { usePageVisibility } from "@/hooks/use-page-visibility";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { useTranslation } from "@/lib/i18n";
 import { fadeRise, viewportOnce } from "@/lib/motion";
@@ -348,6 +349,7 @@ const Testimonials = () => {
   const { label, heading, description, readMore } = t.testimonials;
   const items = t.testimonials.items as TestimonialItem[];
   const reduceMotion = usePrefersReducedMotion();
+  const pageVisible = usePageVisibility();
 
   /* One coin per client project, in list order. A client with no mark yet
      still gets a coin, carrying their portrait on both sides: nothing to
@@ -436,6 +438,7 @@ const Testimonials = () => {
     !held &&
     !dialogOpen &&
     !reduceMotion &&
+    pageVisible &&
     new Set(coins.map((c) => c.personId)).size > 1;
 
   /* Skips past a client's other projects to the next different person, so
@@ -444,6 +447,10 @@ const Testimonials = () => {
     if (!rotating) return;
 
     const id = setTimeout(() => {
+      /* A timer that became due just as the tab was hidden may run before
+         React cleans it up. Do not bank a turn that the visitor cannot see. */
+      if (document.visibilityState !== "visible") return;
+
       const at = coins.findIndex((coin) => coin.key === featuredRef.current);
       const person = coins[at]?.personId;
       const next = coins
