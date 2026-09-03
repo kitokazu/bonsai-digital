@@ -21,6 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { useTranslation } from "@/lib/i18n";
 import { fadeRise, viewportOnce } from "@/lib/motion";
 import { headshots, type TestimonialItem } from "@/lib/testimonials";
@@ -401,6 +402,11 @@ const Testimonials = () => {
   /* The full write-up, open in the dialog. */
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  /* Radix hides the body's overflow on its own, which is enough for a plain
+     page. Lenis drives the scroll itself and carries on regardless, so the
+     page kept sliding behind the write-up. This stops it as well. */
+  useScrollLock(dialogOpen);
+
   const featuredRef = useRef(featuredKey);
   featuredRef.current = featuredKey;
 
@@ -655,6 +661,12 @@ const Testimonials = () => {
 
             {hasFull && (
               <DialogContent
+                /* Lenis intercepts the wheel across the whole page, and keeps
+                   doing so while stopped, which would swallow scrolling
+                   inside the write-up too. This hands events raised in here
+                   back to the browser, so the dialog scrolls natively while
+                   the page behind it stays put. */
+                data-lenis-prevent
                 className={cn(
                   "max-h-[88vh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-[1.5rem] border-border/60 bg-background",
                   "p-7 pb-11 sm:p-10 sm:pb-14",
