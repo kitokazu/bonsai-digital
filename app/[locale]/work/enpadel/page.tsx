@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { WorkPager } from "@/components/layout/WorkPager";
+import { ProjectTestimonial } from "@/components/work/ProjectTestimonial";
 import { TransitionLink } from "@/components/nav/TransitionLink";
 import Image from "next/image";
 import { useRef } from "react";
@@ -220,6 +221,8 @@ export default function EnPadelPage() {
           </motion.div>
         </div>
       </section>
+
+      <ProjectTestimonial />
 
       {/* CTA */}
       <section className="px-6 pb-24">

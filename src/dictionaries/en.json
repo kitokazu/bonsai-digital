@@ -12,7 +12,7 @@
     "whatWeDo": "Pricing",
     "work": "Work",
     "about": "About",
-    "blog": "Blog",
+    "education": "Education",
     "cta": "Start a project",
     "book": "Contact"
   },
@@ -311,6 +311,7 @@
     "previousProject": "Previous project",
     "nextProject": "Next project",
     "backToWork": "Back to Work",
+    "clientWords": "What the client said",
     "overview": "Overview",
     "whatWeDid": "What We Did",
     "visitWebsite": "Visit Website",
@@ -804,7 +805,7 @@
   "education": {
     "label": "Education",
     "heading": "One on one coding lessons",
-    "description": "Alongside our client work, we teach people to code, one on one over Zoom. Kids building their first game, teenagers writing real Python, adults who want to finally make the thing they keep talking about. Taught by the engineer behind Bonsai Digital, in English or Japanese.",
+    "description": "Alongside our client work, we teach people to code, one on one over Zoom. Kids building their first game or their first website, teenagers writing real Python, adults who want to finally make the thing they keep talking about. Taught by the engineer behind Bonsai Digital, in English or Japanese.",
     "tracks": [
       {
         "name": "Scratch",
@@ -836,16 +837,16 @@
       },
       {
         "name": "Web projects",
-        "audience": "Adults and older teens",
-        "audienceNote": "no experience needed",
+        "audience": "Ages 10 and up",
+        "audienceNote": "kids to adults, no experience needed",
         "tagline": "Build something and put it online",
-        "description": "For anyone who wants something to show at the end. You build a real site or a small app with HTML, CSS, and JavaScript, pick up Git along the way, and put it somewhere people can actually visit. Most people get there in about four sessions.",
+        "description": "For anyone who wants something to show at the end. You build a real site or a small app with HTML, CSS, and JavaScript, pick up Git along the way, and put it somewhere people can actually visit. Kids usually start with a page about something they love, and adults tend to bring the project they have been meaning to make. Most people get there in about four sessions.",
         "learnLabel": "What you'll build and learn:",
         "learn": [
           "A real site or small app, live on the internet",
           "HTML, CSS, and JavaScript from the ground up",
           "Git and GitHub, the way teams actually use them",
-          "Something you can show an employer or a client"
+          "Something you can show friends, family, or an employer"
         ]
       }
     ],
@@ -886,6 +887,51 @@
     "description": "Book a free 30-minute call. We will figure out exactly what you need and the best way to get there.",
     "cta": "Book a call",
     "ctaAlt": "Send a message"
+  },
+  "testimonials": {
+    "label": "Testimonials",
+    "heading": "What clients say",
+    "description": "A few words from the people we have built for.",
+        "readMore": "Read the full testimonial",
+    "items": [
+      {
+        "id": "taisei",
+        "quote": "Kai is always easy and great to work with. He always takes the time to really understand what I need and brings my ideas to life. I could trust him with the creative direction of the website, and he made sure it was responsive on both desktop and mobile. Adding new features and integrations later was super smooth, and he responds fast. Would definitely recommend him to anyone looking for a new website or needing help with anything web-related.",
+        "sections": [],
+        "name": "Taisei Kitahara",
+        "role": "CEO",
+        "company": "DefineX and EnPadel",
+        "projectHref": "/work/enpadel",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "victor",
+        "quote": "Kai is one of the best AI developers in the market at the moment. His level of flexibility and urgency when it comes to updates is insane, and a lot of the time we'd ask for a function and he'd think of a better process to implement. Hundreds of hours saved on database upkeep, plus a custom platform built to assist with creator matching for complex campaigns.",
+        "sections": [
+          {
+            "label": "The problem",
+            "text": "Hours of manual data entry needed by our VAs when it came to our influencer database, which meant tons of wasted time, especially with data that needed monthly updating like follower size, average views, and engagement rates. Just messy data in general as well."
+          },
+          {
+            "label": "Working together",
+            "text": "Kai is one of the best AI developers in the market at the moment. His level of flexibility and urgency when it comes to updates is insane. There were times where we've needed last minute functions added and he got it done and exceeded what was requested. A lot of the time we'd ask for a function and he'd think of a better process to implement."
+          },
+          {
+            "label": "The result",
+            "text": "Hundreds of hours saved with database upkeeping, as well as a custom platform built to assist with creator matching for complex creator campaigns."
+          },
+          {
+            "label": "Would you recommend us?",
+            "text": "Definitely yes. As Kai is still building out his primary client base, it's the perfect time to get his help, as he's super talented and has the resources to go above and beyond for you, compared to a large AI agency at scale with hundreds of clients."
+          }
+        ],
+        "name": "Victor Wong",
+        "role": "Co-founder and CEO",
+        "company": "Uncharted Influencer Agency",
+        "projectHref": "/work/influencer-platform",
+        "projectLabel": "View the project"
+      }
+    ]
   },
   "faq": {
     "label": "FAQ",

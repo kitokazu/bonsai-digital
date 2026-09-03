@@ -467,6 +467,152 @@
   font-size: 0.75rem;
 }
 
+/* ------------------------------------------------------- testimonial stage */
+
+/*
+ * The stage behind the testimonial nodes, from the design handoff in
+ * reference/design_handoff_testimonials. Three layers, back to front: a
+ * faint grid masked to a pool in the middle, a slow-breathing glow under the
+ * featured seat, and a fine speckle halo around it. Colours are the site's
+ * sage tokens rather than the handoff's hex values, so the section shifts
+ * with the rest of the palette.
+ */
+/*
+ * Shallower than the handoff's 1100:460 so the quote sits in the same screen
+ * as the stage: nobody should scroll down for the words and back up for the
+ * face.
+ *
+ * The width grows with the number of coins, which the component sets as
+ * `--coins`. There is one coin per client project, so a fixed width that
+ * looks composed at five leaves three floating in a field, and one that suits
+ * three would crowd at seven. The seat percentages never change; only the
+ * field they sit in does.
+ */
+.testimonial-stage {
+  width: min(calc(20rem + var(--coins, 5) * 7.5rem), 92vw);
+  aspect-ratio: 1100 / 420;
+}
+
+@media (max-width: 640px) {
+  .testimonial-stage {
+    width: 92vw;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.testimonial-stage-grid {
+  pointer-events: none;
+  background-image:
+    linear-gradient(hsl(var(--primary) / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--primary) / 0.12) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 68%);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 68%);
+}
+
+/* Centred with margins, not a translate: the pulse keyframe owns transform. */
+.testimonial-stage-glow {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  aspect-ratio: 1;
+  margin: -17% 0 0 -17%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    hsl(var(--primary) / 0.2) 0%,
+    hsl(var(--primary) / 0.05) 45%,
+    transparent 70%
+  );
+  animation: testimonial-pulse 6s ease-in-out infinite;
+}
+
+.testimonial-stage-speckle {
+  pointer-events: none;
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.35) 0.8px, transparent 1.2px);
+  background-size: 9px 9px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 22%);
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 22%);
+  opacity: 0.7;
+}
+
+@keyframes testimonial-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.9;
+  }
+}
+
+/*
+ * The coin: a client on one side, their company mark on the other.
+ *
+ * Both faces are stacked in the same box with their backs hidden, so exactly
+ * one is ever visible and the disc has real thickness as it turns. The
+ * perspective sits on the parent, not here: applied to the turning element it
+ * lands after the rotation and the flip comes out flat.
+ */
+.testimonial-coin {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.testimonial-coin-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.testimonial-coin-back {
+  transform: rotateY(180deg);
+}
+
+/* The ring around each node. Padding is the ring's thickness. */
+.testimonial-ring {
+  transition:
+    padding 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease,
+    transform 0.35s ease;
+}
+
+.testimonial-ring-featured {
+  padding: 6px;
+  cursor: default;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(150 20% 57%));
+  box-shadow:
+    0 24px 60px -18px hsl(var(--primary) / 0.45),
+    0 0 0 10px hsl(var(--primary) / 0.08);
+}
+
+.testimonial-ring-satellite {
+  padding: 3px;
+  cursor: pointer;
+  background: hsl(var(--background) / 0.9);
+  box-shadow: 0 10px 30px -14px hsl(var(--foreground) / 0.35);
+}
+
+/*
+ * Hover lift. Scale is left to the coin's own transform, which is already
+ * carrying the turn: two rules writing `transform` would cancel each other
+ * out. Applied from a class rather than `:hover`, because the pointer is read
+ * on the stationary seat above and not on the disc, which bobs and turns.
+ */
+.testimonial-ring-lifted,
+.testimonial-coin:focus-visible .testimonial-ring-satellite {
+  box-shadow:
+    0 14px 34px -12px hsl(var(--primary) / 0.45),
+    0 0 0 4px hsl(var(--primary) / 0.25);
+}
+
 /* ----------------------------------------------------------- reduced motion */
 
 @media (prefers-reduced-motion: reduce) {

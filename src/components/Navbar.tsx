@@ -20,24 +20,19 @@ import { useTranslation } from "@/lib/i18n";
 import { DURATION, EASE, maskRise, stagger, STAGGER } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-/** Scroll distance before the bar is allowed to hide on a downward scroll. */
-const HIDE_AFTER = 240;
-
 const Navbar = () => {
   const { t } = useTranslation();
   const pathname = usePathname() ?? "/";
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const lastY = useRef(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
     { name: t.navbar.about, href: "#about" },
     { name: t.navbar.work, href: "/work" },
     { name: t.navbar.whatWeDo, href: "#services" },
-    { name: t.navbar.blog, href: "/blog" },
+    { name: t.navbar.education, href: "/education" },
   ];
 
   /* Driven off the scroll motion value rather than a scroll listener, so the
@@ -46,11 +41,6 @@ const Navbar = () => {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setIsScrolled(y > 20);
-
-    const goingDown = y > lastY.current;
-    // Never hide near the top, and never while the mobile panel is open.
-    setIsHidden(goingDown && y > HIDE_AFTER && !isMenuOpen);
-    lastY.current = y;
   });
 
   // Close the panel on navigation, and hand focus back to the button that
@@ -77,9 +67,11 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Stays put while scrolling: it only slides in once on mount and
+          swaps to a frosted surface once the page is under it. */}
       <motion.header
         initial={{ y: "-100%" }}
-        animate={{ y: isHidden && !isMenuOpen ? "-100%" : "0%" }}
+        animate={{ y: "0%" }}
         transition={{ duration: DURATION.short, ease: EASE.expoOut }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color] duration-300",

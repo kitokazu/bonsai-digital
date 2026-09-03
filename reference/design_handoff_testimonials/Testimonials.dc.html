@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin:0; padding:0; background:#F5F4EF; }
+  * { box-sizing:border-box; }
+  a { color:#1F3A2E; } a:hover { color:#3B5F4E; }
+  @keyframes bd-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-9px); } }
+  @keyframes bd-spin { to { transform:rotate(360deg); } }
+  @keyframes bd-pulse { 0%,100% { transform:scale(1); opacity:.55; } 50% { transform:scale(1.08); opacity:.9; } }
+  @keyframes bd-quote-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @media (max-width: 640px) { .bd-stage { width: 92vw !important; aspect-ratio: 1/1 !important; } }
+</style>
+</helmet>
+
+<section data-screen-label="Testimonials" style="min-height:100vh; background:#F5F4EF; color:#16241D; font-family:'Manrope', system-ui, sans-serif; padding:clamp(56px,9vw,120px) 24px clamp(64px,8vw,110px); display:flex; flex-direction:column; align-items:center; gap:0;">
+
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:18px; max-width:640px;">
+    <div style="font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#2F5A47; font-weight:600;">Testimonials</div>
+    <h2 style="margin:0; font-family:'Cormorant Garamond', Georgia, serif; font-weight:500; font-size:clamp(44px,6.4vw,84px); line-height:0.98; letter-spacing:-0.02em; color:#16241D; text-wrap:balance;">What clients say</h2>
+    <p style="margin:6px 0 0; font-size:clamp(16px,1.4vw,19px); line-height:1.5; color:#5C6660; text-wrap:pretty;">A few words from the people we have built for.</p>
+  </div>
+
+  <div class="bd-stage" style="position:relative; width:min(1100px, 92vw); aspect-ratio:1100/460; margin-top:clamp(20px,3vw,40px); user-select:none;">
+    <sc-if value="{{ showRing }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(31,58,46,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(31,58,46,0.09) 1px, transparent 1px); background-size:56px 56px; background-position:center; -webkit-mask-image:radial-gradient(ellipse at 50% 50%, black 20%, transparent 68%); mask-image:radial-gradient(ellipse at 50% 50%, black 20%, transparent 68%);"></div>
+    </sc-if>
+    <div style="position:absolute; left:50%; top:50%; width:34%; aspect-ratio:1; margin:-17% 0 0 -17%; border-radius:50%; background:radial-gradient(circle, rgba(47,90,71,0.20) 0%, rgba(47,90,71,0.05) 45%, transparent 70%); animation:bd-pulse 6s ease-in-out infinite;"></div>
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(47,90,71,0.35) 0.8px, transparent 1.2px); background-size:9px 9px; -webkit-mask-image:radial-gradient(circle at 50% 50%, black 0%, transparent 22%); mask-image:radial-gradient(circle at 50% 50%, black 0%, transparent 22%); opacity:.7;"></div>
+
+    <sc-for list="{{ people }}" as="p" hint-placeholder-count="5">
+      <div onClick="{{ p.select }}" title="{{ p.name }}" style="position:absolute; left:{{ p.x }}; top:{{ p.y }}; width:{{ p.size }}; aspect-ratio:1; transform:translate(-50%,-50%); transition:left .8s cubic-bezier(.22,1,.36,1), top .8s cubic-bezier(.22,1,.36,1), width .8s cubic-bezier(.22,1,.36,1); z-index:{{ p.z }}; cursor:{{ p.cursor }};">
+        <div style="width:100%; height:100%; animation:{{ p.floatAnim }};">
+          <div style="width:100%; height:100%; border-radius:50%; padding:{{ p.pad }}; background:{{ p.ringBg }}; box-shadow:{{ p.shadow }}; transition:padding .8s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, transform .35s ease;" style-hover="{{ p.hover }}">
+            <image-slot id="{{ p.slot }}" shape="circle" placeholder="{{ p.initials }}" style="width:100%; height:100%; display:block; border-radius:50%; overflow:hidden; background:#E6E4DA;"></image-slot>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div key="{{ quoteKey }}" style="margin-top:clamp(28px,4vw,44px); max-width:720px; width:100%; text-align:center; display:flex; flex-direction:column; align-items:center; gap:22px; animation:bd-quote-in .7s cubic-bezier(.22,1,.36,1) both;">
+    <div style="font-family:'Cormorant Garamond', Georgia, serif; font-size:56px; line-height:0.5; color:#2F5A47; opacity:.5;">&ldquo;</div>
+    <p style="margin:0; font-family:'Cormorant Garamond', Georgia, serif; font-size:clamp(21px,2.3vw,29px); line-height:1.42; color:#1D2B25; text-wrap:pretty;">{{ active.quote }}</p>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:6px;">
+      <div style="font-size:15px; font-weight:600; color:#16241D; letter-spacing:0.01em;">{{ active.name }}</div>
+      <div style="font-size:13px; color:#6C766F; letter-spacing:0.04em;">{{ active.role }}</div>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:10px; margin-top:34px; align-items:center;">
+    <sc-for list="{{ people }}" as="p" hint-placeholder-count="5">
+      <button onClick="{{ p.select }}" aria-label="{{ p.name }}" style="width:{{ p.dotW }}; height:6px; border-radius:3px; border:none; padding:0; background:{{ p.dotBg }}; cursor:pointer; transition:width .5s cubic-bezier(.22,1,.36,1), background .3s;"></button>
+    </sc-for>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoRotate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;intervalSec&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:7,&quot;min&quot;:3,&quot;max&quot;:15,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;floatMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showRing&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { active: 0, order: [0,1,2,3,4], key: 0 };
+  data = [
+    { name: 'Client name', role: 'Founder, Company', initials: 'CN', quote: 'Kai is always easy and great to work with. He always takes the time to really understand what I need and brings my ideas to life. I could trust him with the creative direction of the website, and he made sure it was responsive on both desktop and mobile. Adding new features and integrations later was super smooth, and he responds fast. Would definitely recommend him to anyone looking for a new website or needing help with anything web.' },
+    { name: 'Client name', role: 'Owner, EnPadel', initials: 'EP', quote: 'Placeholder quote. Replace with the EnPadel testimonial. Two or three sentences about the project, the process, and the result work best here.' },
+    { name: 'Client name', role: 'Director, Company', initials: 'CN', quote: 'Placeholder quote. Replace with a client testimonial about working with Bonsai Digital on their website.' },
+    { name: 'Client name', role: 'Co-founder, Company', initials: 'CN', quote: 'Placeholder quote. Replace with a client testimonial. Keep it in the client\u2019s own words.' },
+    { name: 'Client name', role: 'Marketing lead, Company', initials: 'CN', quote: 'Placeholder quote. Replace with a client testimonial about the outcome of the project.' },
+  ];
+  slots = [
+    { x: 50, y: 50, size: 19 },
+    { x: 12, y: 30, size: 8.5 },
+    { x: 30, y: 74, size: 6.5 },
+    { x: 71, y: 22, size: 7 },
+    { x: 88, y: 64, size: 9 },
+  ];
+  floats = ['none', 'bd-float 5.2s ease-in-out infinite', 'bd-float 6.1s ease-in-out .8s infinite', 'bd-float 5.6s ease-in-out 1.6s infinite', 'bd-float 6.6s ease-in-out .4s infinite'];
+  componentDidMount() { this.setupTimer(); }
+  componentDidUpdate(prev) { if ((prev.autoRotate ?? true) !== (this.props.autoRotate ?? true)) this.setupTimer(); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  setupTimer() {
+    clearInterval(this.timer);
+    if (this.props.autoRotate ?? true) this.timer = setInterval(() => this.next(), (this.props.intervalSec ?? 7) * 1000);
+  }
+  next() {
+    const { order } = this.state;
+    const cur = order.indexOf(0);
+    const cand = order.map((s, i) => ({ s, i })).filter(o => o.s !== 0);
+    const pick = cand[(cand.findIndex(o => o.i === (cur + 1) % 5) + 5) % cand.length] || cand[0];
+    this.select(pick.i);
+  }
+  select(i) {
+    const order = [...this.state.order];
+    const cur = order.indexOf(0);
+    if (cur === i) return;
+    [order[cur], order[i]] = [order[i], order[cur]];
+    this.setState(s => ({ order, active: i, key: s.key + 1 }));
+    this.setupTimer();
+  }
+  renderVals() {
+    const { order, active, key } = this.state;
+    const floatOn = this.props.floatMotion ?? true;
+    const people = this.data.map((d, i) => {
+      const slotIdx = order[i]; const s = this.slots[slotIdx]; const center = slotIdx === 0;
+      return {
+        ...d, slot: 'client-' + (i + 1),
+        x: s.x + '%', y: s.y + '%', size: s.size + '%', z: center ? 3 : 2,
+        cursor: center ? 'default' : 'pointer',
+        floatAnim: floatOn ? this.floats[slotIdx] : 'none',
+        pad: center ? '6px' : '3px',
+        ringBg: center ? 'linear-gradient(135deg, #2F5A47, #7FA391)' : 'rgba(255,255,255,0.9)',
+        shadow: center ? '0 24px 60px -18px rgba(31,58,46,0.45), 0 0 0 10px rgba(47,90,71,0.08)' : '0 10px 30px -14px rgba(22,36,29,0.35)',
+        hover: center ? {} : { transform: 'scale(1.08)', boxShadow: '0 14px 34px -12px rgba(31,58,46,0.45), 0 0 0 4px rgba(47,90,71,0.25)' },
+        select: () => this.select(i),
+        dotW: i === active ? '28px' : '6px', dotBg: i === active ? '#2F5A47' : 'rgba(47,90,71,0.25)',
+      };
+    });
+    return { people, active: this.data[active], quoteKey: 'q' + key, showRing: this.props.showRing ?? true };
+  }
+}
+</script>
+</body>
+</html>
