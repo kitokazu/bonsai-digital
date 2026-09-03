@@ -176,8 +176,16 @@ function StageNode({
 
   /* Mark side at rest, portrait side in the middle. Banked turns are added
      rather than the angle being toggled, so each swap carries on in the same
-     direction instead of rewinding the last one. */
-  const rotateY = reduceMotion ? 0 : spins * 360 + (featured ? 180 : 0);
+     direction instead of rewinding the last one.
+  
+     Hovering the middle coin turns it over to its mark and back. Only the
+     middle one: turning a satellite would show a second portrait, whereas the
+     middle coin's own mark is not on screen anywhere else, so nothing
+     repeats. */
+  const peeking = featured && hovered;
+  const rotateY = reduceMotion
+    ? 0
+    : spins * 360 + (featured ? 180 : 0) + (peeking ? 180 : 0);
 
   const ring = featured
     ? "testimonial-ring-featured"
@@ -190,6 +198,7 @@ function StageNode({
         ring,
         back && "testimonial-coin-back",
         !featured && hovered && "testimonial-ring-lifted",
+        featured && "testimonial-ring-centre",
       )}
     >
       <span className="block h-full w-full overflow-hidden rounded-full bg-muted">
@@ -220,8 +229,11 @@ function StageNode({
         marginTop: `calc(${size} / -2)`,
         zIndex: featured ? 3 : 2,
       }}
-      onPointerEnter={() => setHovered(true)}
+      onPointerEnter={(event) => {
+        if (event.pointerType === "mouse") setHovered(true);
+      }}
       onPointerLeave={() => setHovered(false)}
+      onPointerCancel={() => setHovered(false)}
     >
       <motion.div layout transition={GLIDE} className="h-full w-full">
         <motion.div
@@ -252,7 +264,8 @@ function StageNode({
               aria-label={coin.label}
               aria-current={featured ? "true" : undefined}
               className={cn(
-                "testimonial-coin block h-full w-full cursor-pointer rounded-full",
+                "testimonial-coin block h-full w-full rounded-full",
+                featured ? "cursor-default" : "cursor-pointer",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               )}
               animate={{
