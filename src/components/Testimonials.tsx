@@ -24,6 +24,7 @@ import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useTranslation } from "@/lib/i18n";
 import { fadeRise, viewportOnce } from "@/lib/motion";
 import { headshots, type TestimonialItem } from "@/lib/testimonials";
+import { workProjects } from "@/lib/work";
 import { cn, itemsAlign, textAlign } from "@/lib/utils";
 
 interface Mark {
@@ -33,6 +34,8 @@ interface Mark {
   label: string;
   /** `cover` for marks that carry their own field, `contain` for cut-outs. */
   fit: "cover" | "contain";
+  /** Case study slug, which is where the kind of work and the link come from. */
+  slug: string;
 }
 
 /**
@@ -44,18 +47,21 @@ interface Mark {
 const marks: Mark[] = [
   {
     src: "/logos/definex-mark.png",
+    slug: "definex",
     owner: "taisei",
     label: "DefineX",
     fit: "contain",
   },
   {
     src: "/logos/enpadel-node.png",
+    slug: "enpadel",
     owner: "taisei",
     label: "EnPadel",
     fit: "cover",
   },
   {
     src: "/uncharted/uncharted_agency_logo.jpeg",
+    slug: "influencer-platform",
     owner: "victor",
     label: "Uncharted Influencer Agency",
     fit: "cover",
@@ -123,6 +129,8 @@ interface Coin {
   key: string;
   /** The testimonial this coin belongs to. */
   personId: string;
+  /** Case study slug, or "" for a client with no project of their own yet. */
+  slug: string;
   label: string;
   /** Front, at rest. */
   mark: Face;
@@ -334,6 +342,7 @@ const Testimonials = () => {
         {
           key: item.id,
           personId: item.id,
+          slug: "",
           label: item.name,
           mark: portrait,
           portrait,
@@ -344,6 +353,7 @@ const Testimonials = () => {
     return owned.map((mark) => ({
       key: mark.src,
       personId: item.id,
+      slug: mark.slug,
       label: `${mark.label}, ${item.name}`,
       mark: { src: mark.src, fit: mark.fit },
       portrait,
@@ -419,6 +429,17 @@ const Testimonials = () => {
   const featured = coins.find((coin) => coin.key === featuredKey) ?? coins[0];
   const active =
     items.find((item) => item.id === featured.personId) ?? items[0];
+
+  /* What kind of work this was, and where to read about it. Both come from
+     the coin rather than the testimonial, because a client can run more than
+     one project and the two are rarely the same kind of job. The label is the
+     one already on the work cards, so a visitor meets the same vocabulary
+     twice, and it is written in both languages already. */
+  const project = workProjects.find((entry) => entry.slug === featured.slug);
+  const kind = project ? t.work.projects[project.id].tag : "";
+  const projectHref = featured.slug
+    ? `/work/${featured.slug}`
+    : active.projectHref;
   const hasFull = active.sections?.length > 0;
   const quoteType =
     locale === "ja"
@@ -572,13 +593,23 @@ const Testimonials = () => {
 
                   <div
                     className={cn(
-                      "mt-2 flex flex-wrap items-center gap-x-5 gap-y-2",
+                      "mt-3 flex flex-wrap items-center gap-x-4 gap-y-2",
                       locale === "ja" ? "justify-start" : "justify-center",
                     )}
                   >
-                    {active.projectHref && (
+                    {/* The kind of work, in the same pill the work cards use.
+                        It names the job the quote is actually about, which
+                        the client's own title cannot: Taisei's two projects
+                        are a brand site and a platform. */}
+                    {kind && (
+                      <span className="rounded-full border border-primary/30 px-3 py-1 text-xs font-medium text-primary">
+                        {kind}
+                      </span>
+                    )}
+
+                    {projectHref && (
                       <TransitionLink
-                        href={active.projectHref}
+                        href={projectHref}
                         className="group inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-primary/80"
                       >
                         {active.projectLabel}
@@ -631,9 +662,9 @@ const Testimonials = () => {
                   className="mt-4 border-t border-border/60 pt-6"
                 />
 
-                {active.projectHref && (
+                {projectHref && (
                   <TransitionLink
-                    href={active.projectHref}
+                    href={projectHref}
                     className={cn(
                       "group mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-primary/80",
                       locale === "ja"
