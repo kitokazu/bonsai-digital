@@ -124,6 +124,11 @@ interface Face {
  * because the arriving and departing coins turn past each other: before the
  * halfway point the arriving one still shows its mark, after it the departing
  * one already does.
+ *
+ * It rests on one thing about the data: no two marks name the same person.
+ * Give a second project the same `owner` and hovering one while the other is
+ * in the middle puts that face on screen twice. Where one client is behind
+ * two projects, the second belongs to whoever actually ran it.
  */
 interface Coin {
   key: string;
@@ -389,8 +394,9 @@ const Testimonials = () => {
   const [tick, setTick] = useState(0);
   /* Half turns banked per coin, so a coin never rewinds its last turn. */
   const [spins, setSpins] = useState<Record<string, number>>({});
-  /* The coin under the pointer. Held here rather than in the coin, because
-     deciding which side a coin may show means seeing all of them at once. */
+  /* The coin under the pointer. Held here rather than in the coin so that a
+     click can clear it: the coin travels out from under the pointer, and
+     arriving still marked as hovered would turn it straight back over. */
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   /* The full write-up, open in the dialog. */
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -455,25 +461,6 @@ const Testimonials = () => {
      one project and the two are rarely the same kind of job. The label is the
      one already on the work cards, so a visitor meets the same vocabulary
      twice, and it is written in both languages already. */
-  /* Which coins are turned over right now.
-  
-     A hover turns the coin under the pointer. The catch is a client with more
-     than one project: hovering one of Taisei's coins while another of his is
-     in the middle would put the same face on screen twice. So in that one
-     case the middle coin turns to its own mark for as long as the pointer
-     stays, which keeps a single face on the stage and happens to say plainly
-     that these two projects are the same person. */
-  const hoveredCoin = coins.find((coin) => coin.key === hoveredKey) ?? null;
-  const centreStandsAside =
-    !!hoveredCoin &&
-    hoveredCoin.key !== featured.key &&
-    hoveredCoin.personId === featured.personId;
-
-  const isTurned = (coin: Coin) =>
-    coin.key === featured.key
-      ? coin.key === hoveredKey || centreStandsAside
-      : coin.key === hoveredKey;
-
   const project = workProjects.find((entry) => entry.slug === featured.slug);
   const kind = project ? t.work.projects[project.id].tag : "";
   const projectHref = featured.slug
@@ -529,7 +516,7 @@ const Testimonials = () => {
                   featured={seat === FEATURED}
                   spins={spins[coin.key] ?? 0}
                   hovered={coin.key === hoveredKey}
-                  turned={isTurned(coin)}
+                  turned={coin.key === hoveredKey}
                   reduceMotion={reduceMotion}
                   onHover={setHoveredKey}
                   onSelect={select}
