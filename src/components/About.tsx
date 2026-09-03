@@ -1,15 +1,16 @@
 "use client";
 
-import { Code2, ScanEye, Zap } from "lucide-react";
+import { ArrowRight, Code2, ScanEye, Zap } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 import { MaskHeading } from "@/components/motion/MaskHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { ClipReveal } from "@/components/motion/ScrollEffects";
+import { TransitionLink } from "@/components/nav/TransitionLink";
 import { useTranslation } from "@/lib/i18n";
 import { STAGGER } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import { cn, textAlign } from "@/lib/utils";
 
 /**
  * Swap this for a different file and it picks it up. If the file is missing
@@ -102,7 +103,7 @@ interface AboutProps {
 }
 
 const About = ({ variant = "section" }: AboutProps) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const isPage = variant === "page";
 
   return (
@@ -179,43 +180,74 @@ const About = ({ variant = "section" }: AboutProps) => {
           </Reveal>
         </div>
 
+        {/* The home page ends here, on the way to the full page. Nothing
+            linked to /about before this, so the story and the values below
+            were unreachable from the front door. */}
+        {!isPage && (
+          <Reveal
+            blur={false}
+            className={cn(
+              "mt-14 border-t border-border/60 pt-10",
+              textAlign(locale),
+            )}
+          >
+            <TransitionLink
+              href="/about"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 transition-colors hover:text-foreground"
+            >
+              {t.about.viewMore}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </TransitionLink>
+          </Reveal>
+        )}
+
         {/*
+          Page only. On the home page it collided with the Process section
+          directly above, which already carries the heading "How we work", and
+          it repeated that section's working-demo promise one scroll later.
+          Two of the three claims were website-shaped as well, which does not
+          hold up next to the internal tools and AI work.
+
           Three, not the previous four. "Long-term partnership" said the same
           thing as paragraph3 above, and "Quality" plus "User experience" were
           two ways of claiming care, so they are folded into one claim that
           names who it is actually for. Each of these three is checkable,
           which is the difference between a differentiator and a virtue.
         */}
-        <div className="mt-20 border-t border-border/60 pt-12">
-          <Reveal as="p" blur={false} className="type-eyebrow mb-8">
-            {t.about.valuesLabel}
-          </Reveal>
+        {isPage && (
+          <div className="mt-20 border-t border-border/60 pt-12">
+            <Reveal as="p" blur={false} className="type-eyebrow mb-8">
+              {t.about.valuesLabel}
+            </Reveal>
 
-          <RevealGroup
-            as="ul"
-            each={STAGGER.loose}
-            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {t.about.values.map((value, index) => {
-              const Icon = valueIcons[index];
-              return (
-                <RevealItem
-                  as="li"
-                  key={value.title}
-                  className="group rounded-2xl border border-border/50 bg-card p-6 transition-colors duration-300 hover:border-primary/30"
-                >
-                  <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-transform duration-500 ease-expo group-hover:-translate-y-0.5">
-                    <Icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <h3 className="type-h3 mb-2 text-foreground">{value.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {value.description}
-                  </p>
-                </RevealItem>
-              );
-            })}
-          </RevealGroup>
-        </div>
+            <RevealGroup
+              as="ul"
+              each={STAGGER.loose}
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {t.about.values.map((value, index) => {
+                const Icon = valueIcons[index];
+                return (
+                  <RevealItem
+                    as="li"
+                    key={value.title}
+                    className="group rounded-2xl border border-border/50 bg-card p-6 transition-colors duration-300 hover:border-primary/30"
+                  >
+                    <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-transform duration-500 ease-expo group-hover:-translate-y-0.5">
+                      <Icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <h3 className="type-h3 mb-2 text-foreground">
+                      {value.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {value.description}
+                    </p>
+                  </RevealItem>
+                );
+              })}
+            </RevealGroup>
+          </div>
+        )}
       </div>
     </section>
   );
