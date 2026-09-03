@@ -155,7 +155,10 @@ function StageNode({
   slot,
   featured,
   spins,
+  hovered,
+  turned,
   reduceMotion,
+  onHover,
   onSelect,
 }: {
   coin: Coin;
@@ -163,11 +166,14 @@ function StageNode({
   featured: boolean;
   /** Half turns banked from previous swaps, so a coin never unwinds. */
   spins: number;
+  /** Pointer is over this coin's seat. Drives the lift, not the turn. */
+  hovered: boolean;
+  /** Show the other side. Decided by the parent, which can see every coin. */
+  turned: boolean;
   reduceMotion: boolean;
+  onHover: (key: string | null) => void;
   onSelect: (key: string) => void;
 }) {
-  const [hovered, setHovered] = useState(false);
-
   /* Width and the centring margins share one value, so the floor that keeps
      a satellite tappable on a phone also keeps it centred. */
   const size = featured
@@ -176,16 +182,11 @@ function StageNode({
 
   /* Mark side at rest, portrait side in the middle. Banked turns are added
      rather than the angle being toggled, so each swap carries on in the same
-     direction instead of rewinding the last one.
-  
-     Hovering the middle coin turns it over to its mark and back. Only the
-     middle one: turning a satellite would show a second portrait, whereas the
-     middle coin's own mark is not on screen anywhere else, so nothing
-     repeats. */
-  const peeking = featured && hovered;
+     direction instead of rewinding the last one. A hover adds a further half
+     turn, always forward, whichever side the coin was resting on. */
   const rotateY = reduceMotion
     ? 0
-    : spins * 360 + (featured ? 180 : 0) + (peeking ? 180 : 0);
+    : spins * 360 + (featured ? 180 : 0) + (turned ? 180 : 0);
 
   const ring = featured
     ? "testimonial-ring-featured"
@@ -230,10 +231,10 @@ function StageNode({
         zIndex: featured ? 3 : 2,
       }}
       onPointerEnter={(event) => {
-        if (event.pointerType === "mouse") setHovered(true);
+        if (event.pointerType === "mouse") onHover(coin.key);
       }}
-      onPointerLeave={() => setHovered(false)}
-      onPointerCancel={() => setHovered(false)}
+      onPointerLeave={() => onHover(null)}
+      onPointerCancel={() => onHover(null)}
     >
       <motion.div layout transition={GLIDE} className="h-full w-full">
         <motion.div
@@ -388,6 +389,9 @@ const Testimonials = () => {
   const [tick, setTick] = useState(0);
   /* Half turns banked per coin, so a coin never rewinds its last turn. */
   const [spins, setSpins] = useState<Record<string, number>>({});
+  /* The coin under the pointer. Held here rather than in the coin, because
+     deciding which side a coin may show means seeing all of them at once. */
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   /* The full write-up, open in the dialog. */
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -408,6 +412,9 @@ const Testimonials = () => {
        brings its portrait round. Both travel in the same direction, and they
        pass each other, so only one portrait is ever face on. */
     setSpins((prev) => ({ ...prev, [current]: (prev[current] ?? 0) + 1 }));
+    /* The clicked coin leaves the pointer behind as it travels, and arriving
+       still marked as hovered would turn it straight back over. */
+    setHoveredKey(null);
     setFeaturedKey(key);
     setTick((n) => n + 1);
   }, []);
@@ -448,6 +455,25 @@ const Testimonials = () => {
      one project and the two are rarely the same kind of job. The label is the
      one already on the work cards, so a visitor meets the same vocabulary
      twice, and it is written in both languages already. */
+  /* Which coins are turned over right now.
+  
+     A hover turns the coin under the pointer. The catch is a client with more
+     than one project: hovering one of Taisei's coins while another of his is
+     in the middle would put the same face on screen twice. So in that one
+     case the middle coin turns to its own mark for as long as the pointer
+     stays, which keeps a single face on the stage and happens to say plainly
+     that these two projects are the same person. */
+  const hoveredCoin = coins.find((coin) => coin.key === hoveredKey) ?? null;
+  const centreStandsAside =
+    !!hoveredCoin &&
+    hoveredCoin.key !== featured.key &&
+    hoveredCoin.personId === featured.personId;
+
+  const isTurned = (coin: Coin) =>
+    coin.key === featured.key
+      ? coin.key === hoveredKey || centreStandsAside
+      : coin.key === hoveredKey;
+
   const project = workProjects.find((entry) => entry.slug === featured.slug);
   const kind = project ? t.work.projects[project.id].tag : "";
   const projectHref = featured.slug
@@ -502,7 +528,10 @@ const Testimonials = () => {
                   slot={SLOTS[seat % SLOTS.length]}
                   featured={seat === FEATURED}
                   spins={spins[coin.key] ?? 0}
+                  hovered={coin.key === hoveredKey}
+                  turned={isTurned(coin)}
                   reduceMotion={reduceMotion}
+                  onHover={setHoveredKey}
                   onSelect={select}
                 />
               );
