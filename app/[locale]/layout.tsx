@@ -5,6 +5,7 @@ import { preloaderFlagScript } from "@/components/chrome/Preloader";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { LocaleProvider } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
+import { SITE_NAME, SITE_URL, seoDictionary, toLocale } from "@/lib/seo";
 import "lenis/dist/lenis.css";
 import "../globals.css";
 
@@ -22,25 +23,23 @@ const inter = Inter({
   display: "swap",
 });
 
-/* The search snippet. Kept in step with about.paragraph1 in the dictionaries,
-   which is the other block search engines tend to pull from. */
-const descriptions: Record<Locale, string> = {
-  en: "Japan-based digital studio cultivating your digital growth. We build websites, web applications, internal tools, and AI agents with precision and care.",
-  ja: "日本拠点のデジタルスタジオ。ウェブサイトやウェブアプリケーション、社内ツール、AIエージェントまで、ビジネスに本当に役立つデジタルプロダクトを丁寧に設計し、形にします。",
-};
-
 export function generateMetadata({
   params,
 }: {
   params: { locale: string };
 }): Metadata {
-  const locale = (params.locale === "ja" ? "ja" : "en") as Locale;
-  const description = descriptions[locale];
+  const locale = toLocale(params.locale);
 
   return {
-    metadataBase: new URL("https://bonsaidigitalstudio.com"),
-    title: "Bonsai Digital",
-    description,
+    /* Every page below sets its own title and description; what stays here is
+       the shell around them. `template` appends the studio name so a page
+       only has to name itself, and `default` covers anything that forgets. */
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: SITE_NAME,
+      template: `%s | ${SITE_NAME}`,
+    },
+    description: seoDictionary(locale).seo.home.description,
     icons: {
       icon: [
         { url: "/favicon/favicon.ico", sizes: "any" },
@@ -50,28 +49,6 @@ export function generateMetadata({
       apple: "/favicon/apple-touch-icon.png",
     },
     manifest: "/favicon/site.webmanifest",
-    openGraph: {
-      title: "Bonsai Digital",
-      description,
-      siteName: "Bonsai Digital",
-      url: locale === "ja" ? "/ja" : "/",
-      type: "website",
-      locale: locale === "ja" ? "ja_JP" : "en_US",
-      images: [
-        {
-          url: "/og.png",
-          width: 1572,
-          height: 1030,
-          alt: "Bonsai Digital, a Japan-based digital studio",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Bonsai Digital",
-      description,
-      images: ["/og.png"],
-    },
   };
 }
 
