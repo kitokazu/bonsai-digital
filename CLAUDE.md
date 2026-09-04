@@ -53,6 +53,11 @@ Our clients are businesses that want a polished digital presence or internal too
 - Use skills for design, do not make it look AI generated. Like frontend-skills or taste-skills
 - Any change that affects the copy, I would like to reflect it both on the English version and the Japanese version. I want to make sure that both versions are consistent in terms of messaging and tone.
 
+## Git
+
+- Work directly on `main` for this repo. Do not create a branch and a PR for ordinary changes, and do not ask; commit to `main` and push when I ask you to push.
+- Still never add Claude or any coding agent as a co-author on commits.
+
 ## Commands
 
 - `npm run dev` — Start Next.js dev server (localhost:3000)
