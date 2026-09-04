@@ -1,4 +1,30 @@
 {
+  "seo": {
+    "home": {
+      "title": "",
+      "description": "Japan-based digital studio building websites, web applications, internal tools, and AI systems for businesses. Engineering-led, bilingual, based in Tokyo."
+    },
+    "work": {
+      "title": "Our work",
+      "description": "Case studies from a Tokyo studio: brand sites, internal tools, e-commerce operations, and AI systems, each built around a real business problem."
+    },
+    "about": {
+      "title": "About",
+      "description": "Bonsai Digital is a small Tokyo studio run by an engineer with experience at Meta, Bosch, and Toyota. Proper system design and security are the baseline here."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Tell us about your website, your MVP, or the AI and automation work you have in mind. Based in Tokyo, working in English and Japanese. First consultation is free."
+    },
+    "education": {
+      "title": "One on one coding lessons",
+      "description": "Private coding lessons over Zoom, in English or Japanese. Kids building a first website, teenagers writing real Python, adults finally making the thing."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Practical writing on engineering, working in Japan, and building digital products, from the engineer behind Bonsai Digital."
+    }
+  },
   "chrome": {
     "skipToContent": "Skip to content",
     "backToTop": "Back to top",
