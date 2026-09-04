@@ -77,7 +77,7 @@ export default function HomeHairCoffeePage() {
               src="/home-hair-coffee/home-hair-landing.png"
               alt="Home Hair & Coffee Roaster website"
               width={1200}
-              height={675}
+              height={654}
               className="w-full h-auto object-cover"
               priority
             />

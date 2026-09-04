@@ -894,6 +894,7 @@
     "heading": "What clients say",
     "description": "A few words from the people we have built for.",
         "readMore": "Read the full testimonial",
+    "translated": "Translated from Japanese",
     "items": [
       {
         "id": "victor",
@@ -930,6 +931,26 @@
         "role": "CEO",
         "company": "DefineX and EnPadel",
         "projectHref": "/work/enpadel",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "nagato",
+        "quote": "What gets me every time is how fast he works. I ask for a change and it is done right away, and he does not stop there, he will tell me when something would work better a different way. He picked up on the picture I had in my head and turned it into the layout, so I am really happy with how the site came out. He has a good eye as well, so I can hand things over and not worry about them.",
+        "sections": [],
+        "name": "Akio Nagato",
+        "role": "Owner",
+        "company": "home hair & coffee roaster",
+        "projectHref": "/work/home-hair-coffee",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "luc",
+        "quote": "I've hired Kai three times now, and I'd strongly recommend him to anyone looking for an expert software engineer with exceptional technical capabilities and communication skills. Kai is particularly strong with the modern tech and AI stack and has shipped complex end to end projects at a large enterprise scale, and is always building with the latest, most relevant tools. Kai is a very strong communicator, and is obsessive about documentation and following best practices. Every project ships on time with exceptional work quality. If you need someone who actually cares about doing things right, I highly recommend Kai!",
+        "sections": [],
+        "name": "Luc Rieffel",
+        "role": "",
+        "company": "",
+        "projectHref": "/work/public-sector-ai",
         "projectLabel": "View the project"
       }
     ]

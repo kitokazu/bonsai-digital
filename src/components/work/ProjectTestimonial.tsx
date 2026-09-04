@@ -8,6 +8,7 @@ import { useTranslation } from "@/lib/i18n";
 import { fadeRise, viewportOnce } from "@/lib/motion";
 import {
   headshots,
+  isTranslated,
   testimonialForPath,
   type TestimonialItem,
 } from "@/lib/testimonials";
@@ -38,6 +39,12 @@ export function ProjectTestimonial() {
   const passages = item.sections.length
     ? item.sections
     : [{ label: "", text: item.quote }];
+
+  /* Empty for a client we name without placing, in which case the line goes
+     rather than sitting blank under their name. */
+  const meta = [item.role, item.company]
+    .filter(Boolean)
+    .join(locale === "ja" ? "、" : ", ");
 
   return (
     <section className="px-6 pb-20">
@@ -100,11 +107,18 @@ export function ProjectTestimonial() {
               <span className="block text-[1.0625rem] font-semibold text-foreground">
                 {item.name}
               </span>
-              <span className="mt-0.5 block text-sm tracking-[0.03em] text-muted-foreground">
-                {[item.role, item.company]
-                  .filter(Boolean)
-                  .join(locale === "ja" ? "、" : ", ")}
-              </span>
+              {meta && (
+                <span className="mt-0.5 block text-sm tracking-[0.03em] text-muted-foreground">
+                  {meta}
+                </span>
+              )}
+              {/* A footnote about the passages above, kept quiet enough that
+                  it does not compete with the client's name. */}
+              {isTranslated(item.id, locale) && (
+                <span className="mt-1 block text-xs tracking-[0.02em] text-muted-foreground/60">
+                  {t.testimonials.translated}
+                </span>
+              )}
             </span>
           </figcaption>
         </motion.figure>
