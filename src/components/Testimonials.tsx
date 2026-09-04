@@ -25,7 +25,12 @@ import { usePageVisibility } from "@/hooks/use-page-visibility";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { useTranslation } from "@/lib/i18n";
 import { fadeRise, viewportOnce } from "@/lib/motion";
-import { headshots, type TestimonialItem } from "@/lib/testimonials";
+import {
+  headshots,
+  isTranslated,
+  slugOf,
+  type TestimonialItem,
+} from "@/lib/testimonials";
 import { workProjects } from "@/lib/work";
 import { cn, itemsAlign, textAlign } from "@/lib/utils";
 
@@ -67,6 +72,13 @@ const marks: Mark[] = [
     owner: "victor",
     label: "Uncharted Influencer Agency",
     fit: "cover",
+  },
+  {
+    src: "/logos/home-hair-mark.png",
+    slug: "home-hair-coffee",
+    owner: "nagato",
+    label: "home hair & coffee roaster",
+    fit: "contain",
   },
 ];
 
@@ -136,7 +148,7 @@ interface Coin {
   key: string;
   /** The testimonial this coin belongs to. */
   personId: string;
-  /** Case study slug, or "" for a client with no project of their own yet. */
+  /** Case study slug, or "" when the testimonial links nowhere. */
   slug: string;
   label: string;
   /** Front, at rest. */
@@ -346,14 +358,16 @@ function FullSections({
  */
 const Testimonials = () => {
   const { t, locale } = useTranslation();
-  const { label, heading, description, readMore } = t.testimonials;
+  const { label, heading, description, readMore, translated } = t.testimonials;
   const items = t.testimonials.items as TestimonialItem[];
   const reduceMotion = usePrefersReducedMotion();
   const pageVisible = usePageVisibility();
 
-  /* One coin per client project, in list order. A client with no mark yet
-     still gets a coin, carrying their portrait on both sides: nothing to
-     show on the front, but they keep their place on the stage. */
+  /* One coin per client project, in list order. A client with no mark still
+     gets a coin, carrying their portrait on both sides: nothing to show on
+     the front, but they keep their place on the stage. Their slug comes off
+     their own testimonial, since the project exists even where a usable mark
+     does not, and the work tag and the link both hang off it. */
   const coins: Coin[] = items.flatMap((item) => {
     const portrait = { src: headshots[item.id], fit: "cover" as const };
     if (!portrait.src) return [];
@@ -364,7 +378,7 @@ const Testimonials = () => {
         {
           key: item.id,
           personId: item.id,
-          slug: "",
+          slug: slugOf(item.projectHref) ?? "",
           label: item.name,
           mark: portrait,
           portrait,
@@ -488,6 +502,12 @@ const Testimonials = () => {
     onPointerEnter: () => setHeld(true),
     onPointerLeave: () => setHeld(false),
   };
+  /* Role and company, where the client gave them. Empty for a client we name
+     without placing, so the line has to go rather than sit there blank and
+     push whatever follows down. */
+  const meta = [active.role, active.company]
+    .filter(Boolean)
+    .join(locale === "ja" ? "、" : ", ");
 
   return (
     <section
@@ -627,11 +647,18 @@ const Testimonials = () => {
                   <p className="text-[1.0625rem] font-semibold tracking-[0.01em] text-foreground">
                     {active.name}
                   </p>
-                  <p className="text-sm tracking-[0.03em] text-muted-foreground">
-                    {[active.role, active.company]
-                      .filter(Boolean)
-                      .join(locale === "ja" ? "、" : ", ")}
-                  </p>
+                  {meta && (
+                    <p className="text-sm tracking-[0.03em] text-muted-foreground">
+                      {meta}
+                    </p>
+                  )}
+                  {/* Said quietly, under the name: it is a footnote about the
+                      words above, not part of who the client is. */}
+                  {isTranslated(active.id, locale) && (
+                    <p className="mt-1 text-xs tracking-[0.02em] text-muted-foreground/60">
+                      {translated}
+                    </p>
+                  )}
 
                   <div
                     className={cn(
@@ -701,10 +728,13 @@ const Testimonials = () => {
                       {active.name}
                     </DialogTitle>
                     <DialogDescription className="mt-1 text-sm tracking-[0.03em] text-muted-foreground">
-                      {[active.role, active.company]
-                        .filter(Boolean)
-                        .join(locale === "ja" ? "、" : ", ")}
+                      {meta}
                     </DialogDescription>
+                    {isTranslated(active.id, locale) && (
+                      <p className="mt-1 text-xs tracking-[0.02em] text-muted-foreground/60">
+                        {translated}
+                      </p>
+                    )}
                   </div>
                 </div>
 

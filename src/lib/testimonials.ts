@@ -28,7 +28,29 @@ export interface TestimonialItem {
 export const headshots: Record<string, string> = {
   taisei: "/definex/taisei-headshot.webp",
   victor: "/uncharted/victor-headshot.avif",
+  nagato: "/home-hair-coffee/home-hair-headshot.webp",
+  luc: "/public-sector/luc-headshot.webp",
 };
+
+/**
+ * The language a client actually wrote in. Not translated, so it lives here:
+ * it is a fact about the person, not about the page they land on.
+ *
+ * A visitor reading a locale other than this one is reading our translation,
+ * and the quote says so. Leave a client out when we are not sure which
+ * language they wrote in, and no claim is made either way.
+ */
+export const wroteIn: Record<string, "en" | "ja"> = {
+  victor: "en",
+  luc: "en",
+  nagato: "ja",
+};
+
+/** True when the words on screen are our translation rather than the original. */
+export function isTranslated(id: string, locale: string): boolean {
+  const source = wroteIn[id];
+  return Boolean(source) && source !== locale;
+}
 
 /**
  * Case studies a testimonial belongs on beyond the one its `projectHref`
@@ -44,7 +66,7 @@ const alsoShownOn: Record<string, string[]> = {
 };
 
 /** Last path segment, ignoring a locale prefix and any trailing slash. */
-function slugOf(path: string): string | undefined {
+export function slugOf(path: string): string | undefined {
   return path.replace(/\/+$/, "").split("/").filter(Boolean).pop();
 }
 
