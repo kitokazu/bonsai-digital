@@ -50,6 +50,12 @@ interface Mark {
  * DefineX is the symbol without its wordmark, which is illegible this small;
  * EnPadel and Uncharted only exist on their own brand colour, so they fill
  * their circle rather than sitting on ours.
+ *
+ * Luc's is a monogram rather than a logo. His client is one we do not name,
+ * so there is no mark to use, and without one his coin carried his face on
+ * both sides: his portrait sat on the stage while somebody else held the
+ * middle, which is the one thing the coins are arranged to avoid. Initials in
+ * the studio's own green stand in for the mark we cannot show.
  */
 const marks: Mark[] = [
   {
@@ -79,6 +85,13 @@ const marks: Mark[] = [
     owner: "nagato",
     label: "home hair & coffee roaster",
     fit: "contain",
+  },
+  {
+    src: "/logos/luc-monogram.png",
+    slug: "public-sector-ai",
+    owner: "luc",
+    label: "Public-sector AI platform",
+    fit: "cover",
   },
 ];
 
