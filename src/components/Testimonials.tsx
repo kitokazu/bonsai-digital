@@ -92,7 +92,7 @@ const marks: Mark[] = [
     src: "/logos/luc-monogram.png",
     slug: "public-sector-ai",
     owner: "luc",
-    label: "",
+    label: "AI platform",
     fit: "cover",
   },
 ];
