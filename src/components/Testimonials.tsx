@@ -38,6 +38,8 @@ interface Mark {
   src: string;
   /** The testimonial this mark selects. */
   owner: string;
+  /** Names the mark for a screen reader. Empty where naming it would say
+      more about the client than the page does. */
   label: string;
   /** `cover` for marks that carry their own field, `contain` for cut-outs. */
   fit: "cover" | "contain";
@@ -90,7 +92,7 @@ const marks: Mark[] = [
     src: "/logos/luc-monogram.png",
     slug: "public-sector-ai",
     owner: "luc",
-    label: "Public-sector AI platform",
+    label: "",
     fit: "cover",
   },
 ];
@@ -403,7 +405,9 @@ const Testimonials = () => {
       key: mark.src,
       personId: item.id,
       slug: mark.slug,
-      label: `${mark.label}, ${item.name}`,
+      /* A mark with no label leaves the person's name standing on its own,
+         rather than a stray comma where the company would have been. */
+      label: [mark.label, item.name].filter(Boolean).join(", "),
       mark: { src: mark.src, fit: mark.fit },
       portrait,
     }));
