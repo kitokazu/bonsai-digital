@@ -129,7 +129,20 @@ const About = ({ variant = "section" }: AboutProps) => {
             />
 
             <Reveal delay={0.1}>
-              <p className="type-lede mb-5">{t.about.paragraph1}</p>
+              {/*
+                Visible to readers, off limits to search snippets.
+
+                Google was building the result for the whole site out of this
+                paragraph rather than the description we wrote, so the first
+                thing a search said about the studio was a list of previous
+                employers. `data-nosnippet` takes the paragraph out of the
+                running without taking it off the page, which pushes Google
+                back to the description in `seo.about`. It is honoured on
+                span, div and section, not on p, hence the wrapper.
+              */}
+              <p className="type-lede mb-5">
+                <span data-nosnippet="">{t.about.paragraph1}</span>
+              </p>
               <p className="type-lede">{t.about.paragraph2}</p>
             </Reveal>
 
