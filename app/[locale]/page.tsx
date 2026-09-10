@@ -9,7 +9,8 @@ import FAQ from "@/components/FAQ";
 
 import type { Metadata } from "next";
 
-import { staticPageMetadata, toLocale } from "@/lib/seo";
+import { SiteSchema } from "@/components/seo/SiteSchema";
+import { seoDictionary, staticPageMetadata, toLocale } from "@/lib/seo";
 
 export function generateMetadata({
   params,
@@ -19,9 +20,15 @@ export function generateMetadata({
   return staticPageMetadata(toLocale(params.locale), "home", "/");
 }
 
-export default function Home() {
+export default function Home({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
+
   return (
     <div className="min-h-screen">
+      <SiteSchema
+        locale={locale}
+        description={seoDictionary(locale).seo.home.description}
+      />
       <Hero />
       <Process />
       <About />
