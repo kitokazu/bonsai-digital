@@ -30,6 +30,7 @@ export const headshots: Record<string, string> = {
   victor: "/uncharted/victor-headshot.avif",
   nagato: "/home-hair-coffee/home-hair-headshot.webp",
   luc: "/public-sector/luc-headshot.webp",
+  yotaro: "/enpadel/yotaro-headshot.webp",
 };
 
 /**
@@ -43,6 +44,7 @@ export const headshots: Record<string, string> = {
 export const wroteIn: Record<string, "en" | "ja"> = {
   victor: "en",
   luc: "en",
+  yotaro: "en",
   nagato: "ja",
 };
 
@@ -56,14 +58,12 @@ export function isTranslated(id: string, locale: string): boolean {
  * Case studies a testimonial belongs on beyond the one its `projectHref`
  * points at, by project slug.
  *
- * A client can be behind more than one project: Taisei runs both DefineX and
- * EnPadel, and what he says about working with us holds for both. The link in
- * the testimonial still points at a single case study, so that stays here
- * rather than in the dictionaries, which carry words and not routing.
+ * Empty at the moment. Taisei used to sit here because his testimonial
+ * covered both DefineX and EnPadel; now that EnPadel's founder has given one
+ * of his own, each project has a client of its own to speak for it. The
+ * mechanism stays for the next time one person's words cover two jobs.
  */
-const alsoShownOn: Record<string, string[]> = {
-  taisei: ["definex"],
-};
+const alsoShownOn: Record<string, string[]> = {};
 
 /** Last path segment, ignoring a locale prefix and any trailing slash. */
 export function slugOf(path: string): string | undefined {

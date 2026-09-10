@@ -956,7 +956,7 @@
         "name": "Taisei Kitahara",
         "role": "CEO",
         "company": "DefineX and EnPadel",
-        "projectHref": "/work/enpadel",
+        "projectHref": "/work/definex",
         "projectLabel": "View the project"
       },
       {
@@ -977,6 +977,16 @@
         "role": "",
         "company": "",
         "projectHref": "/work/public-sector-ai",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "yotaro",
+        "quote": "Kai is technically sharp and clearly knows his craft inside and out. He works across both frontend and backend, so nothing falls through the cracks, and he's always up to date with the newest tech and tools, picking what actually fits the goal so the end result performs and reaches the right audience. He also communicates exceptionally well, translating ideas into a finished product that matches the vision. He consistently checks in for feedback to make sure everything's dialed in. I highly recommend him.",
+        "sections": [],
+        "name": "Yotaro Enomoto",
+        "role": "Founder",
+        "company": "EnPadel",
+        "projectHref": "/work/enpadel",
         "projectLabel": "View the project"
       }
     ]

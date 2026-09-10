@@ -62,7 +62,7 @@ const marks: Mark[] = [
   {
     src: "/logos/enpadel-node.png",
     slug: "enpadel",
-    owner: "taisei",
+    owner: "yotaro",
     label: "EnPadel",
     fit: "cover",
   },

@@ -958,7 +958,7 @@
         "name": "Taisei Kitahara",
         "role": "代表取締役",
         "company": "DefineX・EnPadel",
-        "projectHref": "/work/enpadel",
+        "projectHref": "/work/definex",
         "projectLabel": "この実績を見る"
       },
       {
@@ -979,6 +979,16 @@
         "role": "",
         "company": "",
         "projectHref": "/work/public-sector-ai",
+        "projectLabel": "この実績を見る"
+      },
+      {
+        "id": "yotaro",
+        "quote": "Kaiさんは技術力が高く、自分の仕事を本当によく分かっている方です。フロントエンドもバックエンドも一人で見てくれるので、抜け漏れが起きません。最新の技術やツールにも常に目を配っていて、その中から目的に本当に合うものを選んでくれるので、仕上がりの動きも軽く、届けたい相手にきちんと届きます。説明もとても分かりやすく、こちらが考えているイメージをそのまま形にしてくれます。進めながらこまめに確認してくれるので、細かいところまで納得のいく仕上がりになりました。自信を持っておすすめできる方です。",
+        "sections": [],
+        "name": "Yotaro Enomoto",
+        "role": "創業者",
+        "company": "EnPadel",
+        "projectHref": "/work/enpadel",
         "projectLabel": "この実績を見る"
       }
     ]
