@@ -14,10 +14,12 @@ import { blurFadeRise, DURATION, EASE, stagger, STAGGER } from "@/lib/motion";
 import { cn, textAlign } from "@/lib/utils";
 import { workProjects } from "@/lib/work";
 
-/* The six most recent projects, in the order they should ride past. Images are
+/* The most recent projects, in the order they should ride past. Images are
    chosen for how they read at card size, so they do not always match the still
-   used on the work index. */
+   used on the work index. CaribSys rides on its coverage map, which is already
+   3:2 and so lands in the card without a crop. */
 const showcase = [
+  { key: "caribsys", image: "/caribsys/coverage-poster.jpg" },
   { key: "influencerAgency", image: "/uncharted/dashboard.png" },
   { key: "enpadel", image: "/enpadel/scroll-poster.jpg" },
   { key: "ecommerceOps", image: "/apex-autowerks/dashboard.png" },
@@ -72,7 +74,7 @@ function ShowcaseCard({
 
   /* The second pass of the track is what makes the loop seamless, so it stays
      clickable, but it is hidden from assistive tech and taken out of the tab
-     order: the same six projects should only be announced once. */
+     order: the same projects should only be announced once. */
   return (
     <TransitionLink
       href={`/work/${project.slug}`}
@@ -211,7 +213,11 @@ const Hero = () => {
             and holds the scroll, so a project can actually be read. */}
         <div
           className="group/track flex w-max gap-5 animate-marquee hover:[animation-play-state:paused] motion-reduce:[animation-play-state:paused]"
-          style={{ ["--marquee-duration" as string]: "72s" }}
+          /* Twelve seconds a card, so adding one to the row lengthens the
+             loop rather than speeding the whole thing up. */
+          style={{
+            ["--marquee-duration" as string]: `${showcase.length * 12}s`,
+          }}
         >
           {[...projects, ...projects].map((project, index) => (
             <ShowcaseCard

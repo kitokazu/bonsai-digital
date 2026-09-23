@@ -1,6 +1,7 @@
 export type WorkBucket = "websites" | "ecommerce" | "software";
 
 export type WorkProjectId =
+  | "caribsys"
   | "homeHairCoffee"
   | "chnl301"
   | "cgOnlineAcademy"
@@ -37,6 +38,16 @@ export interface WorkProject {
 }
 
 export const workProjects: WorkProject[] = [
+  {
+    id: "caribsys",
+    bucket: "websites",
+    image: "/caribsys/coverage-poster.jpg",
+    video: "/caribsys/coverage",
+    slug: "caribsys",
+    tileLabel: "CS",
+    frameClass: "from-[#03111f] to-[#1d6fae]",
+    tileClass: "bg-[#03111f] text-[#f9995d]",
+  },
   {
     id: "influencerAgency",
     bucket: "software",
