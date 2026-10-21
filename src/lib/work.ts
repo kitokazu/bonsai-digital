@@ -2,6 +2,7 @@ export type WorkBucket = "websites" | "ecommerce" | "software";
 
 export type WorkProjectId =
   | "caribsys"
+  | "taylorHughes"
   | "homeHairCoffee"
   | "chnl301"
   | "cgOnlineAcademy"
@@ -47,6 +48,15 @@ export const workProjects: WorkProject[] = [
     tileLabel: "CS",
     frameClass: "from-[#03111f] to-[#1d6fae]",
     tileClass: "bg-[#03111f] text-[#f9995d]",
+  },
+  {
+    id: "taylorHughes",
+    bucket: "websites",
+    image: "/taylor-hughes/reel-poster.jpg",
+    video: "/taylor-hughes/reel",
+    slug: "taylor-hughes",
+    frameClass: "from-[#171512] to-[#6f675c]",
+    tileClass: "bg-[#171512] text-[#f3efe7]",
   },
   {
     id: "influencerAgency",

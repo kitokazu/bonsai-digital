@@ -31,6 +31,7 @@ export const headshots: Record<string, string> = {
   nagato: "/home-hair-coffee/home-hair-headshot.webp",
   luc: "/public-sector/luc-headshot.webp",
   yotaro: "/enpadel/yotaro-headshot.webp",
+  taylor: "/taylor-hughes/taylor-headshot.webp",
 };
 
 /**
@@ -45,6 +46,7 @@ export const wroteIn: Record<string, "en" | "ja"> = {
   victor: "en",
   luc: "en",
   yotaro: "en",
+  taylor: "en",
   nagato: "ja",
 };
 

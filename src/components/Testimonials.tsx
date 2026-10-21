@@ -58,6 +58,10 @@ interface Mark {
  * both sides: his portrait sat on the stage while somebody else held the
  * middle, which is the one thing the coins are arranged to avoid. Initials in
  * the studio's own green stand in for the mark we cannot show.
+ *
+ * Taylor's is a monogram for a different reason: she works under her own
+ * name, so there is no company mark to show. Hers is set in her own site's
+ * serif, ink on its cream ground.
  */
 const marks: Mark[] = [
   {
@@ -93,6 +97,13 @@ const marks: Mark[] = [
     slug: "public-sector-ai",
     owner: "luc",
     label: "AI platform",
+    fit: "cover",
+  },
+  {
+    src: "/logos/taylor-monogram.png",
+    slug: "taylor-hughes",
+    owner: "taylor",
+    label: "",
     fit: "cover",
   },
 ];

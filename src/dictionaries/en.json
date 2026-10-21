@@ -61,6 +61,10 @@
         "title": "CaribSys",
         "category": "Enterprise site"
       },
+      "taylorHughes": {
+        "title": "Taylor Lauren Hughes",
+        "category": "Portfolio site"
+      },
       "influencerAgency": {
         "title": "Influencer Agency Platform",
         "category": "Automation"
@@ -160,6 +164,11 @@
         "title": "CaribSys",
         "tags": ["Brand site", "Interactive map"],
         "outcome": "Built the site for a Caribbean data infrastructure company around a coverage map drawn from real coordinates, where clicking a country tells you what they do there."
+      },
+      "taylorHughes": {
+        "title": "Taylor Lauren Hughes",
+        "tags": ["Portfolio site", "Motion design"],
+        "outcome": "Built a portfolio for a dancer and choreographer that opens on her reel, loads each film only when someone asks for it, and pulls photos from many different shoots together under one warm grade."
       },
       "homeHairCoffee": {
         "title": "Home Hair & Coffee Roaster",
@@ -397,6 +406,52 @@
         "Enquiry form and delivery",
         "Contrast and accessibility pass",
         "Redirects from the old site"
+      ]
+    },
+    "taylorHughes": {
+      "category": "Dance & performance",
+      "title": "Taylor Lauren Hughes",
+      "description": "The site for Taylor Lauren Hughes, a dancer, choreographer and dance educator from Southern California who performs and makes work across the UK, the US and Europe. The people looking at it are choreographers, companies and casting teams who want to see how she moves, so the photos and film lead and the words stay out of the way.",
+      "tags": [
+        "Portfolio site",
+        "Motion design",
+        "Video",
+        "Photo grading",
+        "Next.js",
+        "SEO"
+      ],
+      "overview": "Taylor came to us with a Word document. In it were her bio, the order she wanted her pieces in, notes on what she wanted changed, and fifteen photos that did not exist anywhere else. Before building anything we mocked up five different directions for the site, and she picked the gallery one: a warm cream ground, a serif for the display type, photos at full size and as little interface as we could get away with. Her notes went in from there. Her roles now read dancer, choreographer and dance educator, the pieces sit in the order she listed them with no dates on them, and the bottom of the home page plays a recent piece instead of a photo strip. Underneath it is Next.js with CSS Modules and no CMS, and every page is built ahead of time, so what sits on Vercel is just static files. All of her copy and the order of every project live in one file, so fixing a credit or moving a piece up the list is a one line edit. A script rebuilds every photo, poster and video from her originals, pulling the photos straight out of the Word document, so when she sends new work it goes through the same steps as the first batch.",
+      "showcase": [
+        {
+          "title": "The first two seconds",
+          "description": "On a first visit the page opens on her name. A thin line draws across, the words rise out of a mask, her three roles fade in underneath, and then the panel lifts away onto the reel. It plays once per session, and whether it plays is decided before anything is painted, so a repeat visit, or anyone with reduced motion turned on, never catches a flash of it. The reel underneath starts out as a still photo, which is also the first thing the page loads, and the video only fades in once it is actually playing, so there is never a black frame between the two."
+        },
+        {
+          "title": "Film that waits to be asked",
+          "description": "Choreography and Dance Performance are grids of stills, three across, each with the piece, her role and the venue. Press Play and the YouTube player loads in place of the still. Until then there is no player on the page and nothing is fetched from YouTube, which keeps the pages light even with several films on them. A piece with no film, like Act 2, opens its photos inside the same frame instead."
+        },
+        {
+          "title": "Photos that keep moving",
+          "description": "Taylor asked for the Movement Direction photos to move on their own, so the strips drift slowly, turn around at each end, and stop the moment you hover, focus or touch them. They also work however you come at them. Drag one with a mouse and it carries on with a little momentum, use the arrows or the arrow keys, or swipe on a phone the way you would anywhere else. Each set has the photographer's credit underneath."
+        },
+        {
+          "title": "Projects as a list",
+          "description": "Portfolio is a plain list of project titles with her role on the right. Hover a row and its cover photo fades in behind the title. Click it and the row opens onto the full set of photos, with the venues above them. Only one is open at a time, so the list never turns into a wall of images. The titles, like the nav, ripple a letter at a time when you point at them."
+        },
+        {
+          "title": "One grade over everything",
+          "description": "The photos come from a lot of different photographers, stages and studios, and side by side they did not look like one person's work. So every photo on the site goes through the same warm grade, set once in the stylesheet rather than baked into the files. The About page lays her bio straight over a full bleed portrait with a dark gradient under the text, which holds up on a phone as well as on a wide screen."
+        },
+        {
+          "title": "Where the words lead",
+          "description": "Teaching Philosophy is the one page where the words come first. Her statement is set in the display serif at a comfortable reading size, beside a single photo from a studio session, so it reads like something she wrote rather than a block of copy. It lives in the same file as the rest of the site's text, so when she wants to revise it, that is a quick edit."
+        }
+      ],
+      "additionalWork": [
+        "Search and share setup",
+        "Asset pipeline from her originals",
+        "Keyboard and reduced motion pass",
+        "Launch on her own domain"
       ]
     },
     "definex": {
@@ -1042,6 +1097,16 @@
         "role": "Founder",
         "company": "EnPadel",
         "projectHref": "/work/enpadel",
+        "projectLabel": "View the project"
+      },
+      {
+        "id": "taylor",
+        "quote": "Kai was absolutely incredible to work with. As a dancer I wanted to create a website that was creative and unique to me and he made my vision come to life. He really went above and beyond with the website. He was professional, timely, he listened to what I wanted, and was great to collaborate with. I couldn’t recommend Kai enough! If you need a comprehensive, professional, creative website he is your person. He can genuinely do anything as far as website design and I would be happy to work with him again!",
+        "sections": [],
+        "name": "Taylor Lauren Hughes",
+        "role": "Dancer and choreographer",
+        "company": "",
+        "projectHref": "/work/taylor-hughes",
         "projectLabel": "View the project"
       }
     ]

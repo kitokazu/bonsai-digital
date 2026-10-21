@@ -17,9 +17,10 @@ import { workProjects } from "@/lib/work";
 /* The most recent projects, in the order they should ride past. Images are
    chosen for how they read at card size, so they do not always match the still
    used on the work index. CaribSys rides on its coverage map, which is already
-   3:2 and so lands in the card without a crop. */
+   3:2 and so lands in the card without a crop, as does Taylor's reel frame. */
 const showcase = [
   { key: "caribsys", image: "/caribsys/coverage-poster.jpg" },
+  { key: "taylorHughes", image: "/taylor-hughes/reel-poster.jpg" },
   { key: "influencerAgency", image: "/uncharted/dashboard.png" },
   { key: "enpadel", image: "/enpadel/scroll-poster.jpg" },
   { key: "ecommerceOps", image: "/apex-autowerks/dashboard.png" },
