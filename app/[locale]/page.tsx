@@ -30,10 +30,10 @@ export default function Home({ params }: { params: { locale: string } }) {
         description={seoDictionary(locale).seo.home.description}
       />
       <Hero />
+      <Testimonials />
       <Process />
       <About />
       <Work />
-      <Testimonials />
       <WhatWeDo />
       <FAQ />
       <BookACall />

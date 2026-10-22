@@ -203,7 +203,9 @@ const Hero = () => {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: DURATION.long + 0.2, delay: 0.6, ease: EASE.expoOut }}
-        className="relative mt-8 w-full md:mt-12"
+        /* Room under the cards, so they sit on the hero's own ground
+           rather than on the edge of the tinted section that follows. */
+        className="relative mt-8 w-full pb-8 md:mt-12 md:pb-12"
       >
         {/* Feathered edges, so cards leave the frame instead of being sliced
             off by the viewport. */}
