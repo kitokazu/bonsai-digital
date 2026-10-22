@@ -50,15 +50,6 @@ export const workProjects: WorkProject[] = [
     tileClass: "bg-[#03111f] text-[#f9995d]",
   },
   {
-    id: "taylorHughes",
-    bucket: "websites",
-    image: "/taylor-hughes/reel-poster.jpg",
-    video: "/taylor-hughes/reel",
-    slug: "taylor-hughes",
-    frameClass: "from-[#171512] to-[#6f675c]",
-    tileClass: "bg-[#171512] text-[#f3efe7]",
-  },
-  {
     id: "influencerAgency",
     bucket: "software",
     image: "/uncharted/dashboard.png",
@@ -66,6 +57,15 @@ export const workProjects: WorkProject[] = [
     tileLabel: "I",
     frameClass: "from-[#3b3463] to-[#7c72c0]",
     tileClass: "bg-[#3b3463] text-[#d9d4f6]",
+  },
+  {
+    id: "taylorHughes",
+    bucket: "websites",
+    image: "/taylor-hughes/reel-poster.jpg",
+    video: "/taylor-hughes/reel",
+    slug: "taylor-hughes",
+    frameClass: "from-[#171512] to-[#6f675c]",
+    tileClass: "bg-[#171512] text-[#f3efe7]",
   },
   {
     id: "enpadel",

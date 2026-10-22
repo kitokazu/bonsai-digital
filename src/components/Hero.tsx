@@ -20,8 +20,8 @@ import { workProjects } from "@/lib/work";
    3:2 and so lands in the card without a crop, as does Taylor's reel frame. */
 const showcase = [
   { key: "caribsys", image: "/caribsys/coverage-poster.jpg" },
-  { key: "taylorHughes", image: "/taylor-hughes/reel-poster.jpg" },
   { key: "influencerAgency", image: "/uncharted/dashboard.png" },
+  { key: "taylorHughes", image: "/taylor-hughes/reel-poster.jpg" },
   { key: "enpadel", image: "/enpadel/scroll-poster.jpg" },
   { key: "ecommerceOps", image: "/apex-autowerks/dashboard.png" },
   { key: "milleGrass", image: "/mille-grass/hero.jpg" },
