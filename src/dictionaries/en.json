@@ -681,6 +681,7 @@
         "Internal tool",
         "Ops dashboard",
         "Shopify",
+        "n8n",
         "Inventory",
         "Analytics",
         "Bilingual EN / JA",
@@ -727,6 +728,14 @@
         {
           "title": "Connected to Shopify",
           "description": "Online sales run through Shopify. Orders flow into the console automatically and are linked to inventory and preorders, so the team never has to keep two systems up to date by hand. From order to arrival to stock on the shelf, the whole chain is visible in one place."
+        },
+        {
+          "title": "Automated with n8n",
+          "description": "The connections between systems run on automated workflows we built in n8n. A new Shopify order is sent to the console and tied to stock, or to the shipment it is waiting on. Every six hours, another workflow pulls container ETAs and exchange rates, recalculates landed cost, and emails the team when a shipment slips."
+        },
+        {
+          "title": "Order updates in Slack",
+          "description": "The n8n workflows also feed a Slackbot in the team's ops channel. It posts each order as it comes in and again when it ships, along with a daily health check on every API the automation depends on. If a connection slows down or a workflow has to retry, the team hears about it in Slack before it turns into a missed order."
         }
       ],
       "additionalWork": [

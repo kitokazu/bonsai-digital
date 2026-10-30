@@ -19,6 +19,8 @@ const showcaseImages = [
   "/apex-autowerks/analytics.png",
   "/apex-autowerks/dashboard-ja.png",
   "/apex-autowerks/shopify.png",
+  "/apex-autowerks/n8n-workflow.png",
+  "/apex-autowerks/slack-ops.png",
 ];
 
 export default function EcommerceOpsPage() {
