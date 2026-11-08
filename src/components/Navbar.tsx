@@ -33,6 +33,7 @@ const Navbar = () => {
     { name: t.navbar.work, href: "/work" },
     { name: t.navbar.whatWeDo, href: "#services" },
     { name: t.navbar.education, href: "/education" },
+    { name: t.navbar.blog, href: "/blog" },
   ];
 
   /* Driven off the scroll motion value rather than a scroll listener, so the
