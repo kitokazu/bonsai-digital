@@ -45,10 +45,17 @@
   },
   "blog": {
     "label": "ブログ",
-    "heading": "制作ノート",
-    "description": "エンジニアリング、日本での働き方、プロダクトづくりについての実践的な記事です。",
     "readPost": "記事を読む",
-    "back": "記事一覧に戻る"
+    "back": "記事一覧に戻る",
+    "minRead": "{n}分で読めます",
+    "filterLabel": "トピックで絞り込む",
+    "topics": {
+      "all": "すべて",
+      "systemDesign": "システム設計",
+      "aiTools": "AI・ツール",
+      "career": "キャリア",
+      "security": "セキュリティ"
+    }
   },
   "hero": {
     "badge": "日本拠点のデジタルスタジオ",

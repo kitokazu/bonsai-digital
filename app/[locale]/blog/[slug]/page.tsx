@@ -62,10 +62,29 @@ const renderInline = (text: string) => {
 };
 
 // Minimal markdown renderer for blog content: ## / ### headings,
-// ![alt](src) images, [text](url) links, and paragraphs separated by
-// blank lines.
+// ![alt](src) images, [text](url) links, ~~~ fenced code blocks, and
+// paragraphs separated by blank lines. Code fences use ~~~ because the
+// posts live in template literals, where ``` would end the string.
 const renderContent = (content: string) => {
-  return content.split(/\n\n+/).map((block, index) => {
+  return content.split(/(~~~[^\n]*\n[\s\S]*?\n~~~)/g).flatMap((segment, s) => {
+    if (segment.startsWith("~~~")) {
+      const code = segment.replace(/^~~~[^\n]*\n/, "").replace(/\n~~~$/, "");
+      return (
+        <pre
+          key={`code-${s}`}
+          className="my-8 overflow-x-auto rounded-2xl border border-border/50 bg-secondary/40 p-5 text-sm leading-relaxed text-foreground/90"
+        >
+          <code className="font-mono">{code}</code>
+        </pre>
+      );
+    }
+    return renderBlocks(segment, s);
+  });
+};
+
+const renderBlocks = (content: string, segment: number) => {
+  return content.split(/\n\n+/).map((block, i) => {
+    const index = `${segment}-${i}`;
     const trimmed = block.trim();
     if (!trimmed) return null;
 

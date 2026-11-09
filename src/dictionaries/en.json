@@ -45,10 +45,17 @@
   },
   "blog": {
     "label": "Blog",
-    "heading": "Notes from the studio",
-    "description": "Practical writing on engineering, working in Japan, and building digital products.",
     "readPost": "Read the post",
-    "back": "Back to all posts"
+    "back": "Back to all posts",
+    "minRead": "{n} min read",
+    "filterLabel": "Filter posts by topic",
+    "topics": {
+      "all": "All",
+      "systemDesign": "System design",
+      "aiTools": "AI and tools",
+      "career": "Career",
+      "security": "Security"
+    }
   },
   "hero": {
     "badge": "Digital studio based in Japan",
