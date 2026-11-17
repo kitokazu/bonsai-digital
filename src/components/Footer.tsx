@@ -11,7 +11,6 @@ const Footer = () => {
   const { t } = useTranslation();
 
   const footerLinks = [
-    { name: t.navbar.whatWeDo, href: "#services" },
     { name: t.navbar.work, href: "/work" },
     { name: t.navbar.about, href: "#about" },
     { name: t.navbar.book, href: "/contact" },

@@ -35,7 +35,6 @@
     "menu": "Menu"
   },
   "navbar": {
-    "whatWeDo": "Pricing",
     "work": "Work",
     "about": "About",
     "education": "Education",
@@ -98,60 +97,6 @@
         "category": "Shop Site"
       }
     }
-  },
-  "whatWeDo": {
-    "label": "Services & pricing",
-    "heading": "Three kinds of work, one standard",
-    "description": "Some of what we build is public facing, and some of it runs behind the scenes. All of it gets the same level of design and engineering.",
-    "buckets": [
-      {
-        "title": "Websites",
-        "tagline": "Launch-ready ASAP",
-        "description": "Marketing sites, landing pages, and rich, motion-driven experiences. Hand-coded, fast, and right on every device.",
-        "priceLabel": "Starting from",
-        "price": "$1,000",
-        "features": [
-          "Custom design, no templates",
-          "Hand-coded, fast on every device",
-          "Japanese and English versions",
-          "SEO and analytics setup",
-          "Contact forms and booking",
-          "Maintenance after launch"
-        ]
-      },
-      {
-        "title": "Automations & AI agents",
-        "tagline": "Up and running in weeks",
-        "description": "For the repetitive work that eats your week. Agent workflows and automations that take it over reliably.",
-        "priceLabel": "Starting from",
-        "price": "$3,000",
-        "features": [
-          "AI agents and workflow automation",
-          "Works with the tools you already use",
-          "Set up, tested, and monitored",
-          "Clear documentation and handoff",
-          "Support after launch"
-        ]
-      },
-      {
-        "title": "MVPs & internal tools",
-        "tagline": "From idea to working product",
-        "description": "Full builds, from idea to real users. MVPs, internal dashboards, and systems, with automation and AI included where they help.",
-        "priceLabel": "Starting from",
-        "price": "$8,000",
-        "features": [
-          "Design and development, end to end",
-          "Database, login, and integrations",
-          "AI agents and automation included",
-          "Deployed and ready for real users",
-          "Weekly progress updates",
-          "Support after launch"
-        ]
-      }
-    ],
-    "includedLabel": "What's included:",
-    "cta": "Book a free call",
-    "footnote": "Final pricing depends on scope. Every project starts with a free 30-minute call and a firm quote before any work begins. Ongoing maintenance plans are available for everything we build."
   },
   "work": {
     "label": "Our work",

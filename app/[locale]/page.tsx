@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import WhatWeDo from "@/components/WhatWeDo";
 import Work from "@/components/Work";
 import Testimonials from "@/components/Testimonials";
 import BookACall from "@/components/BookACall";
@@ -34,7 +33,6 @@ export default function Home({ params }: { params: { locale: string } }) {
       <Process />
       <About />
       <Work />
-      <WhatWeDo />
       <FAQ />
       <BookACall />
     </div>
